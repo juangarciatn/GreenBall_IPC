@@ -6,7 +6,10 @@ package signup;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -15,6 +18,9 @@ import javafx.fxml.Initializable;
  */
 public class FXMLsignupController implements Initializable {
 
+    @FXML
+    private Button enviarRegistroButton;
+
     /**
      * Initializes the controller class.
      */
@@ -22,5 +28,9 @@ public class FXMLsignupController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void enviarRegistroOnAction(ActionEvent event) {
+    }
     
 }

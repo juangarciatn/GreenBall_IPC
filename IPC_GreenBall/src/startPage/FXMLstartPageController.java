@@ -64,7 +64,7 @@ public class FXMLstartPageController implements Initializable {
         Scene scene = new Scene(root,500,300);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("Iniciar sesión");
+        stage.setTitle("Registrarse");
         stage.initModality(Modality.APPLICATION_MODAL); 
         stage.show();
     }
