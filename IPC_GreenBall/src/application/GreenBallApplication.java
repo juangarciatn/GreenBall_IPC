@@ -30,7 +30,7 @@ public class GreenBallApplication extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        stage.setTitle("Demo vista de lista de personas");
+        stage.setTitle("GreenBall");
         stage.show();
     }
 

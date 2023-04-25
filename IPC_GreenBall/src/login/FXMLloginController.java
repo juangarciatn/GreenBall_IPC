@@ -4,14 +4,19 @@
  */
 package login;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.Club;
+import model.ClubDAOException;
+import model.Member;
 
 /**
  * FXML Controller class
@@ -26,6 +31,8 @@ public class FXMLloginController implements Initializable {
     private PasswordField password;
     @FXML
     private Button enviarLoginButton;
+    @FXML
+    private Label labelLogin;
 
     /**
      * Initializes the controller class.
@@ -36,7 +43,19 @@ public class FXMLloginController implements Initializable {
     }    
 
     @FXML
-    private void enviarLoginOnAction(ActionEvent event) {
+    private void enviarLoginOnAction(ActionEvent event) throws ClubDAOException, IOException, InterruptedException {
+       String usuario = user.getText();
+       String clave = password.getText();
+       if (user.getText().length() != 0 && password.getText().length() != 0) {
+           labelLogin.setText("");
+        Club club = Club.getInstance();
+        if (club.getMemberByCredentials(usuario, clave) == null) labelLogin.setText("El usuario o la contraseña no existen");
+            else System.out.print("Login funciona");
+       }
+       else {
+           labelLogin.setText("Debes rellenar los campos obligatorios");
+           //Thread.sleep(5*1000); //ms
+       }
     }
     
 }
