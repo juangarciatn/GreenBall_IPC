@@ -54,7 +54,8 @@ public class FXMLsignupController implements Initializable {
     }    
 
     @FXML
-    private void enviarRegistroOnAction(ActionEvent event) throws ClubDAOException, IOException {
+    private void enviarRegistroOnAction(ActionEvent event) throws ClubDAOException, IOException, InterruptedException {
+        Club club = Club.getInstance();
         String nombre = this.nombre.getText();
         String apellido = this.apellido.getText();
         String telefono = this.telefono.getText();
@@ -63,15 +64,18 @@ public class FXMLsignupController implements Initializable {
         String tarjeta = this.tarjeta.getText();
         int svc = Integer.parseInt(this.svc.getText());
         Image image = null;
-        if (nombre.length() != 0 &&
-            apellido.length() != 0 &&
-            telefono.length() != 0 &&
-            nickname.length() != 0 &&
-            password.length() != 0) {
-                Club club = Club.getInstance();
-                Member newMember = club.registerMember(nombre, apellido, telefono, nickname, password, tarjeta, svc, image);
-                if(newMember != null) labelSignup.setText("Usuario creado");
-        }
+        if (!club.existsLogin(nickname)) {
+            if (nombre.length() != 0 &&
+                apellido.length() != 0 &&
+                telefono.length() != 0 &&
+                nickname.length() != 0 &&
+                password.length() != 0) {
+                    Member newMember = club.registerMember(nombre, apellido, telefono, nickname, password, tarjeta, svc, image);
+                    if(newMember != null) {
+                        labelSignup.setText("Usuario creado");
+                    }
+            }
+        } else labelSignup.setText("Nombre de usuario en uso");
     }
     
 }
