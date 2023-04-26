@@ -75,6 +75,9 @@ public class FXMLloginController implements Initializable {
                 stage.setTitle("GreenBall");
                 stage.show();
             }
+            else {
+                labelLogin.setText("El usuario o la contraseña no existen");
+            }
         } catch (NullPointerException e) {
             labelLogin.setText("El usuario o la contraseña no existen");
         }
