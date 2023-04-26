@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -43,16 +44,19 @@ public class FXMLstartPageController implements Initializable {
 
     @FXML
     private void loginOnAction(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/login/FXMLlogin.fxml"));
         Parent root = miCargador.load();
         // acceso al controlador de datos persona
         FXMLloginController controladorLogin = miCargador.getController();
         Scene scene = new Scene(root,500,300);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Iniciar sesión");
-        stage.initModality(Modality.APPLICATION_MODAL); 
-        stage.show();
+        Stage stageLogin = new Stage();
+        stageLogin.setScene(scene);
+        stageLogin.setTitle("Iniciar sesión");
+        stageLogin.initModality(Modality.APPLICATION_MODAL); 
+        stageLogin.show();
     }
 
     @FXML

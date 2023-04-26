@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -31,6 +32,7 @@ public class GreenBallApplication extends Application {
         
         stage.setScene(scene);
         stage.setTitle("GreenBall");
+        //stage.initStyle(StageStyle.DECORATED);
         stage.show();
     }
 

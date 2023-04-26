@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 
 /**
  * FXML Controller class
@@ -60,6 +61,7 @@ public class FXMLloginController implements Initializable {
         try{
             if (club.getMemberByCredentials(usuario, clave) != null) {
                 System.out.println("Login funciona");
+          
                 Node source = (Node) event.getSource();
                 Stage stage = (Stage) source.getScene().getWindow();
                 stage.close();
@@ -86,11 +88,20 @@ public class FXMLloginController implements Initializable {
     }
 
     @FXML
-    private void cancelarLoginOnAction(ActionEvent event) {
+    private void cancelarLoginOnAction(ActionEvent event) throws IOException {
         
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/startPage/FXMLstartPage.fxml"));
+        // acceso al controlador de datos persona
+        Parent root = miCargador.load();
+        
+                Scene scene = new Scene(root);
+        
+                stage.setScene(scene);
+                stage.setTitle("GreenBall");
+                stage.show();
     }
     
 }
