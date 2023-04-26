@@ -33,6 +33,11 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
          <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="138.0">
+               <children>
+                  <Button fx:id="cancelarLogin" mnemonicParsing="false" onAction="#cancelarLoginOnAction" text="Cancelar" />
+               </children>
+            </HBox>
             <Label fx:id="labelLogin" textFill="RED" />
             <Button fx:id="enviarLoginButton" mnemonicParsing="false" onAction="#enviarLoginOnAction" text="Iniciar sesión">
                <HBox.margin>
