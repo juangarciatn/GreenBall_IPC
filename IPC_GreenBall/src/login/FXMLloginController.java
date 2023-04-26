@@ -10,10 +10,12 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.Club;
 import model.ClubDAOException;
 import model.Member;
@@ -50,7 +52,12 @@ public class FXMLloginController implements Initializable {
            labelLogin.setText("");
         Club club = Club.getInstance();
         try{
-            if (club.getMemberByCredentials(usuario, clave) != null) System.out.print("Login funciona");
+            if (club.getMemberByCredentials(usuario, clave) != null) {
+                System.out.println("Login funciona");
+                Node source = (Node) event.getSource();
+                Stage stage = (Stage) source.getScene().getWindow();
+                stage.close();
+            }
         } catch (NullPointerException e) {
             labelLogin.setText("El usuario o la contraseña no existen");
         }
