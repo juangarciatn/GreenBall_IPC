@@ -70,7 +70,7 @@ public class FXMLsignupController implements Initializable {
             password.length() != 0) {
                 Club club = Club.getInstance();
                 Member newMember = club.registerMember(nombre, apellido, telefono, nickname, password, tarjeta, svc, image);
-                if(newMember != null) labelSignup.setText("Nuevo miembro creado satisfactoriamente");
+                if(newMember != null) labelSignup.setText("Usuario creado");
         }
     }
     
