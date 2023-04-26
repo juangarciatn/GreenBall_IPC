@@ -44,6 +44,8 @@ public class FXMLsignupController implements Initializable {
     private TextField apellido;
     @FXML
     private Label labelSignup;
+    @FXML
+    private Label labelSignupError;
 
     /**
      * Initializes the controller class.
@@ -74,10 +76,18 @@ public class FXMLsignupController implements Initializable {
                 password.length() > 6) {
                     Member newMember = club.registerMember(nombre, apellido, telefono, nickname, password, tarjeta, svc, image);
                     if(newMember != null) {
+                        labelSignupError.setText("");
                         labelSignup.setText("Usuario creado");
                     }
-            }
-        } else labelSignup.setText("Nombre de usuario en uso");
+                    
+            } else {
+                    labelSignup.setText("");
+                    labelSignupError.setText("Rellena los campos obligatorios");
+                    }
+        } else {
+            labelSignup.setText("");
+            labelSignupError.setText("Nombre de usuario en uso");
+        }
     }
     
 }

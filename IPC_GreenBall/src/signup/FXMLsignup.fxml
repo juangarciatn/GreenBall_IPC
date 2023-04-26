@@ -88,7 +88,8 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="150.0">
          <children>
-            <Label fx:id="labelSignup" />
+            <Label fx:id="labelSignup" textFill="GREEN" />
+            <Label fx:id="labelSignupError" textFill="RED" />
             <Button fx:id="enviarRegistroButton" mnemonicParsing="false" onAction="#enviarRegistroOnAction" text="Registrarse">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" />
