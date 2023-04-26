@@ -20,6 +20,9 @@ import model.Club;
 import model.ClubDAOException;
 import model.Member;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 /**
  * FXML Controller class
@@ -60,6 +63,15 @@ public class FXMLloginController implements Initializable {
                 Node source = (Node) event.getSource();
                 Stage stage = (Stage) source.getScene().getWindow();
                 stage.close();
+                
+                FXMLLoader loader= new FXMLLoader(getClass().getResource("/main/FXMLmain.fxml"));
+                Parent root = loader.load();
+        
+                Scene scene = new Scene(root);
+        
+                stage.setScene(scene);
+                stage.setTitle("GreenBall");
+                stage.show();
             }
         } catch (NullPointerException e) {
             labelLogin.setText("El usuario o la contraseña no existen");
