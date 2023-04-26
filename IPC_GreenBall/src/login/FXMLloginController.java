@@ -49,8 +49,13 @@ public class FXMLloginController implements Initializable {
        if (user.getText().length() != 0 && password.getText().length() != 0) {
            labelLogin.setText("");
         Club club = Club.getInstance();
-        if (club.getMemberByCredentials(usuario, clave) == null) labelLogin.setText("El usuario o la contraseña no existen");
-            else System.out.print("Login funciona");
+        try{
+            if (club.getMemberByCredentials(usuario, clave) != null) System.out.print("Login funciona");
+        } catch (NullPointerException e) {
+            labelLogin.setText("El usuario o la contraseña no existen");
+        }
+        //if (club.getMemberByCredentials(usuario, clave) == null) labelLogin.setText("El usuario o la contraseña no existen");
+        //    else System.out.print("Login funciona");
        }
        else {
            labelLogin.setText("Debes rellenar los campos obligatorios");
