@@ -69,7 +69,9 @@ public class FXMLsignupController implements Initializable {
                 apellido.length() != 0 &&
                 telefono.length() != 0 &&
                 nickname.length() != 0 &&
-                password.length() != 0) {
+                !nickname.contains(" ") &&
+                password.length() != 0 &&
+                password.length() > 6) {
                     Member newMember = club.registerMember(nombre, apellido, telefono, nickname, password, tarjeta, svc, image);
                     if(newMember != null) {
                         labelSignup.setText("Usuario creado");
