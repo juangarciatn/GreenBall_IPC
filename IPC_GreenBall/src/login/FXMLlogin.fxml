@@ -31,7 +31,12 @@
             <PasswordField fx:id="password" />
          </children>
       </HBox>
-      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="labelLogin" textFill="RED" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -43,7 +48,6 @@
                   <Button fx:id="cancelarLogin" mnemonicParsing="false" onAction="#cancelarLoginOnAction" text="Cancelar" />
                </children>
             </HBox>
-            <Label fx:id="labelLogin" textFill="RED" />
             <Button fx:id="enviarLoginButton" mnemonicParsing="false" onAction="#enviarLoginOnAction" text="Iniciar sesión">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" />
