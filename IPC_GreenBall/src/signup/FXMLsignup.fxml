@@ -13,7 +13,7 @@
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="150.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre*">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -23,7 +23,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido:">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido*">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -33,7 +33,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono:">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono*">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -43,7 +43,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de usuario:">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de usuario*">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -53,7 +53,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña*">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
