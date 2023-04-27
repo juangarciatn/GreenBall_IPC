@@ -27,6 +27,7 @@ public class FXMLmainController implements Initializable {
 
     @FXML
     private Label labelUser;
+    
     public String usuario = "";
 
     /**
@@ -56,7 +57,7 @@ public class FXMLmainController implements Initializable {
         //labelUser.setText("Hola, " + "1234");
         System.out.println("Funciona");
         System.out.println(usuario);
-        labelUser.setText("Hola");}
+        labelUser.setText("Hola" + usuario);}
     }
     
 }
