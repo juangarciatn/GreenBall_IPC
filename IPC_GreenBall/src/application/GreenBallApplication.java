@@ -25,7 +25,7 @@ public class GreenBallApplication extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/startPage/FXMLstartPage.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/main/FXMLmain.fxml"));
         Parent root = loader.load();
         
         Scene scene = new Scene(root);

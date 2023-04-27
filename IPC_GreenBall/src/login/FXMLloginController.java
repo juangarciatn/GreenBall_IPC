@@ -4,6 +4,7 @@
  */
 package login;
 
+import application.GreenBallApplication;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,6 +25,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
+import main.FXMLmainController;
 
 /**
  * FXML Controller class
@@ -55,25 +57,21 @@ public class FXMLloginController implements Initializable {
     private void enviarLoginOnAction(ActionEvent event) throws ClubDAOException, IOException, InterruptedException {
        String usuario = user.getText();
        String clave = password.getText();
+       FXMLmainController mc = new FXMLmainController();
        if (user.getText().length() != 0 && password.getText().length() != 0) {
            labelLogin.setText("");
         Club club = Club.getInstance();
         try{
             if (club.getMemberByCredentials(usuario, clave) != null) {
                 System.out.println("Login funciona");
+                mc.usuario = this.user.getText();
+                System.out.println(mc.usuario);
+                mc.userChange();
           
                 Node source = (Node) event.getSource();
                 Stage stage = (Stage) source.getScene().getWindow();
                 stage.close();
                 
-                FXMLLoader loader= new FXMLLoader(getClass().getResource("/main/FXMLmain.fxml"));
-                Parent root = loader.load();
-        
-                Scene scene = new Scene(root);
-        
-                stage.setScene(scene);
-                stage.setTitle("GreenBall");
-                stage.show();
             }
             else {
                 labelLogin.setText("El usuario o la contraseña no existen");
@@ -92,19 +90,9 @@ public class FXMLloginController implements Initializable {
 
     @FXML
     private void cancelarLoginOnAction(ActionEvent event) throws IOException {
-        
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/startPage/FXMLstartPage.fxml"));
-        // acceso al controlador de datos persona
-        Parent root = miCargador.load();
-        
-                Scene scene = new Scene(root);
-        
-                stage.setScene(scene);
-                stage.setTitle("GreenBall");
-                stage.show();
     }
     
 }
