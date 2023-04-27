@@ -29,7 +29,8 @@ public class FXMLmainController implements Initializable {
     @FXML
     private Label labelUser;
     
-    public String usuario = "";
+    private String user;
+    
 
     /**
      * Initializes the controller class.
@@ -50,15 +51,16 @@ public class FXMLmainController implements Initializable {
         stageLogin.setScene(scene);
         stageLogin.setTitle("Iniciar sesión");
         stageLogin.initModality(Modality.WINDOW_MODAL);
-        stageLogin.show();
+        stageLogin.showAndWait();
+        userChange();
     }
     
     public void userChange() {
-        if (usuario.equals("") == false) {
-        //labelUser.setText("Hola, " + "1234");
-        System.out.println("Funciona");
-        System.out.println(usuario);
-        labelUser.setText("Hola" + usuario);}
+        if (FXMLloginController.isOk()){
+            user = FXMLloginController.getUsername();
+            labelUser.setText("Hola, " + user);
+        }
     }
+    
     
 }
