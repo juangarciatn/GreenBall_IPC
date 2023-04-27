@@ -11,10 +11,12 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.Club;
 import model.ClubDAOException;
 import model.Member;
@@ -46,6 +48,8 @@ public class FXMLsignupController implements Initializable {
     private Label labelSignup;
     @FXML
     private Label labelSignupError;
+    @FXML
+    private Button CancelarRegistro;
 
     /**
      * Initializes the controller class.
@@ -109,5 +113,12 @@ public class FXMLsignupController implements Initializable {
                 labelSignup.setText("");
                 labelSignupError.setText("Rellena los campos obligatorios");
             }
+    }
+
+    @FXML
+    private void CancelarRegistroOnAction(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 }

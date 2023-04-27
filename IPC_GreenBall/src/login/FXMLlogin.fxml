@@ -35,7 +35,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text fx:id="registro" onMouseClicked="#registroLogin" strokeType="OUTSIDE" strokeWidth="0.0" text="¿No tienes cuenta? Registrarse" />
+                  <Text fx:id="registro" onMouseClicked="#registroLogin" strokeType="OUTSIDE" strokeWidth="0.0" text="¿No tienes cuenta? Registrarse" underline="true" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="138.0">

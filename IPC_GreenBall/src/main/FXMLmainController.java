@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import login.FXMLloginController;
 
 /**
@@ -48,7 +49,7 @@ public class FXMLmainController implements Initializable {
         Stage stageLogin = new Stage();
         stageLogin.setScene(scene);
         stageLogin.setTitle("Iniciar sesión");
-        stageLogin.initModality(Modality.APPLICATION_MODAL); 
+        stageLogin.initModality(Modality.APPLICATION_MODAL);
         stageLogin.show();
     }
     

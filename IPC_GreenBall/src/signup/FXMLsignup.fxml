@@ -88,6 +88,11 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="150.0">
          <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="CancelarRegistro" mnemonicParsing="false" onAction="#CancelarRegistroOnAction" text="Cancelar" />
+               </children>
+            </HBox>
             <Label fx:id="labelSignup" textFill="GREEN" />
             <Label fx:id="labelSignupError" textFill="RED" />
             <Button fx:id="enviarRegistroButton" mnemonicParsing="false" onAction="#enviarRegistroOnAction" text="Registrarse">
