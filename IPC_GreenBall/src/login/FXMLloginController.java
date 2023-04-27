@@ -113,7 +113,7 @@ public class FXMLloginController implements Initializable {
         Stage stageRegistro = new Stage();
         stageRegistro.setScene(scene);
         stageRegistro.setTitle("Registrarse");
-        stageRegistro.initModality(Modality.APPLICATION_MODAL); 
+        stageRegistro.initModality(Modality.WINDOW_MODAL); 
         stageRegistro.show();
     }
     

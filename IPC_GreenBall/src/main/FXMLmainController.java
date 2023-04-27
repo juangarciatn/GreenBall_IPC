@@ -49,7 +49,7 @@ public class FXMLmainController implements Initializable {
         Stage stageLogin = new Stage();
         stageLogin.setScene(scene);
         stageLogin.setTitle("Iniciar sesión");
-        stageLogin.initModality(Modality.APPLICATION_MODAL);
+        stageLogin.initModality(Modality.WINDOW_MODAL);
         stageLogin.show();
     }
     
