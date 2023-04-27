@@ -58,36 +58,56 @@ public class FXMLsignupController implements Initializable {
     @FXML
     private void enviarRegistroOnAction(ActionEvent event) throws ClubDAOException, IOException, InterruptedException {
         Club club = Club.getInstance();
-        String nombre = this.nombre.getText();
-        String apellido = this.apellido.getText();
-        String telefono = this.telefono.getText();
-        String nickname = this.nickname.getText();
-        String password = this.password.getText();
-        String tarjeta = this.tarjeta.getText();
-        int svc = Integer.parseInt(this.svc.getText());
+        String nombreS = nombre.getText();
+        String apellidoS = apellido.getText();
+        String telefonoS = telefono.getText();
+        String nicknameS = nickname.getText();  
+        String passwordS = password.getText();
+        String tarjetaS = tarjeta.getText();
+        String svcP = svc.getText();
+        int svcS = 0;
+        if (svcP.length() != 0) svcS = Integer.parseInt(svcP);
         Image image = null;
-        if (!club.existsLogin(nickname)) {
-            if (nombre.length() != 0 &&
-                apellido.length() != 0 &&
-                telefono.length() != 0 &&
-                nickname.length() != 0 &&
-                !nickname.contains(" ") &&
-                password.length() != 0 &&
-                password.length() > 6) {
-                    Member newMember = club.registerMember(nombre, apellido, telefono, nickname, password, tarjeta, svc, image);
-                    if(newMember != null) {
-                        labelSignupError.setText("");
-                        labelSignup.setText("Usuario creado");
+        
+        if (nombreS.length() != 0 &&
+            apellidoS.length() != 0 &&
+            telefonoS.length() != 0 &&
+            nicknameS.length() != 0 &&
+            passwordS.length() != 0) {
+                if (nicknameS.contains(" ")) labelSignupError.setText("El nombre de usuario no puede tener espacios.");
+                    else if (passwordS.length() < 6) labelSignupError.setText("La contraseña debe ser mayor de 6 carácteres.");
+                        else if (tarjetaS.length() != 0 && svcS != 0) {
+                            if (tarjetaS.length() < 13 || tarjetaS.length() > 18) labelSignupError.setText("Introduce una tarjeta de crédito correcta");
+                                else if (svcP.length() < 3 || svcP.length() > 4) labelSignupError.setText("Introduce un svc correcto");
+                                else if ((tarjetaS.length() > 12 || tarjetaS.length() < 19) && (svcS > 2 || svcS < 5)){
+                                    try {
+                                        Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, tarjetaS, svcS, image);
+                                        if(newMember != null) {
+                                        labelSignupError.setText("");
+                                        labelSignup.setText("Usuario creado");
+                                        }
+                                    }
+                                        catch(ClubDAOException e) {
+                                            labelSignup.setText("");
+                                            labelSignupError.setText("Nombre de usuario en uso");
+                                        }
+                        }       
+                    } else {
+                        try {
+                            Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, tarjetaS, svcS, image);
+                            if(newMember != null) {
+                                labelSignupError.setText("");
+                                labelSignup.setText("Usuario creado");
+                            }
+                        } catch(ClubDAOException e) {
+                            labelSignup.setText("");
+                            labelSignupError.setText("Nombre de usuario en uso");
+                          }
                     }
-                    
-            } else {
-                    labelSignup.setText("");
-                    labelSignupError.setText("Rellena los campos obligatorios");
-                    }
-        } else {
-            labelSignup.setText("");
-            labelSignupError.setText("Nombre de usuario en uso");
-        }
+            }
+            else {
+                labelSignup.setText("");
+                labelSignupError.setText("Rellena los campos obligatorios");
+            }
     }
-    
 }

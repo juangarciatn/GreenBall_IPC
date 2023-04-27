@@ -44,9 +44,7 @@ public class FXMLstartPageController implements Initializable {
 
     @FXML
     private void loginOnAction(ActionEvent event) throws IOException {
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+        
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/login/FXMLlogin.fxml"));
         Parent root = miCargador.load();
         // acceso al controlador de datos persona
