@@ -49,6 +49,9 @@ public class FXMLloginController implements Initializable {
     private Button cancelarLogin;
     @FXML
     private Text registro;
+    
+    private static boolean okPressed = false;
+    private static String username;
 
     /**
      * Initializes the controller class.
@@ -69,10 +72,8 @@ public class FXMLloginController implements Initializable {
         try{
             if (club.getMemberByCredentials(usuario, clave) != null) {
                 System.out.println("Login funciona");
-                mc.usuario = this.user.getText();
-                System.out.println(mc.usuario);
-                mc.userChange();
-          
+                okPressed = true;
+                username = user.getText();
                 Node source = (Node) event.getSource();
                 Stage stage = (Stage) source.getScene().getWindow();
                 stage.close();
@@ -115,6 +116,14 @@ public class FXMLloginController implements Initializable {
         stageRegistro.setTitle("Registrarse");
         stageRegistro.initModality(Modality.APPLICATION_MODAL); 
         stageRegistro.show();
+    }
+    
+    public static boolean isOk() {
+        return okPressed;
+    }
+    
+    public static String getUsername() {
+        return username;
     }
     
 }
