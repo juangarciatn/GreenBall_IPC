@@ -31,6 +31,8 @@ public class FXMLmainController implements Initializable {
     
     private String user;
     
+    private boolean loggedIn = false;
+    
 
     /**
      * Initializes the controller class.
@@ -42,23 +44,37 @@ public class FXMLmainController implements Initializable {
 
     @FXML
     private void labelUserClick(MouseEvent event) throws IOException {
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/login/FXMLlogin.fxml"));
-        Parent root = miCargador.load();
-        // acceso al controlador de datos persona
-        FXMLloginController controladorLogin = miCargador.getController();
-        Scene scene = new Scene(root,500,300);
-        Stage stageLogin = new Stage();
-        stageLogin.setScene(scene);
-        stageLogin.setTitle("Iniciar sesión");
-        stageLogin.initModality(Modality.WINDOW_MODAL);
-        stageLogin.showAndWait();
-        userChange();
+        if (loggedIn) {
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/profile/FXMLprofile.fxml"));
+            Parent root = miCargador.load();
+            // acceso al controlador de datos persona
+            FXMLloginController controladorLogin = miCargador.getController();
+            Scene scene = new Scene(root,500,300);
+            Stage stageLogin = new Stage();
+            stageLogin.setScene(scene);
+            stageLogin.setTitle("Perfil");
+            stageLogin.initModality(Modality.WINDOW_MODAL);
+            stageLogin.showAndWait();
+        } else {
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/login/FXMLlogin.fxml"));
+            Parent root = miCargador.load();
+            // acceso al controlador de datos persona
+            FXMLloginController controladorLogin = miCargador.getController();
+            Scene scene = new Scene(root,500,300);
+            Stage stageLogin = new Stage();
+            stageLogin.setScene(scene);
+            stageLogin.setTitle("Iniciar sesión");
+            stageLogin.initModality(Modality.WINDOW_MODAL);
+            stageLogin.showAndWait();
+            userChange();
+        }
     }
     
     public void userChange() {
         if (FXMLloginController.isOk()){
             user = FXMLloginController.getUsername();
             labelUser.setText("Hola, " + user);
+            loggedIn = true;
         }
     }
     
