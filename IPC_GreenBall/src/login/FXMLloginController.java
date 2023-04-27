@@ -24,8 +24,11 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import main.FXMLmainController;
+import signup.FXMLsignupController;
 
 /**
  * FXML Controller class
@@ -44,6 +47,8 @@ public class FXMLloginController implements Initializable {
     private Label labelLogin;
     @FXML
     private Button cancelarLogin;
+    @FXML
+    private Text registro;
 
     /**
      * Initializes the controller class.
@@ -93,6 +98,23 @@ public class FXMLloginController implements Initializable {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void registroLogin(MouseEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/signup/FXMLsignup.fxml"));
+        Parent root = miCargador.load();
+        // acceso al controlador de datos persona
+        FXMLsignupController controladorSignup = miCargador.getController();
+        Scene scene = new Scene(root,500,300);
+        Stage stageRegistro = new Stage();
+        stageRegistro.setScene(scene);
+        stageRegistro.setTitle("Registrarse");
+        stageRegistro.initModality(Modality.APPLICATION_MODAL); 
+        stageRegistro.show();
     }
     
 }
