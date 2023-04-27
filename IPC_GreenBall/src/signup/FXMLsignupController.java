@@ -76,7 +76,7 @@ public class FXMLsignupController implements Initializable {
             passwordS.length() != 0) {
                 if (nicknameS.contains(" ")) labelSignupError.setText("El nombre de usuario no puede tener espacios.");
                     else if (passwordS.length() < 6) labelSignupError.setText("La contraseña debe ser mayor de 6 carácteres.");
-                        else if (tarjetaS.length() != 0 && svcS != 0) {
+                        else if (tarjetaS.length() != 0 || svcS != 0) {
                             if (tarjetaS.length() < 13 || tarjetaS.length() > 18) labelSignupError.setText("Introduce una tarjeta de crédito correcta");
                                 else if (svcP.length() < 3 || svcP.length() > 4) labelSignupError.setText("Introduce un svc correcto");
                                 else if ((tarjetaS.length() > 12 || tarjetaS.length() < 19) && (svcS > 2 || svcS < 5)){
@@ -94,7 +94,7 @@ public class FXMLsignupController implements Initializable {
                         }       
                     } else {
                         try {
-                            Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, tarjetaS, svcS, image);
+                            Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, null, 0, image);
                             if(newMember != null) {
                                 labelSignupError.setText("");
                                 labelSignup.setText("Usuario creado");
