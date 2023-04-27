@@ -89,6 +89,10 @@ public class FXMLsignupController implements Initializable {
                                         if(newMember != null) {
                                         labelSignupError.setText("");
                                         labelSignup.setText("Usuario creado");
+                                        wait(3*1000);
+                                        Node source = (Node) event.getSource();
+                                        Stage stage = (Stage) source.getScene().getWindow();
+                                        stage.close();
                                         }
                                     }
                                         catch(ClubDAOException e) {
