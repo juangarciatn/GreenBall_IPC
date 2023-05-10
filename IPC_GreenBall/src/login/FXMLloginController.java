@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -52,6 +54,7 @@ public class FXMLloginController implements Initializable {
     
     private static boolean okPressed = false;
     private static String username;
+    private static String passw;
 
     /**
      * Initializes the controller class.
@@ -74,6 +77,7 @@ public class FXMLloginController implements Initializable {
                 System.out.println("Login funciona");
                 okPressed = true;
                 username = user.getText();
+                passw = password.getText();
                 Node source = (Node) event.getSource();
                 Stage stage = (Stage) source.getScene().getWindow();
                 stage.close();
@@ -125,5 +129,43 @@ public class FXMLloginController implements Initializable {
     public static String getUsername() {
         return username;
     }
+
+    @FXML
+    private void enterLogin(KeyEvent event) throws ClubDAOException, IOException {
+        if (event.getCode() == KeyCode.E) {
+        System.out.println("Prueba");
+        String usuario = user.getText();
+        String clave = password.getText();
+        if (user.getText().length() != 0 && password.getText().length() != 0) {
+           labelLogin.setText("");
+        Club club = Club.getInstance();
+        try{
+            if (club.getMemberByCredentials(usuario, clave) != null) {
+                System.out.println("Login funciona");
+                okPressed = true;
+                username = user.getText();
+                Node source = (Node) event.getSource();
+                Stage stage = (Stage) source.getScene().getWindow();
+                stage.close();
+                
+            }
+            else {
+                labelLogin.setText("El usuario o la contraseña no existen");
+            }
+        } catch (NullPointerException e) {
+            labelLogin.setText("El usuario o la contraseña no existen");
+        }
+        //if (club.getMemberByCredentials(usuario, clave) == null) labelLogin.setText("El usuario o la contraseña no existen");
+        //    else System.out.print("Login funciona");
+       }
+       else {
+           labelLogin.setText("Debes rellenar los campos obligatorios");
+           //Thread.sleep(5*1000); //ms
+        }
+        }
+    }
     
+    public static String getPassword() {
+        return passw;
+    }
 }

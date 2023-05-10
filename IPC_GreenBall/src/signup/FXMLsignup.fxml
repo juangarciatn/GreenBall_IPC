@@ -95,7 +95,7 @@
             </HBox>
             <Label fx:id="labelSignup" textFill="GREEN" />
             <Label fx:id="labelSignupError" textFill="RED" />
-            <Button fx:id="enviarRegistroButton" mnemonicParsing="false" onAction="#enviarRegistroOnAction" text="Registrarse">
+            <Button fx:id="enviarRegistroButton" mnemonicParsing="false" onAction="#enviarRegistroOnAction" onKeyPressed="#enterRegistro" text="Registrarse">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" />
                </HBox.margin>

@@ -18,7 +18,7 @@
                   <Insets right="25.0" />
                </HBox.margin>
             </Text>
-            <TextField fx:id="user" />
+            <TextField fx:id="user" mouseTransparent="true" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -45,10 +45,10 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="138.0">
                <children>
-                  <Button fx:id="cancelarLogin" mnemonicParsing="false" onAction="#cancelarLoginOnAction" text="Cancelar" />
+                  <Button fx:id="cancelarLogin" cancelButton="true" mnemonicParsing="false" onAction="#cancelarLoginOnAction" text="Cancelar" />
                </children>
             </HBox>
-            <Button fx:id="enviarLoginButton" mnemonicParsing="false" onAction="#enviarLoginOnAction" text="Iniciar sesión">
+            <Button fx:id="enviarLoginButton" mnemonicParsing="false" onAction="#enviarLoginOnAction" onKeyPressed="#enterLogin" text="Iniciar sesión">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" />
                </HBox.margin>
