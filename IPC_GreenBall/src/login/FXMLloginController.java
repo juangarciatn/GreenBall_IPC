@@ -54,6 +54,7 @@ public class FXMLloginController implements Initializable {
     
     private static boolean okPressed = false;
     private static String username;
+    private static String passw;
 
     /**
      * Initializes the controller class.
@@ -76,6 +77,7 @@ public class FXMLloginController implements Initializable {
                 System.out.println("Login funciona");
                 okPressed = true;
                 username = user.getText();
+                passw = password.getText();
                 Node source = (Node) event.getSource();
                 Stage stage = (Stage) source.getScene().getWindow();
                 stage.close();
@@ -163,4 +165,7 @@ public class FXMLloginController implements Initializable {
         }
     }
     
+    public static String getPassword() {
+        return passw;
+    }
 }

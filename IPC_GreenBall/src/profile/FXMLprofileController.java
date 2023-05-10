@@ -4,9 +4,16 @@
  */
 package profile;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import main.FXMLmainController;
+import model.Club;
+import model.ClubDAOException;
 
 /**
  * FXML Controller class
@@ -14,6 +21,22 @@ import javafx.fxml.Initializable;
  * @author Juan
  */
 public class FXMLprofileController implements Initializable {
+
+    @FXML
+    private ImageView labelPicture;
+    @FXML
+    private Label labelUsername;
+    @FXML
+    private Label labelName;
+    @FXML
+    private Label labelSurname;
+    
+    private Club club;
+    
+    public FXMLprofileController() throws ClubDAOException, IOException {
+        this.club = Club.getInstance();
+        getUser();
+    }
 
     /**
      * Initializes the controller class.
@@ -23,4 +46,11 @@ public class FXMLprofileController implements Initializable {
         // TODO
     }    
     
+    public void getUser() {
+//        if (FXMLmainController.getUser().getImage() != null) labelPicture.setImage(FXMLmainController.getUser().getImage());
+        this.labelUsername.setText(FXMLmainController.getUser().getNickName());
+        this.labelName.setText(FXMLmainController.getUser().getName());
+        this.labelSurname.setText(FXMLmainController.getUser().getSurname());
+        
+    }
 }

@@ -18,6 +18,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import login.FXMLloginController;
+import profile.FXMLprofileController;
+import model.*;
 
 /**
  * FXML Controller class
@@ -29,11 +31,20 @@ public class FXMLmainController implements Initializable {
     @FXML
     private Label labelUser;
     
-    private String user;
+    private static Member user;
+    
+    private final Club club;
     
     private boolean loggedIn = false;
+<<<<<<< Updated upstream
     @FXML
     private Label labelLogin;
+=======
+
+    public FXMLmainController() throws ClubDAOException, IOException {
+        this.club = Club.getInstance();
+    }
+>>>>>>> Stashed changes
     
 
     /**
@@ -45,12 +56,12 @@ public class FXMLmainController implements Initializable {
     }    
 
     @FXML
-    private void labelUserClick(MouseEvent event) throws IOException {
+    private void labelUserClick(MouseEvent event) throws IOException, ClubDAOException {
         if (loggedIn) {
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/profile/FXMLprofile.fxml"));
             Parent root = miCargador.load();
             // acceso al controlador de datos persona
-            FXMLloginController controladorLogin = miCargador.getController();
+            FXMLprofileController controladorLogin = miCargador.getController();
             Scene scene = new Scene(root,500,300);
             Stage stageLogin = new Stage();
             stageLogin.setScene(scene);
@@ -72,13 +83,23 @@ public class FXMLmainController implements Initializable {
         }
     }
     
-    public void userChange() {
+    public void userChange() throws ClubDAOException, IOException {
         if (FXMLloginController.isOk()){
+<<<<<<< Updated upstream
             user = FXMLloginController.getUsername();
             labelLogin.setText("");
             labelUser.setText("Hola, " + user);
+=======
+            user = club.getMemberByCredentials(FXMLloginController.getUsername(), FXMLloginController.getPassword());
+            labelUser.setText("Hola, " + user.getNickName());
+>>>>>>> Stashed changes
             loggedIn = true;
         }
+    }
+    
+   
+    public static Member getUser() {
+        return user;
     }
     
     
