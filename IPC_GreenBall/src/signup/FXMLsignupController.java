@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.Club;
 import model.ClubDAOException;
@@ -124,5 +125,9 @@ public class FXMLsignupController implements Initializable {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void enterRegistro(KeyEvent event) {
     }
 }
