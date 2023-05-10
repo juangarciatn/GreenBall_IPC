@@ -32,6 +32,8 @@ public class FXMLmainController implements Initializable {
     private String user;
     
     private boolean loggedIn = false;
+    @FXML
+    private Label labelLogin;
     
 
     /**
@@ -73,6 +75,7 @@ public class FXMLmainController implements Initializable {
     public void userChange() {
         if (FXMLloginController.isOk()){
             user = FXMLloginController.getUsername();
+            labelLogin.setText("");
             labelUser.setText("Hola, " + user);
             loggedIn = true;
         }

@@ -21,7 +21,8 @@
             </Text>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="labelUser" onMouseClicked="#labelUserClick" text="Iniciar sesión" textFill="#050505" />
+                  <Label fx:id="labelLogin" onMouseClicked="#labelUserClick" text="Iniciar sesión" textFill="BLUE" underline="true" />
+                  <Label fx:id="labelUser" onMouseClicked="#labelUserClick" textFill="#050505" />
                </children>
             </HBox>
          </children>
