@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -21,11 +23,25 @@
             </Text>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="labelLogin" onMouseClicked="#labelUserClick" text="Iniciar sesión" textFill="BLUE" underline="true" />
+                  <Label fx:id="labelLogin" onMouseClicked="#labelUserClick" text="Iniciar sesión" textFill="BLUE" underline="true">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Label>
                   <Label fx:id="labelUser" onMouseClicked="#labelUserClick" textFill="#050505" />
+                  <ImageView fx:id="myImageView" fitHeight="51.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </ImageView>
                </children>
             </HBox>
          </children>
       </HBox>
    </top>
+   <left>
+      <DatePicker fx:id="dpBookingDay" onAction="#dpBookingDayOnAction" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="10.0" />
+         </BorderPane.margin></DatePicker>
+   </left>
 </BorderPane>
