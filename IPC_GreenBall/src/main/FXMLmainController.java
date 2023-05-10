@@ -36,16 +36,12 @@ public class FXMLmainController implements Initializable {
     private final Club club;
     
     private boolean loggedIn = false;
-<<<<<<< Updated upstream
     @FXML
     private Label labelLogin;
-=======
 
     public FXMLmainController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
-    }
->>>>>>> Stashed changes
-    
+    }    
 
     /**
      * Initializes the controller class.
@@ -85,14 +81,9 @@ public class FXMLmainController implements Initializable {
     
     public void userChange() throws ClubDAOException, IOException {
         if (FXMLloginController.isOk()){
-<<<<<<< Updated upstream
-            user = FXMLloginController.getUsername();
-            labelLogin.setText("");
             labelUser.setText("Hola, " + user);
-=======
             user = club.getMemberByCredentials(FXMLloginController.getUsername(), FXMLloginController.getPassword());
             labelUser.setText("Hola, " + user.getNickName());
->>>>>>> Stashed changes
             loggedIn = true;
         }
     }
