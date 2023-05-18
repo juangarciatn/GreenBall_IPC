@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.Club;
@@ -90,7 +91,7 @@ public class FXMLsignupController implements Initializable {
                                         if(newMember != null) {
                                         labelSignupError.setText("");
                                         labelSignup.setText("Usuario creado");
-                                        wait(3*1000);
+                                        //wait(3*1000);
                                         Node source = (Node) event.getSource();
                                         Stage stage = (Stage) source.getScene().getWindow();
                                         stage.close();
@@ -128,6 +129,10 @@ public class FXMLsignupController implements Initializable {
     }
 
     @FXML
-    private void enterRegistro(KeyEvent event) {
+    private void enterRegistro(KeyEvent event) throws ClubDAOException, IOException, InterruptedException {
+        if(event.getCode() == KeyCode.ENTER){
+            ActionEvent ac1 = new ActionEvent();
+            enviarRegistroOnAction(ac1);
+        }
     }
 }
