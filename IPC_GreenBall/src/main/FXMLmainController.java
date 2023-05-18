@@ -64,8 +64,6 @@ public class FXMLmainController implements Initializable {
     @FXML
     private DatePicker dpBookingDay;
     @FXML
-    private GridPane grid;
-    @FXML
     private Label labelCol;
     
     private final LocalTime firstSlotStart = LocalTime.of(9, 0);
@@ -81,6 +79,18 @@ public class FXMLmainController implements Initializable {
     private LocalDate daySelected;
     @FXML
     private Label slotSelected;
+    @FXML
+    private GridPane grid1;
+    @FXML
+    private GridPane grid2;
+    @FXML
+    private GridPane grid3;
+    @FXML
+    private GridPane grid4;
+    @FXML
+    private GridPane grid5;
+    @FXML
+    private GridPane grid6;
 
     public FXMLmainController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
@@ -120,8 +130,9 @@ public class FXMLmainController implements Initializable {
     private void setTimeSlotsGrid(LocalDate date) {
         //actualizamos la seleccion
         timeSlotSelected.setValue(null);
-
-        ObservableList<Node> children = grid.getChildren();
+        
+//ΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔ 1
+        ObservableList<Node> children = grid1.getChildren();
         for (TimeSlot timeSlot : timeSlots) {
             children.remove(timeSlot.getView());
         }
@@ -141,7 +152,134 @@ public class FXMLmainController implements Initializable {
             registerHandlers(timeSlot);
             //-----------------------------------------------------------
             // lo anyadimos al grid en la posicion x= 1, y= slotIndex
-            grid.add(timeSlot.getView(), 1, slotIndex);
+            grid1.add(timeSlot.getView(), 1, slotIndex);
+            slotIndex++;
+        }
+        
+//ΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔ 2
+        children = grid2.getChildren();
+        for (TimeSlot timeSlot : timeSlots) {
+            children.remove(timeSlot.getView());
+        }
+        timeSlots = new ArrayList<>();
+
+        //----------------------------------------------------------------------------------
+        // desde la hora de inicio y hasta la hora de fin creamos slotTime segun la duracion
+        slotIndex = 3;
+        for (LocalDateTime startTime = date.atTime(firstSlotStart);
+            !startTime.isAfter(date.atTime(lastSlotStart));
+            startTime = startTime.plus(slotLength)) {
+
+            //---------------------------------------------------------------------------------------
+            // creamos el SlotTime, lo anyadimos a la lista de la columna y asignamos sus manejadores
+            TimeSlot timeSlot = new TimeSlot(startTime, slotLength);
+            timeSlots.add(timeSlot);
+            registerHandlers(timeSlot);
+            //-----------------------------------------------------------
+            // lo anyadimos al grid en la posicion x= 1, y= slotIndex
+            grid2.add(timeSlot.getView(), 0, slotIndex);
+            slotIndex++;
+        }
+     
+    
+
+//ΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔ 3
+        children = grid3.getChildren();
+        for (TimeSlot timeSlot : timeSlots) {
+            children.remove(timeSlot.getView());
+        }
+        timeSlots = new ArrayList<>();
+
+        //----------------------------------------------------------------------------------
+        // desde la hora de inicio y hasta la hora de fin creamos slotTime segun la duracion
+        slotIndex = 3;
+        for (LocalDateTime startTime = date.atTime(firstSlotStart);
+            !startTime.isAfter(date.atTime(lastSlotStart));
+            startTime = startTime.plus(slotLength)) {
+
+            //---------------------------------------------------------------------------------------
+            // creamos el SlotTime, lo anyadimos a la lista de la columna y asignamos sus manejadores
+            TimeSlot timeSlot = new TimeSlot(startTime, slotLength);
+            timeSlots.add(timeSlot);
+            registerHandlers(timeSlot);
+            //-----------------------------------------------------------
+            // lo anyadimos al grid en la posicion x= 1, y= slotIndex
+            grid3.add(timeSlot.getView(), 0, slotIndex);
+            slotIndex++;
+        }
+    
+//ΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔ 4
+        children = grid4.getChildren();
+        for (TimeSlot timeSlot : timeSlots) {
+            children.remove(timeSlot.getView());
+        }
+        timeSlots = new ArrayList<>();
+
+        //----------------------------------------------------------------------------------
+        // desde la hora de inicio y hasta la hora de fin creamos slotTime segun la duracion
+        slotIndex = 3;
+        for (LocalDateTime startTime = date.atTime(firstSlotStart);
+            !startTime.isAfter(date.atTime(lastSlotStart));
+            startTime = startTime.plus(slotLength)) {
+
+            //---------------------------------------------------------------------------------------
+            // creamos el SlotTime, lo anyadimos a la lista de la columna y asignamos sus manejadores
+            TimeSlot timeSlot = new TimeSlot(startTime, slotLength);
+            timeSlots.add(timeSlot);
+            registerHandlers(timeSlot);
+            //-----------------------------------------------------------
+            // lo anyadimos al grid en la posicion x= 1, y= slotIndex
+            grid4.add(timeSlot.getView(), 0, slotIndex);
+            slotIndex++;
+        }
+    
+//ΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔ 5
+        children = grid5.getChildren();
+        for (TimeSlot timeSlot : timeSlots) {
+            children.remove(timeSlot.getView());
+        }
+        timeSlots = new ArrayList<>();
+
+        //----------------------------------------------------------------------------------
+        // desde la hora de inicio y hasta la hora de fin creamos slotTime segun la duracion
+        slotIndex = 3;
+        for (LocalDateTime startTime = date.atTime(firstSlotStart);
+            !startTime.isAfter(date.atTime(lastSlotStart));
+            startTime = startTime.plus(slotLength)) {
+
+            //---------------------------------------------------------------------------------------
+            // creamos el SlotTime, lo anyadimos a la lista de la columna y asignamos sus manejadores
+            TimeSlot timeSlot = new TimeSlot(startTime, slotLength);
+            timeSlots.add(timeSlot);
+            registerHandlers(timeSlot);
+            //-----------------------------------------------------------
+            // lo anyadimos al grid en la posicion x= 1, y= slotIndex
+            grid5.add(timeSlot.getView(), 0, slotIndex);
+            slotIndex++;
+        }
+        
+//ΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔΔ 6
+        children = grid6.getChildren();
+        for (TimeSlot timeSlot : timeSlots) {
+            children.remove(timeSlot.getView());
+        }
+        timeSlots = new ArrayList<>();
+
+        //----------------------------------------------------------------------------------
+        // desde la hora de inicio y hasta la hora de fin creamos slotTime segun la duracion
+        slotIndex = 3;
+        for (LocalDateTime startTime = date.atTime(firstSlotStart);
+            !startTime.isAfter(date.atTime(lastSlotStart));
+            startTime = startTime.plus(slotLength)) {
+
+            //---------------------------------------------------------------------------------------
+            // creamos el SlotTime, lo anyadimos a la lista de la columna y asignamos sus manejadores
+            TimeSlot timeSlot = new TimeSlot(startTime, slotLength);
+            timeSlots.add(timeSlot);
+            registerHandlers(timeSlot);
+            //-----------------------------------------------------------
+            // lo anyadimos al grid en la posicion x= 1, y= slotIndex
+            grid6.add(timeSlot.getView(), 0, slotIndex);
             slotIndex++;
         }
     }
