@@ -94,6 +94,12 @@ public class FXMLmainController implements Initializable {
     public FXMLmainController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
         courts = club.getCourts();
+    }
+
+    public FXMLmainController(Member m) throws ClubDAOException, IOException {
+        this.user = m;
+        this.club = Club.getInstance();
+        courts = club.getCourts();
     }    
 
     /**
