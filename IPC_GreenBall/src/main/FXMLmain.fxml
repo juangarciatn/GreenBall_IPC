@@ -3,6 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -26,7 +29,20 @@
             </Text>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="labelUser" onMouseClicked="#labelUserClick" text="Iniciar sesión" textFill="#050505" />
+                  <MenuBar fx:id="menuBar" onMouseEntered="#menuOnMouseEntered" styleClass="transparent-menu-bar" stylesheets="@../styles/transparent-menu-bar.css">
+                    <menus>
+                      <Menu fx:id="menu" mnemonicParsing="false">
+                        <items>
+                              <MenuItem mnemonicParsing="false" onAction="#miPerfilButton" text="Mi perfil" />
+                          <MenuItem mnemonicParsing="false" onAction="#misReservasButton" text="Mis reservas" />
+                              <MenuItem mnemonicParsing="false" onAction="#cerrarSesionButton" text="Cerrar sesión" />
+                        </items>
+                           <graphic>
+                              <Label fx:id="labelUser" onMouseClicked="#labelUserClick" text="Iniciar sesión" textFill="#050505" />
+                           </graphic>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
                </children>
             </HBox>
          </children>

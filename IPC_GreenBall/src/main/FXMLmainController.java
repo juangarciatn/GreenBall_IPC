@@ -25,6 +25,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,6 +37,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -83,7 +86,10 @@ public class FXMLmainController implements Initializable {
     private Label slotSelected;
     @FXML
     private GridPane grid;
-    
+    @FXML
+    private MenuBar menuBar;
+    @FXML
+    private Menu menu;
 
     public FXMLmainController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
@@ -96,6 +102,11 @@ public class FXMLmainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        menuBar.setUseSystemMenuBar(false);
+
+        menuBar.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+            event.consume();
+        });
         
         timeSlotSelected = new SimpleObjectProperty<>();
         
@@ -188,6 +199,48 @@ public class FXMLmainController implements Initializable {
             }
         });
     }
+
+    @FXML
+    private void menuOnMouseEntered(MouseEvent event) {
+        if (loggedIn) menu.show();
+        else menu.hide();
+    }
+
+
+    @FXML
+    private void miPerfilButton(ActionEvent event) throws IOException {
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/profile/FXMLprofile.fxml"));
+            Parent root = miCargador.load();
+            // acceso al controlador de datos persona
+            FXMLprofileController controladorLogin = miCargador.getController();
+            Scene scene = new Scene(root,500,300);
+            Stage stageLogin = new Stage();
+            stageLogin.setScene(scene);
+            stageLogin.setTitle("Perfil");
+            stageLogin.initModality(Modality.APPLICATION_MODAL);
+            stageLogin.showAndWait();
+    }
+
+    @FXML
+    private void misReservasButton(ActionEvent event) {
+    }
+
+    @FXML
+    private void cerrarSesionButton(ActionEvent event) {
+        this.loggedIn = false;
+        labelUser.setText("Iniciar sesión");
+        this.user = null;
+        FXMLloginController.setIsOk(false);
+    }
+
+    private void menuOnMouseExited(MouseEvent event) {
+        menu.setDisable(false);
+    }
+
+    private void menuOnMouseClicked(MouseEvent event) {
+        menu.setDisable(true);
+    }
+
     
     public class TimeSlot {
 
@@ -245,6 +298,7 @@ public class FXMLmainController implements Initializable {
             return view;
         }
     }
+    
 
     @FXML
     private void labelUserClick(MouseEvent event) throws IOException, ClubDAOException {
@@ -268,7 +322,7 @@ public class FXMLmainController implements Initializable {
             Stage stageLogin = new Stage();
             stageLogin.setScene(scene);
             stageLogin.setTitle("Iniciar sesión");
-            stageLogin.initModality(Modality.WINDOW_MODAL);
+            stageLogin.initModality(Modality.APPLICATION_MODAL);
             stageLogin.showAndWait();
             userChange();
         }
@@ -276,7 +330,7 @@ public class FXMLmainController implements Initializable {
     
     public void userChange() throws ClubDAOException, IOException {
         if (FXMLloginController.isOk()){
-            labelUser.setText("Hola, " + user);
+            // labelUser.setText("Hola, " + user);
             user = club.getMemberByCredentials(FXMLloginController.getUsername(), FXMLloginController.getPassword());
             labelUser.setText("Hola, " + user.getNickName());
             loggedIn = true;

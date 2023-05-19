@@ -74,7 +74,7 @@ public class FXMLloginController implements Initializable {
             Club club = Club.getInstance();
             try {
                 if (club.getMemberByCredentials(usuario, clave) != null) {
-                    System.out.println("Login funciona");
+                    //System.out.println("Login funciona");
                     okPressed = true;
                     username = user.getText();
                     passw = password.getText();
@@ -115,6 +115,10 @@ public class FXMLloginController implements Initializable {
         stageRegistro.setTitle("Registrarse");
         stageRegistro.initModality(Modality.WINDOW_MODAL); 
         stageRegistro.show();
+    }
+    
+    public static void setIsOk(boolean s) {
+        okPressed = s;
     }
     
     public static boolean isOk() {
