@@ -4,7 +4,7 @@ Cosas que faltan por hacer (si están hechas marcar con una X):
 	
 	Añadir un retardo de 3 segundos y deshabilitar el botón de registro para que después de estos segundos se cierre la ventana.
 
-	Una vez iniciada sesión que se cambie el estado del label superior de Iniciar sesión a Hola, NombreUsuario.
+	X Una vez iniciada sesión que se cambie el estado del label superior de Iniciar sesión a Hola, NombreUsuario.
 
 	Añadir la disponibilidad de pistas en la pantalla cuando no has iniciado sesión.
 
