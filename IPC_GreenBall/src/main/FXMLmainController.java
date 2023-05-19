@@ -60,6 +60,8 @@ public class FXMLmainController implements Initializable {
     
     private final Club club;
     
+    private static List<Court> courts;
+    
     private boolean loggedIn = false;
     @FXML
     private DatePicker dpBookingDay;
@@ -85,6 +87,7 @@ public class FXMLmainController implements Initializable {
 
     public FXMLmainController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
+        courts = club.getCourts();
     }    
 
     /**
