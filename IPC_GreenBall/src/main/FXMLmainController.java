@@ -152,7 +152,7 @@ public class FXMLmainController implements Initializable {
             registerHandlers(timeSlot);
             //-----------------------------------------------------------
             // lo anyadimos al grid en la posicion x= 1, y= slotIndex
-            grid1.add(timeSlot.getView(), 1, slotIndex);
+            grid1.add(timeSlot.getView(), 0, slotIndex);
             slotIndex++;
         }
         

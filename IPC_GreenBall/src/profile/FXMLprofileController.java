@@ -36,7 +36,6 @@ public final class FXMLprofileController implements Initializable {
     
     public FXMLprofileController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
-        //getUser();
     }
 
     /**
@@ -45,10 +44,9 @@ public final class FXMLprofileController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        this.labelUsername.setText(FXMLmainController.getUser().getNickName());
-        this.labelName.setText(FXMLmainController.getUser().getName());
-        this.labelSurname.setText(FXMLmainController.getUser().getSurname());
-    }    
+        getUser();
+    }
+    
         
     public void getUser() {
 //        if (FXMLmainController.getUser().getImage() != null) labelPicture.setImage(FXMLmainController.getUser().getImage());
