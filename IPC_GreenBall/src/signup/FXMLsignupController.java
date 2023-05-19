@@ -4,7 +4,6 @@
  */
 package signup;
 
-import javafx.scene.image.Image;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,6 +25,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
+import javafx.stage.FileChooser;
+import java.io.File;
+import javafx.geometry.Side;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.CustomMenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 
 /**
@@ -57,6 +63,15 @@ public class FXMLsignupController implements Initializable {
     private Label labelSignupError;
     @FXML
     private Button CancelarRegistro;
+    @FXML
+    private Button avatarButton;
+    @FXML
+    private Button imageButton;
+    @FXML
+    private ImageView imageUser;
+    
+    
+    
 
     /**
      * Initializes the controller class.
@@ -64,6 +79,8 @@ public class FXMLsignupController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
+    
     }    
 
     @FXML
@@ -163,4 +180,16 @@ public class FXMLsignupController implements Initializable {
             enviarRegistroOnAction(ac1);
         }
     }
+
+    @FXML
+    private void avatarButtonOnAction(ActionEvent event) {
+        //avatarButton.getContextMenu().show(avatarButton,Side.BOTTOM,0,0);
+    }
+
+
+
+    @FXML
+    private void imageButtonOnAction(ActionEvent event) {
+    }
+
 }
