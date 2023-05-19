@@ -14,13 +14,14 @@ import javafx.scene.image.ImageView;
 import main.FXMLmainController;
 import model.Club;
 import model.ClubDAOException;
+import model.Member;
 
 /**
  * FXML Controller class
  *
  * @author Juan
  */
-public class FXMLprofileController implements Initializable {
+public final class FXMLprofileController implements Initializable {
 
     @FXML
     private ImageView labelPicture;
@@ -35,7 +36,7 @@ public class FXMLprofileController implements Initializable {
     
     public FXMLprofileController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
-        getUser();
+        //getUser();
     }
 
     /**
@@ -44,10 +45,14 @@ public class FXMLprofileController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        this.labelUsername.setText(FXMLmainController.getUser().getNickName());
+        this.labelName.setText(FXMLmainController.getUser().getName());
+        this.labelSurname.setText(FXMLmainController.getUser().getSurname());
     }    
-    
+        
     public void getUser() {
 //        if (FXMLmainController.getUser().getImage() != null) labelPicture.setImage(FXMLmainController.getUser().getImage());
+        System.out.println(FXMLmainController.getUser().getNickName());
         this.labelUsername.setText(FXMLmainController.getUser().getNickName());
         this.labelName.setText(FXMLmainController.getUser().getName());
         this.labelSurname.setText(FXMLmainController.getUser().getSurname());
