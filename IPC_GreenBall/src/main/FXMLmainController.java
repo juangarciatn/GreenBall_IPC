@@ -117,7 +117,21 @@ public class FXMLmainController implements Initializable {
         
         dpBookingDay.setValue(LocalDate.now()); 
         
+        dpBookingDay.setDayCellFactory(picker -> new DateCell() {
+        @Override
+        public void updateItem(LocalDate date, boolean empty) {
+            super.updateItem(date, empty);
+
+            if (date.isBefore(LocalDate.now())) {
+                setDisable(true);
+                setStyle("-fx-background-color: #dddddd;"); // Cambia el color de fondo de las fechas deshabilitadas
+            }
+            }
+        });
+        
         setTimeSlotsGrid(dpBookingDay.getValue());
+        
+        
         
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:mm");
         DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("E MMM d");
