@@ -66,37 +66,32 @@ public class FXMLloginController implements Initializable {
 
     @FXML
     private void enviarLoginOnAction(ActionEvent event) throws ClubDAOException, IOException, InterruptedException {
-       String usuario = user.getText();
-       String clave = password.getText();
-       FXMLmainController mc = new FXMLmainController();
-       if (user.getText().length() != 0 && password.getText().length() != 0) {
-           labelLogin.setText("");
-        Club club = Club.getInstance();
-        try{
-            if (club.getMemberByCredentials(usuario, clave) != null) {
-                System.out.println("Login funciona");
-                okPressed = true;
-                username = user.getText();
-                passw = password.getText();
-                Node source = (Node) event.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.close();
-                
-            }
-            else {
+        String usuario = user.getText();
+        String clave = password.getText();
+        FXMLmainController mc = new FXMLmainController();
+        if (user.getText().length() != 0 && password.getText().length() != 0) {
+            labelLogin.setText("");
+            Club club = Club.getInstance();
+            try {
+                if (club.getMemberByCredentials(usuario, clave) != null) {
+                    System.out.println("Login funciona");
+                    okPressed = true;
+                    username = user.getText();
+                    passw = password.getText();
+                    Stage stage = (Stage) enviarLoginButton.getScene().getWindow();
+                    stage.close();
+                } else {
+                    labelLogin.setText("El usuario o la contraseña no existen");
+                }
+            } catch (NullPointerException e) {
                 labelLogin.setText("El usuario o la contraseña no existen");
             }
-        } catch (NullPointerException e) {
-            labelLogin.setText("El usuario o la contraseña no existen");
+        } else {
+            labelLogin.setText("Debes rellenar los campos obligatorios");
+            //Thread.sleep(5*1000); //ms
         }
-        //if (club.getMemberByCredentials(usuario, clave) == null) labelLogin.setText("El usuario o la contraseña no existen");
-        //    else System.out.print("Login funciona");
-       }
-       else {
-           labelLogin.setText("Debes rellenar los campos obligatorios");
-           //Thread.sleep(5*1000); //ms
-       }
     }
+
 
     @FXML
     private void cancelarLoginOnAction(ActionEvent event) throws IOException {
