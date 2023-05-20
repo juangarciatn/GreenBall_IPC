@@ -3,6 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,21 +15,38 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #5FDD5C;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.FXMLmainController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #5FDD5C;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.FXMLmainController">
    <top>
-      <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="GREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="GreenBall" textAlignment="CENTER">
-               <font>
-                  <Font size="38.0" />
-               </font>
-               <HBox.margin>
-                  <Insets right="20.0" top="25.0" />
-               </HBox.margin>
-            </Text>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="301.0">
                <children>
-                  <Label fx:id="labelUser" onMouseClicked="#labelUserClick" text="Iniciar sesión" textFill="#050505" />
+                  <Text fill="GREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="GreenBall" textAlignment="CENTER">
+                     <font>
+                        <Font size="38.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" top="25.0" />
+                     </HBox.margin>
+                  </Text>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="212.0">
+                     <children>
+                        <MenuBar fx:id="menuBar" onMouseEntered="#menuOnMouseEntered" styleClass="transparent-menu-bar" stylesheets="@../styles/transparent-menu-bar.css">
+                          <menus>
+                            <Menu fx:id="menu" mnemonicParsing="false">
+                              <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#miPerfilButton" text="Mi perfil" />
+                                <MenuItem mnemonicParsing="false" onAction="#misReservasButton" text="Mis reservas" />
+                                    <MenuItem mnemonicParsing="false" onAction="#cerrarSesionButton" text="Cerrar sesión" />
+                              </items>
+                                 <graphic>
+                                    <Label fx:id="labelUser" onMouseClicked="#labelUserClick" text="Iniciar sesión" textFill="#050505" />
+                                 </graphic>
+                            </Menu>
+                          </menus>
+                        </MenuBar>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
          </children>
@@ -45,7 +65,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <GridPane fx:id="grid" alignment="CENTER">
                     <columnConstraints>
@@ -91,10 +111,10 @@
                         <Label text="21:00 - 22:00" GridPane.halignment="CENTER" GridPane.rowIndex="15" GridPane.valignment="CENTER" />
                         <Label text="PISTA 1" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                         <Label text="PISTA 2" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label text="PISTA 1" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <Label text="PISTA 1" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                        <Label text="PISTA 1" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                        <Label text="PISTA 1" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                        <Label text="PISTA 3" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Label text="PISTA 4" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                        <Label text="PISTA 5" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                        <Label text="PISTA 6" GridPane.columnIndex="6" GridPane.rowIndex="2" />
                      </children>
                      <padding>
                         <Insets left="20.0" right="20.0" />

@@ -118,6 +118,7 @@ public class FXMLsignupController implements Initializable {
                         if (newMember != null) {
                             labelSignupError.setText("");
                             labelSignup.setText("Usuario creado");
+                            bloqueoRegistro();
 
                             ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
                             executorService.schedule(() -> {
@@ -141,7 +142,7 @@ public class FXMLsignupController implements Initializable {
                     if (newMember != null) {
                         labelSignupError.setText("");
                         labelSignup.setText("Usuario creado");
-
+                        bloqueoRegistro();
                         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
                         executorService.schedule(() -> {
                             Platform.runLater(() -> {
@@ -192,4 +193,18 @@ public class FXMLsignupController implements Initializable {
     private void imageButtonOnAction(ActionEvent event) {
     }
 
+    
+    public void bloqueoRegistro() {
+        enviarRegistroButton.setDisable(true);
+        nombre.setDisable(true);
+        telefono.setDisable(true);
+        nickname.setDisable(true);
+        password.setDisable(true);
+        tarjeta.setDisable(true);
+        svc.setDisable(true);
+        apellido.setDisable(true);
+        labelSignup.setDisable(true);
+        labelSignupError.setDisable(true);
+        CancelarRegistro.setDisable(true);
+    }
 }
