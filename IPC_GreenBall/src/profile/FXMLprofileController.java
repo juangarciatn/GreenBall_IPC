@@ -7,10 +7,16 @@ package profile;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 import main.FXMLmainController;
 import model.Club;
 import model.ClubDAOException;
@@ -25,14 +31,14 @@ public final class FXMLprofileController implements Initializable {
 
     @FXML
     private ImageView labelPicture;
-    @FXML
-    private Label labelUsername;
-    @FXML
-    private Label labelName;
-    @FXML
-    private Label labelSurname;
     
     private Club club;
+    @FXML
+    private TextField usuarioField;
+    @FXML
+    private TextField nombreField;
+    @FXML
+    private TextField apellidosField;
     
     public FXMLprofileController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
@@ -44,16 +50,33 @@ public final class FXMLprofileController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        getUser();
+        //if (FXMLmainController.getUser().getImage() != null) labelPicture.setImage(FXMLmainController.getUser().getImage());
+        usuarioField.setText(FXMLmainController.getUser().getNickName());
+        nombreField.setText(FXMLmainController.getUser().getName());
+        apellidosField.setText(FXMLmainController.getUser().getSurname());
     }
-    
-        
-    public void getUser() {
-//        if (FXMLmainController.getUser().getImage() != null) labelPicture.setImage(FXMLmainController.getUser().getImage());
-        System.out.println(FXMLmainController.getUser().getNickName());
-        this.labelUsername.setText(FXMLmainController.getUser().getNickName());
-        this.labelName.setText(FXMLmainController.getUser().getName());
-        this.labelSurname.setText(FXMLmainController.getUser().getSurname());
-        
+
+    @FXML
+    private void cancelarButton(ActionEvent event) {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void guardarButton(ActionEvent event) throws ClubDAOException, IOException {
+       FXMLmainController.getUser().setName(nombreField.getText());
+       FXMLmainController.getUser().setSurname(apellidosField.getText());
+       Node source = (Node) event.getSource();
+       Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
+    }
+
+    @FXML
+    private void enterGuardar(KeyEvent event) throws ClubDAOException, IOException {
+        if(event.getCode() == KeyCode.ENTER){
+            ActionEvent ac1 = new ActionEvent();
+            guardarButton(ac1);
+        }
     }
 }
