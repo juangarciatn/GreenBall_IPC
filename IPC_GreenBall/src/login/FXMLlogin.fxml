@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.FXMLloginController">
+<VBox alignment="CENTER" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.FXMLloginController">
    <children>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario:">
                <HBox.margin>
@@ -28,7 +28,7 @@
             <Insets right="120.0" top="20.0" />
          </VBox.margin>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña">
                <HBox.margin>
@@ -47,23 +47,23 @@
             <Label fx:id="labelLogin" textFill="RED" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Text fx:id="registro" onMouseClicked="#registroLogin" strokeType="OUTSIDE" strokeWidth="0.0" text="¿No tienes cuenta? Registrarse" underline="true" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="75.0">
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                <children>
                   <Button fx:id="cancelarLogin" cancelButton="true" mnemonicParsing="false" onAction="#cancelarLoginOnAction" text="Cancelar" />
+                  <Button fx:id="enviarLoginButton" mnemonicParsing="false" onAction="#enviarLoginOnAction" onKeyPressed="#enterLogin" text="Iniciar sesión">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
-            <Button fx:id="enviarLoginButton" mnemonicParsing="false" onAction="#enviarLoginOnAction" onKeyPressed="#enterLogin" text="Iniciar sesión">
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-            </Button>
          </children>
       </HBox>
    </children>

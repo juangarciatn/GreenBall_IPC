@@ -331,6 +331,8 @@ public class FXMLmainController implements Initializable {
             Stage stageLogin = new Stage();
             stageLogin.setScene(scene);
             stageLogin.setTitle("Perfil");
+            stageLogin.setMinHeight(400);
+            stageLogin.setMinWidth(500);
             stageLogin.initModality(Modality.WINDOW_MODAL);
             stageLogin.showAndWait();
         } else {
@@ -338,7 +340,7 @@ public class FXMLmainController implements Initializable {
             Parent root = miCargador.load();
             // acceso al controlador de datos persona
             FXMLloginController controladorLogin = miCargador.getController();
-            Scene scene = new Scene(root,500,300);
+            Scene scene = new Scene(root,400,200);
             Stage stageLogin = new Stage();
             stageLogin.setScene(scene);
             stageLogin.setTitle("Iniciar sesión");
