@@ -120,8 +120,7 @@ public final class FXMLprofileController implements Initializable {
                                     stage.close(); });}, 3, TimeUnit.SECONDS);
                    }
                } else {
-               if (tarjetaField.getText().length() != 16) mensajeError.setText("La tarjeta de crédito debe tener 16 dígitos");
-               if (svcField.getText().length() != 3) mensajeError.setText("El svc de la tarjeta debe tener 3 dígitos");
+               
                if (tarjetaField.getText().length() == 16 && svcField.getText().length() == 3) {
                     FXMLmainController.getUser().setName(nombreField.getText());
                     FXMLmainController.getUser().setSurname(apellidosField.getText());
@@ -135,7 +134,7 @@ public final class FXMLprofileController implements Initializable {
                                      executorService.schedule(() -> {Platform.runLater(() -> {
                                     Stage stage = (Stage) guardarButton.getScene().getWindow();
                                     stage.close(); });}, 3, TimeUnit.SECONDS);
-               }    else {
+               }    else if (tarjetaField.getText().equals("") && svcField.getText().equals("")) {
                         FXMLmainController.getUser().setName(nombreField.getText());
                         FXMLmainController.getUser().setSurname(apellidosField.getText());
                         FXMLmainController.getUser().setTelephone(telefonoField.getText());
@@ -148,7 +147,9 @@ public final class FXMLprofileController implements Initializable {
                                     executorService.schedule(() -> {Platform.runLater(() -> {
                                     Stage stage = (Stage) guardarButton.getScene().getWindow();
                                     stage.close(); });}, 3, TimeUnit.SECONDS);
-                    }    
+                    } else if (tarjetaField.getText().length() != 16) mensajeError.setText("La tarjeta de crédito debe tener 16 dígitos");
+                            else if (svcField.getText().length() != 3) mensajeError.setText("El svc de la tarjeta debe tener 3 dígitos");
+                  
                }
            } else if (passField.getText().equals(newPassField.getText())) mensajeError.setText("La nueva contraseña no puede ser igual a la anterior");
                 else if (newPassField.getText().length() < 7) mensajeError.setText("La nueva contraseña debe tener 7 o más carácteres");
