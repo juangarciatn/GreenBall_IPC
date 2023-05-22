@@ -15,10 +15,13 @@
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario:">
                <HBox.margin>
-                  <Insets right="25.0" />
+                  <Insets right="10.0" />
                </HBox.margin>
             </Text>
-            <TextField fx:id="user" onKeyPressed="#enterLogin" />
+            <TextField fx:id="user" onKeyPressed="#enterLogin">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></TextField>
          </children>
          <VBox.margin>
             <Insets top="20.0" />
@@ -31,7 +34,10 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Text>
-            <PasswordField fx:id="password" onKeyPressed="#enterLogin" />
+            <PasswordField fx:id="password" onKeyPressed="#enterLogin">
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin></PasswordField>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
