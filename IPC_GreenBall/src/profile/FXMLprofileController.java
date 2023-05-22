@@ -80,6 +80,7 @@ public final class FXMLprofileController implements Initializable {
         nombreField.setText(FXMLmainController.getUser().getName());
         apellidosField.setText(FXMLmainController.getUser().getSurname());
         telefonoField.setText(FXMLmainController.getUser().getTelephone());
+        labelPicture.setImage(FXMLmainController.getUser().getImage());
         //System.out.println(FXMLmainController.getUser().getCreditCard());
         //System.out.println(Integer.toString(FXMLmainController.getUser().getSvc()));
         if (FXMLmainController.getUser().getCreditCard() == null) tarjetaField.setText("-");

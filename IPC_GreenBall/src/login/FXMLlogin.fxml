@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
@@ -24,7 +25,7 @@
                </HBox.margin></TextField>
          </children>
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets right="120.0" top="20.0" />
          </VBox.margin>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -38,6 +39,7 @@
                <HBox.margin>
                   <Insets right="15.0" />
                </HBox.margin></PasswordField>
+            <ToggleButton fx:id="mostrarContraseña" mnemonicParsing="false" onMousePressed="#mostrarContraseñaOnMousePressed" onMouseReleased="#mostrarContraseñaOnMouseReleased" prefHeight="26.0" prefWidth="122.0" text="Mostrar contraseña" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">

@@ -10,10 +10,9 @@ Cosas que faltan por hacer (si están hechas marcar con una X):
         - MisreservasController.java
 		- lista con las ultimas 10 reservas (incluido estado de reservas pagado o no)
 		- dar formato
-		- anunlar reserva//imposibilitar anulacion de reserva a menos de 24h de la reserva
+		- anular reserva//imposibilitar anulacion de reserva a menos de 24h de la reserva
 
 	- registro
-		- elegir foto de perfil o avatar(opcional)	//dani no sabe hacerlo
 		- dar formato
 		- //confirmacion de contraseña
 

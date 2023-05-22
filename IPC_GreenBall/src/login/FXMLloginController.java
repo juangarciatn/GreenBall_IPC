@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -55,6 +56,10 @@ public class FXMLloginController implements Initializable {
     private static boolean okPressed = false;
     private static String username;
     private static String passw;
+    @FXML
+    private ToggleButton mostrarContraseña;
+    
+    private boolean mostrarContraseñaPresionado = false;
 
     /**
      * Initializes the controller class.
@@ -141,5 +146,27 @@ public class FXMLloginController implements Initializable {
     
     public static String getPassword() {
         return passw;
+    }
+
+    @FXML
+    private void mostrarContraseñaOnMouseReleased(MouseEvent event) {
+        mostrarContraseñaPresionado = false;
+        mostrarContraseña();
+    }
+
+    @FXML
+    private void mostrarContraseñaOnMousePressed(MouseEvent event) {
+        mostrarContraseñaPresionado = true;
+        mostrarContraseña();
+    }
+    
+    private void mostrarContraseña() {
+        if (mostrarContraseñaPresionado) {
+            password.setPromptText(password.getText());
+            password.setText("");
+        } else {
+            password.setText(password.getPromptText());
+            password.setPromptText("");
+        }
     }
 }

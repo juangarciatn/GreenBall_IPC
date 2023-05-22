@@ -76,6 +76,8 @@ public class FXMLsignupController implements Initializable {
     private ToggleButton mostrarContraseña;
     
     private boolean mostrarContraseñaPresionado = false;
+    private Image selectedImage;
+
     
     
     
@@ -102,7 +104,16 @@ public class FXMLsignupController implements Initializable {
         String svcP = svc.getText();
         int svcS = 0;
         if (svcP.length() != 0) svcS = Integer.parseInt(svcP);
-        Image image = null;
+        
+        if (selectedImage == null) {
+            String imagePath = "src/img/avatars/default.png";
+            File file = new File(imagePath);
+            if (file.exists()) {
+                selectedImage = new Image(file.toURI().toString());
+            } else {
+                System.out.println("No se encontró la imagen predeterminada: " + imagePath);
+            }
+        }
 
         if (nombreS.length() != 0 &&
             apellidoS.length() != 0 &&
@@ -121,7 +132,7 @@ public class FXMLsignupController implements Initializable {
                     labelSignupError.setText("Introduce un código SVC correcto.");
                 } else if ((tarjetaS.length() > 12 || tarjetaS.length() < 19) && (svcS > 2 || svcS < 5)) {
                     try {
-                        Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, tarjetaS, svcS, image);
+                        Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, tarjetaS, svcS, selectedImage);
                         if (newMember != null) {
                             labelSignupError.setText("");
                             labelSignup.setText("Usuario creado");
@@ -145,7 +156,7 @@ public class FXMLsignupController implements Initializable {
                 }
             } else {
                 try {
-                    Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, null, 0, image);
+                    Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, null, 0, selectedImage);
                     if (newMember != null) {
                         labelSignupError.setText("");
                         labelSignup.setText("Usuario creado");
@@ -191,13 +202,32 @@ public class FXMLsignupController implements Initializable {
 
     @FXML
     private void avatarButtonOnAction(ActionEvent event) {
-        //avatarButton.getContextMenu().show(avatarButton,Side.BOTTOM,0,0);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("src/img/avatars"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PNG", "*.png"));
+        File archivo = fileChooser.showOpenDialog(null);
+        if (archivo != null) {
+            String imagePath = archivo.toURI().toString();
+            Image image = new Image(imagePath);
+            imageUser.setImage(image);
+            selectedImage = image; // Guarda la imagen seleccionada en selectedImage
+        }
     }
+
 
 
 
     @FXML
     private void imageButtonOnAction(ActionEvent event) {
+         FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png", "*.gif"));
+        File archivo = fileChooser.showOpenDialog(null);
+        if (archivo != null) {
+            String imagePath = archivo.toURI().toString();
+            Image image = new Image(imagePath);
+            imageUser.setImage(image);
+            selectedImage = image; // Guarda la imagen seleccionada en selectedImage
+        }
     }
 
     
