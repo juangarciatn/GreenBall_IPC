@@ -219,7 +219,7 @@ public class FXMLsignupController implements Initializable {
 
     @FXML
     private void imageButtonOnAction(ActionEvent event) {
-         FileChooser fileChooser = new FileChooser();
+        FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png", "*.gif"));
         File archivo = fileChooser.showOpenDialog(null);
         if (archivo != null) {

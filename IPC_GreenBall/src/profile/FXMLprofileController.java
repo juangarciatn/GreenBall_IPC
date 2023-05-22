@@ -4,6 +4,7 @@
  */
 package profile;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,13 +17,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import main.FXMLmainController;
 import model.Club;
@@ -64,6 +69,8 @@ public final class FXMLprofileController implements Initializable {
     private PasswordField newPassField;
     @FXML
     private Button cancelarButton;
+    
+    private Image selectedImage;
     
     public FXMLprofileController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
@@ -112,6 +119,7 @@ public final class FXMLprofileController implements Initializable {
                        FXMLmainController.getUser().setName(nombreField.getText());
                        FXMLmainController.getUser().setSurname(apellidosField.getText());
                        FXMLmainController.getUser().setTelephone(telefonoField.getText());
+                       FXMLmainController.getUser().setImage(selectedImage);
                        mensajeError.setText("");
                        mensajeCorrecto.setText("Cambios guardados");
                        bloqueoCambios();
@@ -128,6 +136,7 @@ public final class FXMLprofileController implements Initializable {
                     FXMLmainController.getUser().setTelephone(telefonoField.getText());
                     FXMLmainController.getUser().setCreditCard(tarjetaField.getText());
                     FXMLmainController.getUser().setSvc(Integer.parseInt(svcField.getText()));
+                    FXMLmainController.getUser().setImage(selectedImage);
                     mensajeError.setText("");
                     mensajeCorrecto.setText("Cambios guardados");
                     bloqueoCambios();
@@ -141,6 +150,7 @@ public final class FXMLprofileController implements Initializable {
                         FXMLmainController.getUser().setTelephone(telefonoField.getText());
                         FXMLmainController.getUser().setCreditCard(null);
                         FXMLmainController.getUser().setSvc(0);
+                        FXMLmainController.getUser().setImage(selectedImage);
                         mensajeError.setText("");
                         mensajeCorrecto.setText("Cambios guardados");
                         bloqueoCambios();
@@ -161,6 +171,7 @@ public final class FXMLprofileController implements Initializable {
                         FXMLmainController.getUser().setCreditCard(tarjetaField.getText());
                         FXMLmainController.getUser().setSvc(Integer.parseInt(svcField.getText()));
                         FXMLmainController.getUser().setPassword(newPassField.getText());
+                        FXMLmainController.getUser().setImage(selectedImage);
                         mensajeError.setText("");
                         mensajeCorrecto.setText("Cambios guardados");
                         bloqueoCambios();
@@ -187,6 +198,42 @@ public final class FXMLprofileController implements Initializable {
         passField.setDisable(true);
         newPassField.setDisable(true);
         cancelarButton.setDisable(true);
+    }
+
+    @FXML
+    private void cambiarImagenOnMouseClicked(MouseEvent event) {
+        
+        ContextMenu contextMenu = new ContextMenu();
+
+    MenuItem option1 = new MenuItem("Cambiar imagen de usuario por un avatar");
+    option1.setOnAction(e -> {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("src/img/avatars"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PNG", "*.png"));
+        File archivo = fileChooser.showOpenDialog(null);
+        if (archivo != null) {
+            String imagePath = archivo.toURI().toString();
+            Image image = new Image(imagePath);
+            labelPicture.setImage(image);
+            selectedImage = image; // Guarda la imagen seleccionada en selectedImage
+        }
+    });
+
+    MenuItem option2 = new MenuItem("Cambiar imagen de usuario por una imagen");
+    option2.setOnAction(e -> {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png", "*.gif"));
+        File archivo = fileChooser.showOpenDialog(null);
+        if (archivo != null) {
+            String imagePath = archivo.toURI().toString();
+            Image image = new Image(imagePath);
+            labelPicture.setImage(image);
+            selectedImage = image; // Guarda la imagen seleccionada en selectedImage
+        }
+    });
+
+    contextMenu.getItems().addAll(option1, option2);
+    contextMenu.show(labelPicture, event.getScreenX(), event.getScreenY());
     }
 
 }
