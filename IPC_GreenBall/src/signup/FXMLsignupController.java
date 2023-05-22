@@ -105,8 +105,8 @@ public class FXMLsignupController implements Initializable {
 
             if (nicknameS.contains(" ")) {
                 labelSignupError.setText("El nombre de usuario no puede tener espacios.");
-            } else if (passwordS.length() < 6) {
-                labelSignupError.setText("La contraseña debe tener al menos 6 caracteres.");
+            } else if (passwordS.length() < 7) {
+                labelSignupError.setText("La contraseña debe tener al menos 7 caracteres.");
             } else if (tarjetaS.length() != 0 || svcS != 0) {
                 if (tarjetaS.length() < 13 || tarjetaS.length() > 18) {
                     labelSignupError.setText("Introduce una tarjeta de crédito correcta.");
