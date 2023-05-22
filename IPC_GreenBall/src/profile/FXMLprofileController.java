@@ -113,6 +113,7 @@ public final class FXMLprofileController implements Initializable {
                        FXMLmainController.getUser().setTelephone(telefonoField.getText());
                        mensajeError.setText("");
                        mensajeCorrecto.setText("Cambios guardados");
+                       bloqueoCambios();
                        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
                                      executorService.schedule(() -> {Platform.runLater(() -> {
                                     Stage stage = (Stage) guardarButton.getScene().getWindow();
@@ -129,12 +130,25 @@ public final class FXMLprofileController implements Initializable {
                     FXMLmainController.getUser().setSvc(Integer.parseInt(svcField.getText()));
                     mensajeError.setText("");
                     mensajeCorrecto.setText("Cambios guardados");
+                    bloqueoCambios();
                     ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
                                      executorService.schedule(() -> {Platform.runLater(() -> {
                                     Stage stage = (Stage) guardarButton.getScene().getWindow();
                                     stage.close(); });}, 3, TimeUnit.SECONDS);
-               }    else FXMLmainController.getUser().setCreditCard(null);
-                         FXMLmainController.getUser().setSvc(0);
+               }    else {
+                        FXMLmainController.getUser().setName(nombreField.getText());
+                        FXMLmainController.getUser().setSurname(apellidosField.getText());
+                        FXMLmainController.getUser().setTelephone(telefonoField.getText());
+                        FXMLmainController.getUser().setCreditCard(null);
+                        FXMLmainController.getUser().setSvc(0);
+                        mensajeError.setText("");
+                        mensajeCorrecto.setText("Cambios guardados");
+                        bloqueoCambios();
+                        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+                                    executorService.schedule(() -> {Platform.runLater(() -> {
+                                    Stage stage = (Stage) guardarButton.getScene().getWindow();
+                                    stage.close(); });}, 3, TimeUnit.SECONDS);
+                    }    
                }
            } else if (passField.getText().equals(newPassField.getText())) mensajeError.setText("La nueva contraseña no puede ser igual a la anterior");
                 else if (newPassField.getText().length() < 7) mensajeError.setText("La nueva contraseña debe tener 7 o más carácteres");
@@ -147,6 +161,7 @@ public final class FXMLprofileController implements Initializable {
                         FXMLmainController.getUser().setPassword(newPassField.getText());
                         mensajeError.setText("");
                         mensajeCorrecto.setText("Cambios guardados");
+                        bloqueoCambios();
                         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
                                     executorService.schedule(() -> {Platform.runLater(() -> {
                                     Stage stage = (Stage) guardarButton.getScene().getWindow();
