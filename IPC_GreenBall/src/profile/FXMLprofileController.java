@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.FXMLmainController;
 import model.Club;
@@ -41,6 +42,19 @@ public final class FXMLprofileController implements Initializable {
     @FXML
     private TextField apellidosField;
     @FXML
+    private TextField telefonoField;
+    @FXML
+    private TextField tarjetaField;
+    @FXML
+    private TextField svcField;
+    @FXML
+    private TextField passField;
+    @FXML
+    private TextField newPassField;
+    @FXML
+    private Label mensajeCorrecto;
+    @FXML
+    private Label mensajeError;
     private Button cancelarButton;
     @FXML
     private Button guardarButton;
@@ -81,5 +95,11 @@ public final class FXMLprofileController implements Initializable {
        FXMLmainController.getUser().setSurname(apellidosField.getText());
        Stage stage = (Stage) guardarButton.getScene().getWindow();
        stage.close();
+      }
+
+    @FXML
+    private void clickImagen(MouseEvent event) {
     }
+
 }
+

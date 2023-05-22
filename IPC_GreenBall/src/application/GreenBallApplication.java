@@ -27,12 +27,13 @@ public class GreenBallApplication extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/main/FXMLmain.fxml"));
         Parent root = loader.load();
-        
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
+        stage.setMinHeight(400);
+        stage.setMinWidth(600);
         stage.setTitle("GreenBall");
         //stage.initStyle(StageStyle.DECORATED);
+        
         stage.show();
     }
 
