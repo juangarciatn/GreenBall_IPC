@@ -62,7 +62,7 @@
             <PasswordField fx:id="password" onKeyPressed="#enterRegistro" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nº de tarjeta:">
                <HBox.margin>

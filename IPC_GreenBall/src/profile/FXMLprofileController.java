@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.FXMLmainController;
 import model.Club;
@@ -39,6 +40,20 @@ public final class FXMLprofileController implements Initializable {
     private TextField nombreField;
     @FXML
     private TextField apellidosField;
+    @FXML
+    private TextField telefonoField;
+    @FXML
+    private TextField tarjetaField;
+    @FXML
+    private TextField svcField;
+    @FXML
+    private TextField passField;
+    @FXML
+    private TextField newPassField;
+    @FXML
+    private Label mensajeCorrecto;
+    @FXML
+    private Label mensajeError;
     
     public FXMLprofileController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
@@ -78,5 +93,9 @@ public final class FXMLprofileController implements Initializable {
             ActionEvent ac1 = new ActionEvent();
             guardarButton(ac1);
         }
+    }
+
+    @FXML
+    private void clickImagen(MouseEvent event) {
     }
 }
