@@ -95,18 +95,11 @@ public final class FXMLprofileController implements Initializable {
        FXMLmainController.getUser().setSurname(apellidosField.getText());
        Stage stage = (Stage) guardarButton.getScene().getWindow();
        stage.close();
-    }
-
-    @FXML
-    private void enterGuardar(KeyEvent event) throws ClubDAOException, IOException {
-        if(event.getCode() == KeyCode.ENTER){
-            ActionEvent ac1 = new ActionEvent();
-            guardarButtonOnAction(ac1);
-        }
-    }
+      }
 
     @FXML
     private void clickImagen(MouseEvent event) {
     }
+
 }
 
