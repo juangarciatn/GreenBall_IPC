@@ -243,6 +243,9 @@ public class FXMLsignupController implements Initializable {
         labelSignup.setDisable(true);
         labelSignupError.setDisable(true);
         CancelarRegistro.setDisable(true);
+        mostrarContraseña.setDisable(true);
+        avatarButton.setDisable(true);
+        imageButton.setDisable(true);
     }
 
     @FXML
