@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -54,6 +55,9 @@ public final class FXMLprofileController implements Initializable {
     private Label mensajeCorrecto;
     @FXML
     private Label mensajeError;
+    private Button cancelarButton;
+    @FXML
+    private Button guardarButton;
     
     public FXMLprofileController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
@@ -72,18 +76,24 @@ public final class FXMLprofileController implements Initializable {
     }
 
     @FXML
-    private void cancelarButton(ActionEvent event) {
+    private void enterGuardar(KeyEvent event) throws ClubDAOException, IOException {
+        if(event.getCode() == KeyCode.ENTER){
+            guardarButtonOnAction(new ActionEvent());
+        }
+    }
+
+    @FXML
+    private void cancelarButtonOnAction(ActionEvent event){
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    private void guardarButton(ActionEvent event) throws ClubDAOException, IOException {
+    private void guardarButtonOnAction(ActionEvent event) throws ClubDAOException, IOException {
        FXMLmainController.getUser().setName(nombreField.getText());
        FXMLmainController.getUser().setSurname(apellidosField.getText());
-       Node source = (Node) event.getSource();
-       Stage stage = (Stage) source.getScene().getWindow();
+       Stage stage = (Stage) guardarButton.getScene().getWindow();
        stage.close();
     }
 
@@ -91,7 +101,7 @@ public final class FXMLprofileController implements Initializable {
     private void enterGuardar(KeyEvent event) throws ClubDAOException, IOException {
         if(event.getCode() == KeyCode.ENTER){
             ActionEvent ac1 = new ActionEvent();
-            guardarButton(ac1);
+            guardarButtonOnAction(ac1);
         }
     }
 
@@ -99,3 +109,4 @@ public final class FXMLprofileController implements Initializable {
     private void clickImagen(MouseEvent event) {
     }
 }
+
