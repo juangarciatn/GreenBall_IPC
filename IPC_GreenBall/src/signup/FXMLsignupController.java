@@ -28,10 +28,13 @@ import javafx.application.Platform;
 import javafx.stage.FileChooser;
 import java.io.File;
 import javafx.geometry.Side;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.CustomMenuItem;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 
 /**
@@ -69,6 +72,10 @@ public class FXMLsignupController implements Initializable {
     private Button imageButton;
     @FXML
     private ImageView imageUser;
+    @FXML
+    private ToggleButton mostrarContraseña;
+    
+    private boolean mostrarContraseñaPresionado = false;
     
     
     
@@ -206,5 +213,27 @@ public class FXMLsignupController implements Initializable {
         labelSignup.setDisable(true);
         labelSignupError.setDisable(true);
         CancelarRegistro.setDisable(true);
+    }
+
+    @FXML
+    private void mostrarContraseñaOnMouseReleased(MouseEvent event) {
+        mostrarContraseñaPresionado = false;
+        mostrarContraseña();
+    }
+
+    @FXML
+    private void mostrarContraseñaOnMousePressed(MouseEvent event) {
+        mostrarContraseñaPresionado = true;
+        mostrarContraseña();
+    }
+    
+    private void mostrarContraseña() {
+        if (mostrarContraseñaPresionado) {
+            password.setPromptText(password.getText());
+            password.setText("");
+        } else {
+            password.setText(password.getPromptText());
+            password.setPromptText("");
+        }
     }
 }

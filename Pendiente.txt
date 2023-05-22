@@ -2,22 +2,20 @@ Cosas que faltan por hacer (si están hechas marcar con una X):
 	- main
 		- Añadir la disponibilidad de pistas en la pantalla cuando no has iniciado sesión.(falta conectar con la base de datos)
 		- dar formato
-		- Una vez iniciada sesión que veas todas las opciones disponibles en la página principal (main).
 		- desde el main se puede reservar
 		- consultar quien ha reservado(si ya esta ocupada)
 		- no se puede reservar mas de 2 horas seguidas la misma pista
-		- imposibilitar anulacion de reserva a menos de 24h de la reserva
+		
 
-        - reservasController.java
+        - MisreservasController.java
 		- lista con las ultimas 10 reservas (incluido estado de reservas pagado o no)
 		- dar formato
-		- anunlar reserva
+		- anunlar reserva//imposibilitar anulacion de reserva a menos de 24h de la reserva
 
 	- registro
-		- elegir foto de perfil o avatar(opcional)
+		- elegir foto de perfil o avatar(opcional)	//dani no sabe hacerlo
 		- dar formato
-		- posibilidad de ver la contraseña
-		- confirmacion de contraseña
+		- //confirmacion de contraseña
 
 	- login:
 		- posibilidad cambiar o quitar foto de perfil
