@@ -83,6 +83,8 @@ public class FXMLmainController implements Initializable {
     private ObjectProperty<TimeSlot> timeSlotSelected;
     
     private LocalDate daySelected;
+    
+    
     @FXML
     private Label slotSelected;
     @FXML
@@ -171,16 +173,26 @@ public class FXMLmainController implements Initializable {
         // desde la hora de inicio y hasta la hora de fin creamos slotTime segun la duracion
         
         for (int row = 1; row<7;row++){
+            List<Booking> reservas = club.getBookings();
+            System.out.print(reservas.toString());
             int slotIndex = 3;
             for (LocalDateTime startTime = date.atTime(firstSlotStart);
                     !startTime.isAfter(date.atTime(lastSlotStart));
                     startTime = startTime.plus(slotLength)) {
-                        
+                    
+                    
                     Court courtAt = courts.get(row-1);
                 //---------------------------------------------------------------------------------------
                 // creamos el SlotTime, lo anyadimos a la lista de la columna y asignamos sus manejadores
                 TimeSlot timeSlot = new TimeSlot(startTime, slotLength, courtAt, row, user);
                 timeSlots.add(timeSlot);
+                
+                for(int iR = 0; iR < reservas.size(); iR++) {
+                    if(timeSlot.getTime() ==  reservas.get(iR).getFromTime() && timeSlot.getCourt() == reservas.get(iR).getCourt() && timeSlot.getDate() == reservas.get(iR).getMadeForDay() ) {
+                        iR++;
+                        System.out.println("eeee"); 
+                    }
+                }
                 registerHandlers(timeSlot);
                 //-----------------------------------------------------------
                 // lo anyadimos al grid en la posicion x= 1, y= slotIndex
