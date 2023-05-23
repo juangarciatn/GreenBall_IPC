@@ -77,6 +77,8 @@ public class FXMLsignupController implements Initializable {
     
     private boolean mostrarContraseñaPresionado = false;
     private Image selectedImage;
+    
+    private boolean fileChooserAbierto = false;
 
     
     
@@ -202,6 +204,12 @@ public class FXMLsignupController implements Initializable {
 
     @FXML
     private void avatarButtonOnAction(ActionEvent event) {
+        if (fileChooserAbierto) {
+            return; // Salir si el FileChooser ya está abierto
+        }
+
+        fileChooserAbierto = true; // Marcar el FileChooser como abierto
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File("src/img/avatars"));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PNG", "*.png"));
@@ -212,6 +220,8 @@ public class FXMLsignupController implements Initializable {
             imageUser.setImage(image);
             selectedImage = image; // Guarda la imagen seleccionada en selectedImage
         }
+
+        fileChooserAbierto = false; // Marcar el FileChooser como cerrado
     }
 
 
@@ -219,15 +229,23 @@ public class FXMLsignupController implements Initializable {
 
     @FXML
     private void imageButtonOnAction(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png", "*.gif"));
-        File archivo = fileChooser.showOpenDialog(null);
-        if (archivo != null) {
-            String imagePath = archivo.toURI().toString();
-            Image image = new Image(imagePath);
-            imageUser.setImage(image);
-            selectedImage = image; // Guarda la imagen seleccionada en selectedImage
-        }
+        if (fileChooserAbierto) {
+        return; // Salir si el FileChooser ya está abierto
+    }
+
+    fileChooserAbierto = true; // Marcar el FileChooser como abierto
+
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png", "*.gif"));
+    File archivo = fileChooser.showOpenDialog(null);
+    if (archivo != null) {
+        String imagePath = archivo.toURI().toString();
+        Image image = new Image(imagePath);
+        imageUser.setImage(image);
+        selectedImage = image; // Guarda la imagen seleccionada en selectedImage
+    }
+
+    fileChooserAbierto = false; // Marcar el FileChooser como cerrado
     }
 
     
