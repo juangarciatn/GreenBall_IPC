@@ -242,7 +242,17 @@ public class FXMLmainController implements Initializable {
     }
 
     @FXML
-    private void misReservasButton(ActionEvent event) {
+    private void misReservasButton(ActionEvent event) throws IOException {
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/reservas/FXMLreservas.fxml"));
+            Parent root = miCargador.load();
+            // acceso al controlador de datos persona
+            FXMLprofileController controladorLogin = miCargador.getController();
+            Scene scene = new Scene(root,500,300);
+            Stage stageReservas = new Stage();
+            stageReservas.setScene(scene);
+            stageReservas.setTitle("Mis reservas");
+            stageReservas.initModality(Modality.APPLICATION_MODAL);
+            stageReservas.showAndWait();
     }
 
     @FXML

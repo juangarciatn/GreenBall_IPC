@@ -126,11 +126,11 @@ public class FXMLsignupController implements Initializable {
             } else if (passwordS.length() < 7) {
                 labelSignupError.setText("La contraseña debe tener al menos 7 caracteres.");
             } else if (tarjetaS.length() != 0 || svcS != 0) {
-                if (tarjetaS.length() < 13 || tarjetaS.length() > 18) {
-                    labelSignupError.setText("Introduce una tarjeta de crédito correcta.");
-                } else if (svcP.length() < 3 || svcP.length() > 4) {
-                    labelSignupError.setText("Introduce un código SVC correcto.");
-                } else if ((tarjetaS.length() > 12 || tarjetaS.length() < 19) && (svcS > 2 || svcS < 5)) {
+                if (!tarjetaS.matches("\\d{16}")) {
+                    labelSignupError.setText("Introduce una tarjeta de crédito correcta (16 dígitos).");
+                } else if (!svcP.matches("\\d{3}")) {
+                    labelSignupError.setText("Introduce un código SVC correcto (3 dígitos).");
+                } else {
                     try {
                         Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, tarjetaS, svcS, selectedImage);
                         if (newMember != null) {
@@ -141,7 +141,7 @@ public class FXMLsignupController implements Initializable {
                             ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
                             executorService.schedule(() -> {
                                 Platform.runLater(() -> {
-                                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                    Stage stage = (Stage) enviarRegistroButton.getScene().getWindow();
                                     stage.close();
                                 });
                             }, 3, TimeUnit.SECONDS);
