@@ -276,7 +276,7 @@ public final class FXMLprofileController implements Initializable {
                 String imagePath = "src/img/avatars/default.png";
                 File file = new File(imagePath);
                 if (file.exists()) {
-                    selectedImage = new Image(file.toURI().toString());
+                    selectedImage = new Image(file.toURI().toString()); // Guarda la imagen default en selectedImage
                     labelPicture.setImage(selectedImage);
                 } else {
                     System.out.println("No se encontró la imagen predeterminada: " + imagePath);
