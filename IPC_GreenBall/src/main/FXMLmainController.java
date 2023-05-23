@@ -262,7 +262,7 @@ public class FXMLmainController implements Initializable {
             Parent root = miCargador.load();
             // acceso al controlador de datos persona
             FXMLprofileController controladorLogin = miCargador.getController();
-            Scene scene = new Scene(root,500,300);
+            Scene scene = new Scene(root,500,300);  
             Stage stageLogin = new Stage();
             stageLogin.setScene(scene);
             stageLogin.setTitle("Perfil");
