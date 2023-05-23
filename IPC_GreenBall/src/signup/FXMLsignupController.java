@@ -78,7 +78,11 @@ public class FXMLsignupController implements Initializable {
     private boolean mostrarContraseñaPresionado = false;
     private Image selectedImage;
     
-    private boolean fileChooserAbierto = false;
+    private boolean avatarFileChooserAbierto = false;
+    private boolean imageFileChooserAbierto = false;
+    
+    FileChooser avatarFileChooser;
+    FileChooser imageFileChooser;
 
     
     
@@ -90,6 +94,9 @@ public class FXMLsignupController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        avatarFileChooser = new FileChooser();
+        imageFileChooser = new FileChooser();
 
     
     }    
@@ -204,16 +211,20 @@ public class FXMLsignupController implements Initializable {
 
     @FXML
     private void avatarButtonOnAction(ActionEvent event) {
-        if (fileChooserAbierto) {
-            return; // Salir si el FileChooser ya está abierto
+        
+        if (imageFileChooserAbierto) {
+            return; // Salir si el imageFileChooser ya está abierto
+        }
+        
+        if (avatarFileChooserAbierto) {
+            return; // Salir si el avatarFileChooser ya está abierto
         }
 
-        fileChooserAbierto = true; // Marcar el FileChooser como abierto
+        avatarFileChooserAbierto = true; // Marcar el FileChooser como abierto
 
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("src/img/avatars"));
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PNG", "*.png"));
-        File archivo = fileChooser.showOpenDialog(null);
+        avatarFileChooser.setInitialDirectory(new File("src/img/avatars"));
+        avatarFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PNG", "*.png"));
+        File archivo = avatarFileChooser.showOpenDialog(null);
         if (archivo != null) {
             String imagePath = archivo.toURI().toString();
             Image image = new Image(imagePath);
@@ -221,7 +232,7 @@ public class FXMLsignupController implements Initializable {
             selectedImage = image; // Guarda la imagen seleccionada en selectedImage
         }
 
-        fileChooserAbierto = false; // Marcar el FileChooser como cerrado
+        avatarFileChooserAbierto = false; // Marcar el FileChooser como cerrado
     }
 
 
@@ -229,23 +240,27 @@ public class FXMLsignupController implements Initializable {
 
     @FXML
     private void imageButtonOnAction(ActionEvent event) {
-        if (fileChooserAbierto) {
-        return; // Salir si el FileChooser ya está abierto
-    }
+        
+        if (avatarFileChooserAbierto) {
+            return; // Salir si el avatarFileChooser ya está abierto
+        }
+        
+        if (imageFileChooserAbierto) {
+            return; // Salir si el imageFileChooser ya está abierto
+        }
 
-    fileChooserAbierto = true; // Marcar el FileChooser como abierto
+        imageFileChooserAbierto = true; // Marcar el FileChooser como abierto
 
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png", "*.gif"));
-    File archivo = fileChooser.showOpenDialog(null);
-    if (archivo != null) {
-        String imagePath = archivo.toURI().toString();
-        Image image = new Image(imagePath);
-        imageUser.setImage(image);
-        selectedImage = image; // Guarda la imagen seleccionada en selectedImage
-    }
+        imageFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png", "*.gif"));
+        File archivo = imageFileChooser.showOpenDialog(null);
+        if (archivo != null) {
+            String imagePath = archivo.toURI().toString();
+            Image image = new Image(imagePath);
+            imageUser.setImage(image);
+            selectedImage = image; // Guarda la imagen seleccionada en selectedImage
+        }
 
-    fileChooserAbierto = false; // Marcar el FileChooser como cerrado
+        imageFileChooserAbierto = false; // Marcar el FileChooser como cerrado
     }
 
     

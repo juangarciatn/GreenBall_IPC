@@ -79,7 +79,6 @@ public class FXMLloginController implements Initializable {
             Club club = Club.getInstance();
             try {
                 if (club.getMemberByCredentials(usuario, clave) != null) {
-                    //System.out.println("Login funciona");
                     okPressed = true;
                     username = user.getText();
                     passw = password.getText();
@@ -93,7 +92,6 @@ public class FXMLloginController implements Initializable {
             }
         } else {
             labelLogin.setText("Debes rellenar los campos obligatorios");
-            //Thread.sleep(5*1000); //ms
         }
     }
 
