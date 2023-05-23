@@ -150,7 +150,9 @@ public class FXMLmainController implements Initializable {
             } else {
                 slotSelected.setText(c.getDate().format(dayFormatter)
                         + "-"
-                        + c.getStart().format(timeFormatter));
+                        + c.getStart().format(timeFormatter)
+                        + " pista "
+                        + c.getPista());
             }
         });
     }    
@@ -173,10 +175,11 @@ public class FXMLmainController implements Initializable {
             for (LocalDateTime startTime = date.atTime(firstSlotStart);
                     !startTime.isAfter(date.atTime(lastSlotStart));
                     startTime = startTime.plus(slotLength)) {
-
+                        
+                    Court courtAt = courts.get(row-1);
                 //---------------------------------------------------------------------------------------
                 // creamos el SlotTime, lo anyadimos a la lista de la columna y asignamos sus manejadores
-                TimeSlot timeSlot = new TimeSlot(startTime, slotLength);
+                TimeSlot timeSlot = new TimeSlot(startTime, slotLength, courtAt, row);
                 timeSlots.add(timeSlot);
                 registerHandlers(timeSlot);
                 //-----------------------------------------------------------
@@ -205,11 +208,12 @@ public class FXMLmainController implements Initializable {
                     // si es un doubleClik  vamos a mostrar una alerta y cambiar el estilo de la celda
                     if (event.getClickCount() > 1 ) {
                         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                        alerta.setTitle("SlotTime");
-                        alerta.setHeaderText("Confirma la selección");
-                        alerta.setContentText("Has seleccionaDO: "
+                        alerta.setTitle("Reserva");
+                        alerta.setHeaderText("Confirma la reserva");
+                        alerta.setContentText("Has seleccionado: "
                                 + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
-                                + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
+                                + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+                                + ", Pista: " + timeSlot.getPista());
                         Optional<ButtonType> result = alerta.showAndWait();
                         if (result.isPresent() && result.get() == ButtonType.OK) {
                             ObservableList<String> styles = timeSlot.getView().getStyleClass();
@@ -283,6 +287,8 @@ public class FXMLmainController implements Initializable {
         private final LocalDateTime start;
         private final Duration duration;
         protected final Pane view;
+        private final Court court;
+        private final int pista;
 
         private final BooleanProperty selected = new SimpleBooleanProperty();
 
@@ -298,9 +304,11 @@ public class FXMLmainController implements Initializable {
             selectedProperty().set(selected);
         }
 
-        public TimeSlot(LocalDateTime start, Duration duration) {
+        public TimeSlot(LocalDateTime start, Duration duration, Court court, int pista) {
             this.start = start;
             this.duration = duration;
+            this.court = court;
+            this.pista = pista;
             view = new Pane();
             view.getStyleClass().add("time-slot");
             // ---------------------------------------------------------------
@@ -328,6 +336,14 @@ public class FXMLmainController implements Initializable {
 
         public Duration getDuration() {
             return duration;
+        }
+        
+        public Court getCourt() {
+            return court;
+        }
+        
+        public int getPista(){
+            return pista;
         }
 
         public Node getView() {
