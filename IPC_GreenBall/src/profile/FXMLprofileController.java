@@ -29,6 +29,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import main.FXMLmainController;
 import model.Club;
 import model.ClubDAOException;
@@ -215,7 +216,6 @@ public final class FXMLprofileController implements Initializable {
        } else mensajeError.setText("Contraseña incorrecta");
       }
 
-    @FXML
     private void clickImagen(MouseEvent event) {
         System.out.println("Imagen");
     }
@@ -235,37 +235,57 @@ public final class FXMLprofileController implements Initializable {
     @FXML
     private void cambiarImagenOnMouseClicked(MouseEvent event) {
         
-        ContextMenu contextMenu = new ContextMenu();
+        ContextMenu contextMenu = new ContextMenu(); //se crea contextMenu con las 3 opciones
+        
+        
+        MenuItem option1 = new MenuItem("Cambiar imagen de usuario por un avatar");//primera opcion
+        option1.setOnAction(e -> {
+            FileChooser avatarFileChooser = new FileChooser();
+            avatarFileChooser.setInitialDirectory(new File("src/img/avatars"));
+            avatarFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PNG", "*.png"));
+            Window parentWindow = labelPicture.getScene().getWindow();// si fileChooser abierto no se puede clickar en otra ventana
+            File selectedFile = avatarFileChooser.showOpenDialog(parentWindow);
 
-    MenuItem option1 = new MenuItem("Cambiar imagen de usuario por un avatar");
-    option1.setOnAction(e -> {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("src/img/avatars"));
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PNG", "*.png"));
-        File archivo = fileChooser.showOpenDialog(null);
-        if (archivo != null) {
-            String imagePath = archivo.toURI().toString();
-            Image image = new Image(imagePath);
-            labelPicture.setImage(image);
-            selectedImage = image; // Guarda la imagen seleccionada en selectedImage
-        }
-    });
 
-    MenuItem option2 = new MenuItem("Cambiar imagen de usuario por una imagen");
-    option2.setOnAction(e -> {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png", "*.gif"));
-        File archivo = fileChooser.showOpenDialog(null);
-        if (archivo != null) {
-            String imagePath = archivo.toURI().toString();
-            Image image = new Image(imagePath);
-            labelPicture.setImage(image);
-            selectedImage = image; // Guarda la imagen seleccionada en selectedImage
-        }
-    });
+            if (selectedFile != null) {
+                String imagePath = selectedFile.toURI().toString();
+                Image image = new Image(imagePath);
+                labelPicture.setImage(image);
+                selectedImage = image; // Guarda la imagen seleccionada en selectedImage
+            }
+        });
 
-    contextMenu.getItems().addAll(option1, option2);
-    contextMenu.show(labelPicture, event.getScreenX(), event.getScreenY());
+        MenuItem option2 = new MenuItem("Cambiar imagen de usuario por una imagen");//segunda opcion
+        option2.setOnAction(e -> {
+            FileChooser imageFileChooser = new FileChooser();
+            imageFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png", "*.gif"));
+            Window parentWindow = labelPicture.getScene().getWindow();// si fileChooser abierto no se puede clickar en otra ventana
+            File selectedFile = imageFileChooser.showOpenDialog(parentWindow);
+            
+            if (selectedFile != null) {
+                String imagePath = selectedFile.toURI().toString();
+                Image image = new Image(imagePath);
+                labelPicture.setImage(image);
+                selectedImage = image; // Guarda la imagen seleccionada en selectedImage
+            }
+        });
+        
+        MenuItem option3 = new MenuItem("Eliminar imagen de usuario");//tercera opcion
+        option3.setOnAction(e -> {
+            if (selectedImage == null) {
+                String imagePath = "src/img/avatars/default.png";
+                File file = new File(imagePath);
+                if (file.exists()) {
+                    selectedImage = new Image(file.toURI().toString());
+                    labelPicture.setImage(selectedImage);
+                } else {
+                    System.out.println("No se encontró la imagen predeterminada: " + imagePath);
+                }
+            }
+        });
+
+        contextMenu.getItems().addAll(option1, option2, option3);
+        contextMenu.show(labelPicture, event.getScreenX(), event.getScreenY());//muestra contextMenu
     }
 
 }
