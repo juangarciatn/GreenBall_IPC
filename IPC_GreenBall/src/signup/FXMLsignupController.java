@@ -35,6 +35,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Window;
 
 
 /**
@@ -96,7 +97,11 @@ public class FXMLsignupController implements Initializable {
         // TODO
         
         avatarFileChooser = new FileChooser();
+        avatarFileChooser.setInitialDirectory(new File("src/img/avatars"));
+        avatarFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PNG", "*.png"));
+        
         imageFileChooser = new FileChooser();
+        imageFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png", "*.gif"));
 
     
     }    
@@ -212,21 +217,21 @@ public class FXMLsignupController implements Initializable {
     @FXML
     private void avatarButtonOnAction(ActionEvent event) {
         
-        if (imageFileChooserAbierto) {
+        /*if (imageFileChooserAbierto) {
             return; // Salir si el imageFileChooser ya está abierto
         }
         
         if (avatarFileChooserAbierto) {
             return; // Salir si el avatarFileChooser ya está abierto
-        }
+        }*/
 
         avatarFileChooserAbierto = true; // Marcar el FileChooser como abierto
-
-        avatarFileChooser.setInitialDirectory(new File("src/img/avatars"));
-        avatarFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PNG", "*.png"));
-        File archivo = avatarFileChooser.showOpenDialog(null);
-        if (archivo != null) {
-            String imagePath = archivo.toURI().toString();
+        
+        Window parentWindow = imageUser.getScene().getWindow();
+        File selectedFile = avatarFileChooser.showOpenDialog(parentWindow);
+        
+        if (selectedFile != null) {
+            String imagePath = selectedFile.toURI().toString();
             Image image = new Image(imagePath);
             imageUser.setImage(image);
             selectedImage = image; // Guarda la imagen seleccionada en selectedImage
@@ -241,20 +246,21 @@ public class FXMLsignupController implements Initializable {
     @FXML
     private void imageButtonOnAction(ActionEvent event) {
         
-        if (avatarFileChooserAbierto) {
+        /*if (avatarFileChooserAbierto) {
             return; // Salir si el avatarFileChooser ya está abierto
         }
         
         if (imageFileChooserAbierto) {
             return; // Salir si el imageFileChooser ya está abierto
-        }
+        }*/
 
         imageFileChooserAbierto = true; // Marcar el FileChooser como abierto
+        
+        Window parentWindow = imageUser.getScene().getWindow();
+        File selectedFile = imageFileChooser.showOpenDialog(parentWindow);
 
-        imageFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png", "*.gif"));
-        File archivo = imageFileChooser.showOpenDialog(null);
-        if (archivo != null) {
-            String imagePath = archivo.toURI().toString();
+        if (selectedFile != null) {
+            String imagePath = selectedFile.toURI().toString();
             Image image = new Image(imagePath);
             imageUser.setImage(image);
             selectedImage = image; // Guarda la imagen seleccionada en selectedImage
