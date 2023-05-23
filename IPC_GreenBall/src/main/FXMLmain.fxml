@@ -31,7 +31,7 @@
                   </Text>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="212.0">
                      <children>
-                        <MenuBar fx:id="menuBar" onMouseEntered="#menuOnMouseEntered" styleClass="transparent-menu-bar" stylesheets="@../styles/transparent-menu-bar.css">
+                        <MenuBar fx:id="menuBar" onMouseEntered="#menuOnMouseEntered" styleClass="transparent-menu-bar" stylesheets="@../styles/styles.css">
                           <menus>
                             <Menu fx:id="menu" mnemonicParsing="false">
                               <items>
