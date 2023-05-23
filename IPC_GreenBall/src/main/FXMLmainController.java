@@ -47,6 +47,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import login.FXMLloginController;
 import profile.FXMLprofileController;
+import reservas.FXMLreservasController;
 import model.*;
 
 /**
@@ -96,15 +97,17 @@ public class FXMLmainController implements Initializable {
         courts = club.getCourts();
     }
 
-    public FXMLmainController(Member m) throws ClubDAOException, IOException {
+   /** public FXMLmainController(Member m) throws ClubDAOException, IOException {
         this.user = m;
         this.club = Club.getInstance();
         courts = club.getCourts();
-    }    
+    } 
+     */
 
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -187,35 +190,38 @@ public class FXMLmainController implements Initializable {
     private void registerHandlers(TimeSlot timeSlot) {
 
         timeSlot.getView().setOnMousePressed((MouseEvent event) -> {
-            //---------------------------------------------slot----------------------------
-            //solamente puede estar seleccionado un slot dentro de la lista de slot
-            timeSlots.forEach(slot -> {
-                slot.setSelected(slot == timeSlot);
-            });
+            if(user != null){
+                    //---------------------------------------------slot----------------------------
+                    //solamente puede estar seleccionado un slot dentro de la lista de slot
+                    timeSlots.forEach(slot -> {
+                        slot.setSelected(slot == timeSlot);
+                    });
 
-            //----------------------------------------------------------------
-            //actualizamos el label Dia-Hora, esto es ad hoc,  para mi diseño
-            timeSlotSelected.setValue(timeSlot);
-            //----------------------------------------------------------------
-            // si es un doubleClik  vamos a mostrar una alerta y cambiar el estilo de la celda
-            if (event.getClickCount() > 1) {
-                Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                alerta.setTitle("SlotTime");
-                alerta.setHeaderText("Confirma la selección");
-                alerta.setContentText("Has seleccionaDO: "
-                        + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
-                        + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
-                Optional<ButtonType> result = alerta.showAndWait();
-                if (result.isPresent() && result.get() == ButtonType.OK) {
-                    ObservableList<String> styles = timeSlot.getView().getStyleClass();
-                    if (styles.contains("time-slot")) {
-                        styles.remove("time-slot");
-                        styles.add("time-slot-libre");
-                    } else {
-                        styles.remove("time-slot-libre");
-                        styles.add("time-slot");
+                    //----------------------------------------------------------------
+                    //actualizamos el label Dia-Hora, esto es ad hoc,  para mi diseño
+            
+                    timeSlotSelected.setValue(timeSlot);
+                    //----------------------------------------------------------------
+                    // si es un doubleClik  vamos a mostrar una alerta y cambiar el estilo de la celda
+                    if (event.getClickCount() > 1 ) {
+                        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                        alerta.setTitle("SlotTime");
+                        alerta.setHeaderText("Confirma la selección");
+                        alerta.setContentText("Has seleccionaDO: "
+                                + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
+                                + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
+                        Optional<ButtonType> result = alerta.showAndWait();
+                        if (result.isPresent() && result.get() == ButtonType.OK) {
+                            ObservableList<String> styles = timeSlot.getView().getStyleClass();
+                            if (styles.contains("time-slot")) {
+                                styles.remove("time-slot");
+                                styles.add("time-slot-libre");
+                            } else {
+                                styles.remove("time-slot-libre");
+                                styles.add("time-slot");
+                            }
+                        }
                     }
-                }
             }
         });
     }
@@ -246,7 +252,7 @@ public class FXMLmainController implements Initializable {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/reservas/FXMLreservas.fxml"));
             Parent root = miCargador.load();
             // acceso al controlador de datos persona
-            FXMLprofileController controladorLogin = miCargador.getController();
+            FXMLreservasController controladorLogin = miCargador.getController();
             Scene scene = new Scene(root,500,300);
             Stage stageReservas = new Stage();
             stageReservas.setScene(scene);
