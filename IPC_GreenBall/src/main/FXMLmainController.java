@@ -179,7 +179,7 @@ public class FXMLmainController implements Initializable {
                     Court courtAt = courts.get(row-1);
                 //---------------------------------------------------------------------------------------
                 // creamos el SlotTime, lo anyadimos a la lista de la columna y asignamos sus manejadores
-                TimeSlot timeSlot = new TimeSlot(startTime, slotLength, courtAt, row);
+                TimeSlot timeSlot = new TimeSlot(startTime, slotLength, courtAt, row, user);
                 timeSlots.add(timeSlot);
                 registerHandlers(timeSlot);
                 //-----------------------------------------------------------
@@ -193,40 +193,52 @@ public class FXMLmainController implements Initializable {
     private void registerHandlers(TimeSlot timeSlot) {
 
         timeSlot.getView().setOnMousePressed((MouseEvent event) -> {
-            if(user != null){
-                    //---------------------------------------------slot----------------------------
-                    //solamente puede estar seleccionado un slot dentro de la lista de slot
-                    timeSlots.forEach(slot -> {
-                        slot.setSelected(slot == timeSlot);
-                    });
-
-                    //----------------------------------------------------------------
-                    //actualizamos el label Dia-Hora, esto es ad hoc,  para mi diseño
             
-                    timeSlotSelected.setValue(timeSlot);
-                    //----------------------------------------------------------------
-                    // si es un doubleClik  vamos a mostrar una alerta y cambiar el estilo de la celda
-                    if (event.getClickCount() > 1 ) {
-                        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                        alerta.setTitle("Reserva");
-                        alerta.setHeaderText("Confirma la reserva");
-                        alerta.setContentText("Has seleccionado: "
-                                + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
-                                + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
-                                + ", Pista: " + timeSlot.getPista());
-                        Optional<ButtonType> result = alerta.showAndWait();
-                        if (result.isPresent() && result.get() == ButtonType.OK) {
-                            ObservableList<String> styles = timeSlot.getView().getStyleClass();
-                            if (styles.contains("time-slot")) {
-                                styles.remove("time-slot");
-                                styles.add("time-slot-libre");
-                            } else {
-                                styles.remove("time-slot-libre");
-                                styles.add("time-slot");
-                            }
+                        //---------------------------------------------slot----------------------------
+                        //solamente puede estar seleccionado un slot dentro de la lista de slot
+                        timeSlots.forEach(slot -> {
+                                    slot.setSelected(slot == timeSlot);
+                        });
+
+                        //----------------------------------------------------------------
+                        //actualizamos el label Dia-Hora, esto es ad hoc,  para mi diseño
+            
+                        timeSlotSelected.setValue(timeSlot);
+                        //----------------------------------------------------------------
+                        // si es un doubleClik  vamos a mostrar una alerta y cambiar el estilo de la celda
+                        if (event.getClickCount() > 1 ) {
+                                    ObservableList<String> styles = timeSlot.getView().getStyleClass();
+                                    if(user != null) {
+                                                if(styles.contains("time-slot")) {
+                                                            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                                                            alerta.setTitle("Reserva");
+                                                            alerta.setHeaderText("Confirma la reserva");
+                                                            alerta.setContentText("Has seleccionado: "
+                                                                        + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
+                                                                        + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+                                                                        + ", Pista: " + timeSlot.getPista());
+                                                            Optional<ButtonType> result = alerta.showAndWait();
+                                                            if (result.isPresent() && result.get() == ButtonType.OK) {
+                                                                        styles.remove("time-slot");
+                                                                        styles.add("time-slot-libre");
+                                                            }
+                                                } else {
+                                                            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                                                            alerta.setTitle("Cancelar reserva");
+                                                            alerta.setHeaderText("¿Estás seguro de que quieres cancelar la reserva?");
+                                                            alerta.setContentText("Has seleccionado: "
+                                                                        + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
+                                                                        + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+                                                                        + ", Pista: " + timeSlot.getPista());
+                                                            Optional<ButtonType> result = alerta.showAndWait();
+                                                            if (result.isPresent() && result.get() == ButtonType.OK) {
+                                                                        styles.remove("time-slot-libre");
+                                                                        styles.add("time-slot");
+                                                            }
+                                                }
+                                    }
                         }
-                    }
-            }
+            
         });
     }
 
@@ -289,6 +301,7 @@ public class FXMLmainController implements Initializable {
         protected final Pane view;
         private final Court court;
         private final int pista;
+        private final Member user;
 
         private final BooleanProperty selected = new SimpleBooleanProperty();
 
@@ -304,11 +317,12 @@ public class FXMLmainController implements Initializable {
             selectedProperty().set(selected);
         }
 
-        public TimeSlot(LocalDateTime start, Duration duration, Court court, int pista) {
+        public TimeSlot(LocalDateTime start, Duration duration, Court court, int pista, Member user) {
             this.start = start;
             this.duration = duration;
             this.court = court;
             this.pista = pista;
+            this.user = user;
             view = new Pane();
             view.getStyleClass().add("time-slot");
             // ---------------------------------------------------------------
@@ -342,8 +356,12 @@ public class FXMLmainController implements Initializable {
             return court;
         }
         
-        public int getPista(){
+        public int getPista() {
             return pista;
+        }
+        
+        public Member getUser() {
+            return user;
         }
 
         public Node getView() {
