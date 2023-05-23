@@ -221,6 +221,9 @@ public class FXMLmainController implements Initializable {
                                                             if (result.isPresent() && result.get() == ButtonType.OK) {
                                                                         styles.remove("time-slot");
                                                                         styles.add("time-slot-libre");
+                                                                        try{
+                                                                                    timeSlot.setReserva(club.registerBooking(timeSlot.getStart(), timeSlot.getDate(), timeSlot.getTime(), club.hasCreditCard(user.getNickName()), timeSlot.getCourt(), user ));
+                                                                        } catch( ClubDAOException e) { System.out.println("Error al hacer reserva: " + e);}
                                                             }
                                                 } else {
                                                             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -234,6 +237,10 @@ public class FXMLmainController implements Initializable {
                                                             if (result.isPresent() && result.get() == ButtonType.OK) {
                                                                         styles.remove("time-slot-libre");
                                                                         styles.add("time-slot");
+                                                                        try{
+                                                                                    club.removeBooking(timeSlot.getReserva());
+                                                                                    timeSlot.setReserva(null);
+                                                                        } catch( ClubDAOException e) { System.out.println("Error al cancelar reserva: " + e);}
                                                             }
                                                 }
                                     }
@@ -302,6 +309,7 @@ public class FXMLmainController implements Initializable {
         private final Court court;
         private final int pista;
         private final Member user;
+        private Booking reserva;
 
         private final BooleanProperty selected = new SimpleBooleanProperty();
 
@@ -362,6 +370,14 @@ public class FXMLmainController implements Initializable {
         
         public Member getUser() {
             return user;
+        }
+        
+        public Booking getReserva() {
+             return reserva;
+        }
+        
+        public void setReserva(Booking reserva) {
+            this.reserva = reserva;
         }
 
         public Node getView() {
