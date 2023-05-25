@@ -34,7 +34,7 @@
 }
 /* labels */
 .label-estilo {
-  -fx-text-fill: white;
+  -fx-text-fill: #FEFCFD;
   -fx-font-weight: bold;
   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
 }
