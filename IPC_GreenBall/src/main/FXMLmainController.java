@@ -176,7 +176,7 @@ public class FXMLmainController implements Initializable {
         
         for (int row = 1; row<7;row++){
             List<Booking> reservas = club.getBookings();
-            int slotIndex = 3;
+            int slotIndex = 2;
             for (LocalDateTime startTime = date.atTime(firstSlotStart);
                     !startTime.isAfter(date.atTime(lastSlotStart));
                     startTime = startTime.plus(slotLength)) {
