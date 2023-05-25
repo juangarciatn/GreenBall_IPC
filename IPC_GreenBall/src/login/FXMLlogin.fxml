@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.FXMLloginController">
+<VBox alignment="CENTER" prefHeight="200.0" prefWidth="400.0" styleClass="vbox-estilo" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.FXMLloginController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
          <children>
@@ -56,7 +56,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="cancelarLogin" cancelButton="true" mnemonicParsing="false" onAction="#cancelarLoginOnAction" text="Cancelar" />
+                  <Button fx:id="cancelarLogin" cancelButton="true" mnemonicParsing="false" onAction="#cancelarLoginOnAction" styleClass="button-estilo" stylesheets="@../styles/styles.css" text="Cancelar" />
                   <Button fx:id="enviarLoginButton" mnemonicParsing="false" onAction="#enviarLoginOnAction" onKeyPressed="#enterLogin" text="Iniciar sesión">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
