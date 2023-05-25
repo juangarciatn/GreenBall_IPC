@@ -9,13 +9,13 @@ and open the template in the editor.
 */
 
 .time-slot {
-    -fx-background-color: red, white ;
+    -fx-background-color: black, white ;
     -fx-background-insets: 0, 1 1 0 0 ;
     -fx-cursor: hand;
 }
 
-.time-slot-libre{
-    -fx-background-color: red, #ccccff ;
+.time-slot-ocupado{
+    -fx-background-color: black, #ccccff ;
     -fx-background-insets: 0, 1 1 0 0 ;
     -fx-cursor: hand;
 
@@ -23,6 +23,21 @@ and open the template in the editor.
 
 .time-slot:selected {
     -fx-background-color: indianred;
+}
+
+.time-slot-user:selected {
+    -fx-background-color: indianred;
+}
+
+.time-slot-ocupado:selected {
+    -fx-background-color: indianred;
+}
+
+.time-slot-user {
+     -fx-background-color: black, yellowgreen ;
+    -fx-background-insets: 0, 1 1 0 0 ;
+    -fx-cursor: hand;
+    
 }
 
 .date-picker > .text-field {

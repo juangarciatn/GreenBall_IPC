@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Locale;
@@ -168,13 +169,13 @@ public class FXMLmainController implements Initializable {
             children.remove(timeSlot.getView());
         }
         timeSlots = new ArrayList<>();
+        
 
         //----------------------------------------------------------------------------------
         // desde la hora de inicio y hasta la hora de fin creamos slotTime segun la duracion
         
         for (int row = 1; row<7;row++){
             List<Booking> reservas = club.getBookings();
-            System.out.print(reservas.toString());
             int slotIndex = 3;
             for (LocalDateTime startTime = date.atTime(firstSlotStart);
                     !startTime.isAfter(date.atTime(lastSlotStart));
@@ -184,14 +185,26 @@ public class FXMLmainController implements Initializable {
                     Court courtAt = courts.get(row-1);
                 //---------------------------------------------------------------------------------------
                 // creamos el SlotTime, lo anyadimos a la lista de la columna y asignamos sus manejadores
-                TimeSlot timeSlot = new TimeSlot(startTime, slotLength, courtAt, row, user);
+                TimeSlot timeSlot = new TimeSlot(startTime, slotLength, courtAt, row);
                 timeSlots.add(timeSlot);
                 
+                ObservableList<String> styles = timeSlot.getView().getStyleClass();
+                
                 for(int iR = 0; iR < reservas.size(); iR++) {
-                    if(timeSlot.getTime() ==  reservas.get(iR).getFromTime() && timeSlot.getCourt() == reservas.get(iR).getCourt() && timeSlot.getDate() == reservas.get(iR).getMadeForDay() ) {
-                        iR++;
-                        System.out.println("eeee"); 
-                    }
+                    if(timeSlot.getTime().equals(reservas.get(iR).getFromTime()) 
+                            && timeSlot.getCourt().equals(reservas.get(iR).getCourt()) 
+                            && timeSlot.getDate().equals(reservas.get(iR).getMadeForDay()) ) {
+                        System.out.println("espacio asignado en " + row + " " + slotIndex); 
+                        timeSlot.setUser(reservas.get(iR).getMember());
+                        timeSlot.setReserva(reservas.get(iR));
+                        styles.remove("time-slot");
+                        if(user != null && user.equals(timeSlot.getUser())) {
+                                    styles.add("time-slot-user");
+                        } else {           
+                                    styles.add("time-slot-ocupado");
+                        }
+                       
+                    } 
                 }
                 registerHandlers(timeSlot);
                 //-----------------------------------------------------------
@@ -204,7 +217,7 @@ public class FXMLmainController implements Initializable {
     
     private void registerHandlers(TimeSlot timeSlot) {
 
-        timeSlot.getView().setOnMousePressed((MouseEvent event) -> {
+            timeSlot.getView().setOnMousePressed((MouseEvent event) -> {
             
                         //---------------------------------------------slot----------------------------
                         //solamente puede estar seleccionado un slot dentro de la lista de slot
@@ -220,45 +233,59 @@ public class FXMLmainController implements Initializable {
                         // si es un doubleClik  vamos a mostrar una alerta y cambiar el estilo de la celda
                         if (event.getClickCount() > 1 ) {
                                     ObservableList<String> styles = timeSlot.getView().getStyleClass();
-                                    if(user != null) {
-                                                if(styles.contains("time-slot")) {
-                                                            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                                                            alerta.setTitle("Reserva");
-                                                            alerta.setHeaderText("Confirma la reserva");
-                                                            alerta.setContentText("Has seleccionado: "
+                                    //sesión iniciada y casilla no tiene user, hacer reserva
+                                    if(user != null && timeSlot.getUser() == null) {
+                                                if(sePuedeReservar(timeSlot)) {
+                                                            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+                                                            confirmacion.setTitle("Reserva");
+                                                            confirmacion.setHeaderText("Confirma la reserva");
+                                                            confirmacion.setContentText("Has seleccionado: "
                                                                         + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
                                                                         + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
                                                                         + ", Pista: " + timeSlot.getPista());
-                                                            Optional<ButtonType> result = alerta.showAndWait();
-                                                            if (result.isPresent() && result.get() == ButtonType.OK) {
+                                                            Optional<ButtonType> resultConfirmacion = confirmacion.showAndWait();
+                                                            if (resultConfirmacion.isPresent() && resultConfirmacion.get() == ButtonType.OK) {
                                                                         styles.remove("time-slot");
-                                                                        styles.add("time-slot-libre");
+                                                                        styles.add("time-slot-user");
                                                                         try{
+                                                                                    timeSlot.setUser(user);
                                                                                     timeSlot.setReserva(club.registerBooking(timeSlot.getStart(), timeSlot.getDate(), timeSlot.getTime(), club.hasCreditCard(user.getNickName()), timeSlot.getCourt(), user ));
                                                                         } catch( ClubDAOException e) { System.out.println("Error al hacer reserva: " + e);}
                                                             }
-                                                } else {
-                                                            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                                                            alerta.setTitle("Cancelar reserva");
-                                                            alerta.setHeaderText("¿Estás seguro de que quieres cancelar la reserva?");
-                                                            alerta.setContentText("Has seleccionado: "
-                                                                        + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
-                                                                        + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
-                                                                        + ", Pista: " + timeSlot.getPista());
-                                                            Optional<ButtonType> result = alerta.showAndWait();
-                                                            if (result.isPresent() && result.get() == ButtonType.OK) {
-                                                                        styles.remove("time-slot-libre");
-                                                                        styles.add("time-slot");
-                                                                        try{
-                                                                                    club.removeBooking(timeSlot.getReserva());
-                                                                                    timeSlot.setReserva(null);
-                                                                        } catch( ClubDAOException e) { System.out.println("Error al cancelar reserva: " + e);}
-                                                            }
                                                 }
-                                    }
+                                    //sesión iniciada y casilla coincide, cancelar reserva                        
+                                    } else if(user != null && timeSlot.getUser() != null && timeSlot.getUser().equals(user)) {
+                                                Alert cancelar = new Alert(Alert.AlertType.CONFIRMATION);
+                                                cancelar.setTitle("Cancelar reserva");
+                                                cancelar.setHeaderText("¿Estás seguro de que quieres cancelar la reserva?");
+                                                cancelar.setContentText("Has seleccionado: "
+                                                            + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
+                                                            + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+                                                            + ", Pista: " + timeSlot.getPista());
+                                                Optional<ButtonType> resultCancelar = cancelar.showAndWait();
+                                                if (resultCancelar.isPresent() && resultCancelar.get() == ButtonType.OK) {
+                                                            styles.remove("time-slot-user");
+                                                            styles.add("time-slot");
+                                                            try{
+                                                                        club.removeBooking(timeSlot.getReserva());
+                                                                        timeSlot.setReserva(null);
+                                                                        timeSlot.setUser(null);
+                                                            } catch( ClubDAOException e) { System.out.println("Error al cancelar reserva: " + e);}
+                                                }
+                                    //casilla tiene user, ver reserva
+                                    } else if(timeSlot.getUser() != null) {
+                                                Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                                                alerta.setTitle("Ver reserva");
+                                                alerta.setHeaderText("Esta pista ha sido reservada por: " + timeSlot.getUser().getNickName());
+                                                alerta.setContentText("Has seleccionado: "
+                                                            + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
+                                                            + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+                                                            + ", Pista: " + timeSlot.getPista());
+                                                Optional<ButtonType> result = alerta.showAndWait();
+                                                if (result.isPresent() && result.get() == ButtonType.OK) {}
+                                    }            
                         }
-            
-        });
+            });
     }
 
     @FXML
@@ -294,6 +321,7 @@ public class FXMLmainController implements Initializable {
             stageReservas.setTitle("Mis reservas");
             stageReservas.initModality(Modality.APPLICATION_MODAL);
             stageReservas.showAndWait();
+            setTimeSlotsGrid(dpBookingDay.getValue());
     }
 
     @FXML
@@ -302,6 +330,7 @@ public class FXMLmainController implements Initializable {
         labelUser.setText("Iniciar sesión");
         this.user = null;
         FXMLloginController.setIsOk(false);
+        setTimeSlotsGrid(dpBookingDay.getValue());
     }
 
     private void menuOnMouseExited(MouseEvent event) {
@@ -320,8 +349,9 @@ public class FXMLmainController implements Initializable {
         protected final Pane view;
         private final Court court;
         private final int pista;
-        private final Member user;
+        private Member user = null;
         private Booking reserva;
+        private int turno;
 
         private final BooleanProperty selected = new SimpleBooleanProperty();
 
@@ -337,12 +367,11 @@ public class FXMLmainController implements Initializable {
             selectedProperty().set(selected);
         }
 
-        public TimeSlot(LocalDateTime start, Duration duration, Court court, int pista, Member user) {
+        public TimeSlot(LocalDateTime start, Duration duration, Court court, int pista) {
             this.start = start;
             this.duration = duration;
             this.court = court;
             this.pista = pista;
-            this.user = user;
             view = new Pane();
             view.getStyleClass().add("time-slot");
             // ---------------------------------------------------------------
@@ -376,12 +405,20 @@ public class FXMLmainController implements Initializable {
             return court;
         }
         
+        public int getTurno() {
+            return turno;
+        }
+        
         public int getPista() {
             return pista;
         }
         
         public Member getUser() {
             return user;
+        }
+        
+        public void setUser(Member member) {
+            this.user = member;
         }
         
         public Booking getReserva() {
@@ -400,20 +437,7 @@ public class FXMLmainController implements Initializable {
 
     @FXML
     private void labelUserClick(MouseEvent event) throws IOException, ClubDAOException {
-        if (loggedIn) {
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/profile/FXMLprofile.fxml"));
-            Parent root = miCargador.load();
-            // acceso al controlador de datos persona
-            FXMLprofileController controladorLogin = miCargador.getController();
-            Scene scene = new Scene(root,500,300);
-            Stage stageLogin = new Stage();
-            stageLogin.setScene(scene);
-            stageLogin.setTitle("Perfil");
-            stageLogin.setMinHeight(400);
-            stageLogin.setMinWidth(500);
-            stageLogin.initModality(Modality.WINDOW_MODAL);
-            stageLogin.showAndWait();
-        } else {
+        if (!loggedIn) {
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/login/FXMLlogin.fxml"));
             Parent root = miCargador.load();
             // acceso al controlador de datos persona
@@ -436,6 +460,7 @@ public class FXMLmainController implements Initializable {
             user = club.getMemberByCredentials(FXMLloginController.getUsername(), FXMLloginController.getPassword());
             labelUser.setText("Hola, " + user.getNickName());
             loggedIn = true;
+            setTimeSlotsGrid(dpBookingDay.getValue());
         }
     }
     
@@ -444,4 +469,13 @@ public class FXMLmainController implements Initializable {
         return user;
     }
     
+    public boolean sePuedeReservar(TimeSlot timeSlot) {
+            int ind = timeSlot.getTurno()-1 + (timeSlot.getPista()-1)*13;
+            //si es el primer elemento
+            if(ind == 0) {
+                        if(timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user) {return false;}
+            
+            }
+            return true;
+    }
 }
