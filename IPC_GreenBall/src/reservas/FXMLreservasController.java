@@ -55,13 +55,7 @@ public class FXMLreservasController implements Initializable {
         // TODO
         username = FXMLmainController.getUser().getName();
         courts = club.getCourts();
-        misreservas = new ArrayList<Booking>(club.getUserBookings(username));
-        List<String> reservasString = new ArrayList<String>();
-        for(int i = 0; i < misreservas.size(); i++) {
-            reservasString.add("Fecha: " + misreservas.get(i).getMadeForDay() + ", hora: " + misreservas.get(i).getFromTime() + ", pista: " + indicePista(misreservas.get(i).getCourt()));
-        }
-        reservas = FXCollections.observableArrayList(reservasString);
-        listaReservas.setItems(reservas);
+        vistaReservas();
         eliminarButton.disableProperty().bind(Bindings.equal(-1, listaReservas.getSelectionModel().selectedIndexProperty()));
         nickname.setText(username);
         nickname.setText(FXMLmainController.getUser().getName());
@@ -73,6 +67,7 @@ public class FXMLreservasController implements Initializable {
             club.removeBooking(misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()));
         } catch(ClubDAOException e) {System.out.println("mmmm");}
         reservas.remove(listaReservas.getSelectionModel().getSelectedIndex());
+        vistaReservas();
     }
 
     @FXML
@@ -87,6 +82,16 @@ public class FXMLreservasController implements Initializable {
             if(pista.equals(courts.get(i))) return i+1;
         }
         return 0;
+    }
+    
+    private void vistaReservas() {
+        misreservas = new ArrayList<Booking>(club.getUserBookings(username));
+        List<String> reservasString = new ArrayList<String>();
+        for(int i = 0; i < misreservas.size() && i<10; i++) {
+            reservasString.add("Fecha: " + misreservas.get(i).getMadeForDay() + ", hora: " + misreservas.get(i).getFromTime() + ", pista: " + indicePista(misreservas.get(i).getCourt()));
+        }
+        reservas = FXCollections.observableArrayList(reservasString);
+        listaReservas.setItems(reservas);
     }
     
 }
