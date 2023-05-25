@@ -316,6 +316,7 @@ public class FXMLmainController implements Initializable {
             stageReservas.setTitle("Mis reservas");
             stageReservas.initModality(Modality.APPLICATION_MODAL);
             stageReservas.showAndWait();
+            setTimeSlotsGrid(dpBookingDay.getValue());
     }
 
     @FXML
@@ -458,5 +459,6 @@ public class FXMLmainController implements Initializable {
     public static Member getUser() {
         return user;
     }
+    
     
 }
