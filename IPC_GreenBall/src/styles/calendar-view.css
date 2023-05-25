@@ -25,6 +25,14 @@ and open the template in the editor.
     -fx-background-color: indianred;
 }
 
+.time-slot-user:selected {
+    -fx-background-color: indianred;
+}
+
+.time-slot-ocupado:selected {
+    -fx-background-color: indianred;
+}
+
 .time-slot-user {
      -fx-background-color: black, yellowgreen ;
     -fx-background-insets: 0, 1 1 0 0 ;
