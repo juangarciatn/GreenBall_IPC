@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="profile.FXMLprofileController">
    <children>
-      <VBox alignment="CENTER" prefHeight="300.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" prefHeight="300.0" prefWidth="600.0" styleClass="vbox-estilo" stylesheets="@../styles/styles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
                <children>
@@ -23,7 +23,7 @@
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="125.0" prefWidth="125.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="115.0" prefWidth="115.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="120.0" prefWidth="120.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
@@ -35,20 +35,42 @@
                         <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Usuario: " GridPane.halignment="CENTER" />
+                        <Label styleClass="label-estilo" text="Usuario: " textFill="WHITE" GridPane.halignment="RIGHT">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></Label>
                         <TextField fx:id="usuarioField" editable="false" focusTraversable="false" mouseTransparent="true" GridPane.columnIndex="1" />
-                        <Label text="Nombre: " GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Label styleClass="label-estilo" text="Nombre: " textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></Label>
                         <TextField fx:id="nombreField" onKeyPressed="#enterGuardar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Apellido(s): " GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <TextField fx:id="apellidosField" onKeyPressed="#enterGuardar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label text="Teléfono:" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Label styleClass="label-estilo" text="Apellido(s): " textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></Label>
+                        <TextField fx:id="apellidosField" onKeyPressed="#enterGuardar" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin></TextField>
+                        <Label styleClass="label-estilo" text="Teléfono:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></Label>
                         <TextField fx:id="telefonoField" onKeyPressed="#enterGuardar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label text="SVC:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                         <TextField fx:id="tarjetaField" onKeyPressed="#enterGuardar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label text="Nº de tarjeta:" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                        <TextField fx:id="svcField" onKeyPressed="#enterGuardar" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                        <Label text="Contraseña:" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                        <Label text="Nueva contraseña:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                        <Label styleClass="label-estilo" text="Nº de tarjeta:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></Label>
+                        <Label styleClass="label-estilo" text="Contraseña:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></Label>
+                        <Label styleClass="label-estilo" text="Nueva contraseña:" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></Label>
                         <ImageView fx:id="labelPicture" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#cambiarImagenOnMouseClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="50.0" top="30.0" />
@@ -56,6 +78,16 @@
                         </ImageView>
                         <PasswordField fx:id="passField" onKeyPressed="#enterGuardar" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <PasswordField fx:id="newPassField" onKeyPressed="#enterGuardar" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                           <children>
+                              <Label styleClass="label-estilo" text="SVC:" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="svcField" onKeyPressed="#enterGuardar" prefWidth="50.0" />
+                           </children>
+                        </HBox>
                      </children>
                      <HBox.margin>
                         <Insets />
@@ -63,7 +95,7 @@
                   </GridPane>
                </children>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -74,17 +106,20 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
                <children>
-                  <Button fx:id="cancelarButton" mnemonicParsing="false" onAction="#cancelarButtonOnAction" text="Cancelar">
+                  <Button fx:id="cancelarButton" mnemonicParsing="false" onAction="#cancelarButtonOnAction" styleClass="button-estilo" text="Cancelar">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="guardarButton" mnemonicParsing="false" onAction="#guardarButtonOnAction" text="Guardar">
+                  <Button fx:id="guardarButton" mnemonicParsing="false" onAction="#guardarButtonOnAction" styleClass="button-estilo" text="Guardar">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Button>
                </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>

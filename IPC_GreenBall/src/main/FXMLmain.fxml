@@ -6,29 +6,26 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="418.0" prefWidth="600.0" style="-fx-background-color: #5FDD5C;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.FXMLmainController">
+<BorderPane styleClass="border-pane" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.FXMLmainController">
    <top>
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="301.0">
                <children>
-                  <Text fill="GREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="GreenBall" textAlignment="CENTER">
-                     <font>
-                        <Font size="38.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="20.0" top="25.0" />
-                     </HBox.margin>
-                  </Text>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/LOGO_BLANCO.png" />
+                     </image>
+                  </ImageView>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="212.0">
                      <children>
                         <MenuBar fx:id="menuBar" onMouseEntered="#menuOnMouseEntered" styleClass="transparent-menu-bar" stylesheets="@../styles/styles.css">
@@ -40,14 +37,20 @@
                                     <MenuItem mnemonicParsing="false" onAction="#cerrarSesionButton" text="Cerrar sesión" />
                               </items>
                                  <graphic>
-                                    <Label fx:id="labelUser" onMouseClicked="#labelUserClick" text="Iniciar sesión" textFill="#050505" />
+                                    <Label fx:id="labelUser" onMouseClicked="#labelUserClick" styleClass="label-estilo" text="Iniciar sesión" textFill="WHITE" />
                                  </graphic>
                             </Menu>
                           </menus>
                         </MenuBar>
                      </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </HBox>
                </children>
+               <HBox.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </HBox.margin>
             </HBox>
          </children>
       </HBox>
@@ -60,7 +63,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </DatePicker>
-            <Label fx:id="labelCol" text="LABELCOL">
+            <Label fx:id="labelCol" styleClass="label-estilo" text="LABELCOL" textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -69,52 +72,51 @@
                <children>
                   <GridPane fx:id="grid" alignment="CENTER" HBox.hgrow="ALWAYS">
                     <columnConstraints>
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
-                      <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="30.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                      <RowConstraints minHeight="25.0" prefHeight="25.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="25.0" prefHeight="25.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="25.0" prefHeight="25.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="25.0" prefHeight="25.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="25.0" prefHeight="25.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="25.0" prefHeight="25.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="25.0" prefHeight="25.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="25.0" prefHeight="25.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="25.0" prefHeight="25.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="25.0" prefHeight="25.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="25.0" prefHeight="25.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="25.0" prefHeight="25.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="25.0" prefHeight="25.0" valignment="CENTER" vgrow="ALWAYS" />
                     </rowConstraints>
                      <children>
-                        <Label text="  9:00 - 10:00" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                        <Label text="10:00 - 11:00" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                        <Label text="11:00 - 12:00" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-                        <Label text="12:00 - 13:00" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                        <Label text="13:00 - 14:00" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-                        <Label text="14:00 - 15:00" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                        <Label text="15:00 - 16:00" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
-                        <Label text="16:00 - 17:00" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
-                        <Label text="17:00 - 18:00" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER" />
-                        <Label text="18:00 - 19:00" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="CENTER" />
-                        <Label text="19:00 - 20:00" GridPane.halignment="CENTER" GridPane.rowIndex="13" GridPane.valignment="CENTER" />
-                        <Label text="20:00 - 21:00" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.valignment="CENTER" />
-                        <Label text="21:00 - 22:00" GridPane.halignment="CENTER" GridPane.rowIndex="15" GridPane.valignment="CENTER" />
-                        <Label text="PISTA 1" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                        <Label text="PISTA 2" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label text="PISTA 3" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <Label text="PISTA 4" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                        <Label text="PISTA 5" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                        <Label text="PISTA 6" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="  9:00 - 10:00" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="10:00 - 11:00" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="11:00 - 12:00" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="12:00 - 13:00" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="13:00 - 14:00" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="14:00 - 15:00" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="15:00 - 16:00" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="16:00 - 17:00" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="17:00 - 18:00" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="18:00 - 19:00" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="19:00 - 20:00" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="20:00 - 21:00" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="13" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="21:00 - 22:00" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="PISTA 1" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="PISTA 2" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="PISTA 3" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="PISTA 4" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="PISTA 5" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <Label styleClass="label-estilo" stylesheets="@../styles/styles.css" text="PISTA 6" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="1" />
                      </children>
                      <padding>
                         <Insets left="20.0" right="20.0" />
@@ -122,7 +124,7 @@
                   </GridPane>
                </children>
             </HBox>
-            <Label fx:id="slotSelected" textFill="#6811f5" VBox.vgrow="NEVER">
+            <Label fx:id="slotSelected" styleClass="label-estilo" stylesheets="@../styles/styles.css" textFill="#6811f5" VBox.vgrow="NEVER">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin></Label>

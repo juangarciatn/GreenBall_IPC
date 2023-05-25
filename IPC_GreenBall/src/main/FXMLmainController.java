@@ -309,11 +309,12 @@ public class FXMLmainController implements Initializable {
             // acceso al controlador de datos persona
             FXMLprofileController controladorLogin = miCargador.getController();
             Scene scene = new Scene(root,500,300);  
-            Stage stageLogin = new Stage();
-            stageLogin.setScene(scene);
-            stageLogin.setTitle("Perfil");
-            stageLogin.initModality(Modality.APPLICATION_MODAL);
-            stageLogin.showAndWait();
+            Stage stagePerfil = new Stage();
+            stagePerfil.setScene(scene);
+            stagePerfil.initStyle(StageStyle.UNDECORATED);
+            stagePerfil.setTitle("Perfil");
+            stagePerfil.initModality(Modality.APPLICATION_MODAL);
+            stagePerfil.showAndWait();
     }
 
     @FXML
@@ -325,6 +326,7 @@ public class FXMLmainController implements Initializable {
             Scene scene = new Scene(root,500,300);
             Stage stageReservas = new Stage();
             stageReservas.setScene(scene);
+            stageReservas.initStyle(StageStyle.UNDECORATED);
             stageReservas.setTitle("Mis reservas");
             stageReservas.initModality(Modality.APPLICATION_MODAL);
             stageReservas.showAndWait();
