@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="signup.FXMLsignupController">
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="signup.FXMLsignupController">
    <children>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" styleClass="vbox-estilo" stylesheets="@../styles/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
                <children>
@@ -25,7 +25,7 @@
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="50.0" prefWidth="50.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="50.0" prefWidth="50.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="75.0" prefWidth="75.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="20.0" />
                     </columnConstraints>
                     <rowConstraints>
@@ -38,28 +38,64 @@
                         <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre*" GridPane.halignment="CENTER" />
-                        <TextField fx:id="nombre" onKeyPressed="#enterRegistro" GridPane.columnIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido*" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <TextField fx:id="apellido" onKeyPressed="#enterRegistro" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono*" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                        <TextField fx:id="telefono" onKeyPressed="#enterRegistro" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de usuario*" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                        <TextField fx:id="nickname" onKeyPressed="#enterRegistro" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña*" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                        <PasswordField fx:id="password" onKeyPressed="#enterRegistro" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <ToggleButton fx:id="mostrarContraseña" mnemonicParsing="false" onMousePressed="#mostrarContraseñaOnMousePressed" onMouseReleased="#mostrarContraseñaOnMouseReleased" text="Mostrar contraseña" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nº de tarjeta:" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                        <TextField fx:id="tarjeta" onKeyPressed="#enterRegistro" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SVC:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                        <PasswordField fx:id="svc" onKeyPressed="#enterRegistro" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Imagen de perfil:" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                        <Button fx:id="avatarButton" mnemonicParsing="false" onAction="#avatarButtonOnAction" text="Seleccionar avatar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                        <Button fx:id="imageButton" mnemonicParsing="false" onAction="#imageButtonOnAction" text="Importar Imagen" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                        <ImageView fx:id="imageUser" fitHeight="142.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-estilo" text="Nombre*" GridPane.halignment="RIGHT">
                            <GridPane.margin>
-                              <Insets left="50.0" right="30.0" top="30.0" />
+                              <Insets right="10.0" />
+                           </GridPane.margin></Text>
+                        <TextField fx:id="nombre" onKeyPressed="#enterRegistro" GridPane.columnIndex="1" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-estilo" text="Apellido*" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></Text>
+                        <TextField fx:id="apellido" onKeyPressed="#enterRegistro" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-estilo" text="Teléfono*" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></Text>
+                        <TextField fx:id="telefono" onKeyPressed="#enterRegistro" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-estilo" text="Nombre de usuario*" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></Text>
+                        <TextField fx:id="nickname" onKeyPressed="#enterRegistro" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-estilo" text="Contraseña*" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></Text>
+                        <PasswordField fx:id="password" onKeyPressed="#enterRegistro" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <ToggleButton fx:id="mostrarContraseña" mnemonicParsing="false" onMousePressed="#mostrarContraseñaOnMousePressed" onMouseReleased="#mostrarContraseñaOnMouseReleased" styleClass="button-estilo" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets left="15.0" />
+                           </GridPane.margin></ToggleButton>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-estilo" text="Nº de tarjeta" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></Text>
+                        <TextField fx:id="tarjeta" onKeyPressed="#enterRegistro" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-estilo" text="Imagen de perfil" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin></Text>
+                        <ImageView fx:id="imageUser" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="30.0" right="30.0" top="40.0" />
                            </GridPane.margin></ImageView>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-estilo" text="SVC">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <PasswordField fx:id="svc" onKeyPressed="#enterRegistro" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <children>
+                              <Button fx:id="avatarButton" mnemonicParsing="false" onAction="#avatarButtonOnAction" styleClass="button-estilo" text="Seleccionar avatar" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="imageButton" mnemonicParsing="false" onAction="#imageButtonOnAction" styleClass="button-estilo" text="Importar Imagen" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                      </children>
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -72,14 +108,14 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0">
                <children>
-                  <Label fx:id="labelSignupError" alignment="CENTER" textFill="RED" />
-                  <Label fx:id="labelSignup" alignment="CENTER" textFill="GREEN" />
+                  <Label fx:id="labelSignupError" alignment="CENTER" styleClass="label-error" textFill="RED" />
+                  <Label fx:id="labelSignup" alignment="CENTER" styleClass="label-correcto" textFill="GREEN" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="150.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="CancelarRegistro" mnemonicParsing="false" onAction="#CancelarRegistroOnAction" text="Cancelar" />
-                  <Button fx:id="enviarRegistroButton" mnemonicParsing="false" onAction="#enviarRegistroOnAction" text="Registrarse">
+                  <Button fx:id="CancelarRegistro" mnemonicParsing="false" onAction="#CancelarRegistroOnAction" styleClass="button-estilo" text="Cancelar" />
+                  <Button fx:id="enviarRegistroButton" mnemonicParsing="false" onAction="#enviarRegistroOnAction" styleClass="button-estilo" text="Registrarse">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </HBox.margin>

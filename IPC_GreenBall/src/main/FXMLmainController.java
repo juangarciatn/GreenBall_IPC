@@ -452,6 +452,7 @@ public class FXMLmainController implements Initializable {
             Scene scene = new Scene(root,400,200);
             Stage stageLogin = new Stage();
             stageLogin.setScene(scene);
+            stageLogin.initStyle(StageStyle.UNDECORATED);
             stageLogin.setTitle("Iniciar sesión");
             stageLogin.setMinHeight(200);
             stageLogin.setMinWidth(400);

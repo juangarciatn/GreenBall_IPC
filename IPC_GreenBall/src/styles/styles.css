@@ -3,12 +3,13 @@
 }
 
 .button-estilo {
-  -fx-background-color: #2b6a4d;
+  -fx-background-color: #0E3B43;
+  -fx-background-radius: 20px;
   -fx-text-fill: white;
   -fx-font-weight: bold;
   -fx-border-radius: 20px;
-  -fx-pref-width: 120px;
-  -fx-pref-height: 40px;
+  -fx-border-width: 2px;
+  -fx-border-color: #357266;
   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
 }
 
@@ -17,12 +18,41 @@
 }
 
 .vbox-estilo {
-  -fx-background-color: #2b6a4d;
+  -fx-background-color: #0E3B43;
   -fx-background-radius: 10px;
-  -fx-padding: 10px;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+  -fx-background-insets: 0px;
+}
+
+.hbox-estilo {
+  -fx-background-color: #0E3B43;
+    -fx-background-radius: 10px;
+  -fx-border-color: #357266;
+  -fx-border-width: 2px;
+  -fx-border-radius: 10px;
   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
 }
 
-.vbox-estilo:hover {
+.hbox-estilo:hover {
   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0, 0, 3);
+}
+/* labels */
+.label-estilo {
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.label-estilo:hover {
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0, 0, 3);
+}
+
+.label-error {
+  -fx-font-weight: bold;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0, 0, 3)
+}
+
+.label-correcto {
+  -fx-font-weight: bold;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0, 0, 3)
 }

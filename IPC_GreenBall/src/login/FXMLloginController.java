@@ -25,11 +25,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 import main.FXMLmainController;
 import signup.FXMLsignupController;
 
@@ -60,6 +63,11 @@ public class FXMLloginController implements Initializable {
     private ToggleButton mostrarContraseña;
     
     private boolean mostrarContraseñaPresionado = false;
+    
+    private Image closeEye;
+    private Image openEye;
+    private ImageView closeEyeView;
+    private ImageView openEyeView;
 
     /**
      * Initializes the controller class.
@@ -67,6 +75,15 @@ public class FXMLloginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        closeEye = new Image("/img/closeEyeWhite.png");
+        openEye = new Image("/img/openEyeWhite.png");
+        closeEyeView = new ImageView(closeEye);
+        openEyeView = new ImageView(openEye);
+        closeEyeView.setFitHeight(15);
+        closeEyeView.setFitWidth(15);
+        openEyeView.setFitHeight(15);
+        openEyeView.setFitWidth(15);
+        mostrarContraseña.setGraphic(closeEyeView);
     }    
 
     @FXML
@@ -115,6 +132,7 @@ public class FXMLloginController implements Initializable {
         Scene scene = new Scene(root,500,300);
         Stage stageRegistro = new Stage();
         stageRegistro.setScene(scene);
+        stageRegistro.initStyle(StageStyle.UNDECORATED);
         stageRegistro.setTitle("Registrarse");
         stageRegistro.setMinHeight(400);
         stageRegistro.setMinWidth(600);
@@ -149,12 +167,14 @@ public class FXMLloginController implements Initializable {
     @FXML
     private void mostrarContraseñaOnMouseReleased(MouseEvent event) {
         mostrarContraseñaPresionado = false;
+        mostrarContraseña.setGraphic(closeEyeView);
         mostrarContraseña();
     }
 
     @FXML
     private void mostrarContraseñaOnMousePressed(MouseEvent event) {
         mostrarContraseñaPresionado = true;
+        mostrarContraseña.setGraphic(openEyeView);
         mostrarContraseña();
     }
     

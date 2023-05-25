@@ -12,11 +12,11 @@
 
 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="400.0" styleClass="vbox-estilo" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.FXMLloginController">
    <children>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="400.0" spacing="20.0" styleClass="hbox-estilo" stylesheets="@../styles/styles.css">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario:">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-estilo" text="Usuario">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </Text>
             <TextField fx:id="user" onKeyPressed="#enterLogin">
@@ -25,41 +25,53 @@
                </HBox.margin></TextField>
          </children>
          <VBox.margin>
-            <Insets right="120.0" top="20.0" />
+            <Insets bottom="5.0" left="10.0" right="10.0" top="20.0" />
          </VBox.margin>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="400.0" styleClass="hbox-estilo" stylesheets="@../styles/styles.css">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-estilo" text="Contraseña">
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </Text>
             <PasswordField fx:id="password" onKeyPressed="#enterLogin">
                <HBox.margin>
-                  <Insets right="15.0" />
+                  <Insets />
                </HBox.margin></PasswordField>
-            <ToggleButton fx:id="mostrarContraseña" mnemonicParsing="false" onMousePressed="#mostrarContraseñaOnMousePressed" onMouseReleased="#mostrarContraseñaOnMouseReleased" prefHeight="26.0" prefWidth="122.0" text="Mostrar contraseña" />
+            <ToggleButton fx:id="mostrarContraseña" mnemonicParsing="false" onMousePressed="#mostrarContraseñaOnMousePressed" onMouseReleased="#mostrarContraseñaOnMouseReleased" styleClass="button-estilo">
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin></ToggleButton>
          </children>
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" top="5.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0">
+         <children>
+            <Label fx:id="labelLogin" styleClass="label-error" textFill="RED" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </VBox.margin>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
          <children>
-            <Label fx:id="labelLogin" textFill="RED" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
-         <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER">
                <children>
-                  <Text fx:id="registro" onMouseClicked="#registroLogin" strokeType="OUTSIDE" strokeWidth="0.0" text="¿No tienes cuenta? Registrarse" underline="true" />
+                  <Text fx:id="registro" fill="WHITE" onMouseClicked="#registroLogin" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-estilo" text="¿No tienes cuenta? Registrarse" underline="true" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+            <HBox alignment="CENTER">
                <children>
-                  <Button fx:id="cancelarLogin" cancelButton="true" mnemonicParsing="false" onAction="#cancelarLoginOnAction" styleClass="button-estilo" stylesheets="@../styles/styles.css" text="Cancelar" />
-                  <Button fx:id="enviarLoginButton" mnemonicParsing="false" onAction="#enviarLoginOnAction" onKeyPressed="#enterLogin" text="Iniciar sesión">
+                  <Button fx:id="cancelarLogin" cancelButton="true" mnemonicParsing="false" onAction="#cancelarLoginOnAction" styleClass="button-estilo" stylesheets="@../styles/styles.css" text="Cancelar">
                      <HBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets left="10.0" right="5.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="enviarLoginButton" mnemonicParsing="false" onAction="#enviarLoginOnAction" onKeyPressed="#enterLogin" styleClass="button-estilo" stylesheets="@../styles/styles.css" text="Iniciar sesión">
+                     <HBox.margin>
+                        <Insets left="5.0" right="10.0" />
                      </HBox.margin>
                   </Button>
                </children>

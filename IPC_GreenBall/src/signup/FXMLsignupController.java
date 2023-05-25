@@ -76,6 +76,11 @@ public class FXMLsignupController implements Initializable {
     @FXML
     private ToggleButton mostrarContraseña;
     
+    private Image closeEye;
+    private Image openEye;
+    private ImageView closeEyeView;
+    private ImageView openEyeView;
+    
     private boolean mostrarContraseñaPresionado = false;
     private Image selectedImage;
     
@@ -102,6 +107,16 @@ public class FXMLsignupController implements Initializable {
         
         imageFileChooser = new FileChooser();
         imageFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png", "*.gif"));
+        
+        closeEye = new Image("/img/closeEyeWhite.png");
+        openEye = new Image("/img/openEyeWhite.png");
+        closeEyeView = new ImageView(closeEye);
+        openEyeView = new ImageView(openEye);
+        closeEyeView.setFitHeight(15);
+        closeEyeView.setFitWidth(15);
+        openEyeView.setFitHeight(15);
+        openEyeView.setFitWidth(15);
+        mostrarContraseña.setGraphic(closeEyeView);
 
     
     }    
@@ -290,12 +305,14 @@ public class FXMLsignupController implements Initializable {
     @FXML
     private void mostrarContraseñaOnMouseReleased(MouseEvent event) {
         mostrarContraseñaPresionado = false;
+        mostrarContraseña.setGraphic(closeEyeView);
         mostrarContraseña();
     }
 
     @FXML
     private void mostrarContraseñaOnMousePressed(MouseEvent event) {
         mostrarContraseñaPresionado = true;
+        mostrarContraseña.setGraphic(openEyeView);
         mostrarContraseña();
     }
     
