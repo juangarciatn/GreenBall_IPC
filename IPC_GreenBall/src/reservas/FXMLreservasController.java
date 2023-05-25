@@ -36,6 +36,7 @@ public class FXMLreservasController implements Initializable {
     private Button eliminarButton;
     @FXML
     private Button volverButton;
+    @FXML
     private ListView<Booking> listaReservas;
     private ArrayList<Booking> misreservas;
     private ObservableList<Booking> reservas;
