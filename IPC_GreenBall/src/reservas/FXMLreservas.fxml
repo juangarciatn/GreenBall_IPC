@@ -9,21 +9,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reservas.FXMLreservasController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" styleClass="border-pane" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reservas.FXMLreservasController">
    <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" styleClass="hbox-estilo" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Reservas de ">
+            <Label styleClass="label-estilo" text="Reservas de ">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="nickname">
+            <Label fx:id="nickname" styleClass="label-estilo">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
       </HBox>
    </top>
    <center>
@@ -36,12 +39,12 @@
    <right>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="eliminarButton" mnemonicParsing="false" onAction="#eliminarOnAction" prefHeight="25.0" prefWidth="100.0" text="Eliminar" VBox.vgrow="ALWAYS">
+            <Button fx:id="eliminarButton" mnemonicParsing="false" onAction="#eliminarOnAction" prefHeight="25.0" prefWidth="100.0" styleClass="button-estilo" text="Eliminar" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="volverButton" mnemonicParsing="false" onAction="#volverOnAction" prefHeight="25.0" prefWidth="100.0" text="Volver" VBox.vgrow="ALWAYS">
+            <Button fx:id="volverButton" mnemonicParsing="false" onAction="#volverOnAction" prefHeight="25.0" prefWidth="100.0" styleClass="button-estilo" text="Volver" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>

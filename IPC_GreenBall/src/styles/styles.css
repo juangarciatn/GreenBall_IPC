@@ -1,7 +1,7 @@
 .button-estilo {
   -fx-background-color: #0E3B43;
   -fx-background-radius: 20px;
-  -fx-text-fill: white;
+  -fx-text-fill: #FEFCFD;
   -fx-font-weight: bold;
   -fx-border-radius: 20px;
   -fx-border-width: 2px;
@@ -59,7 +59,7 @@
 }
 
 .menu-bar .menu-item {
-    -fx-text-fill: white;
+    -fx-text-fill: #FEFCFD;
 }
 
 .menu-bar .menu-item:hover {
@@ -70,4 +70,21 @@
     -fx-background-color: #0E3B43;
     -fx-border-color: #357266;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 2, 0.0, 0, 1);
+}
+
+.list-view {
+    -fx-background-color: #0E3B43;
+    -fx-border-color: #357266;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 2, 0.0, 0, 1);
+}
+
+.list-view .list-cell {
+    -fx-background-color:#BFCDE0;
+    -fx-text-fill: #FEFCFD;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: #99F7AB;
 }
