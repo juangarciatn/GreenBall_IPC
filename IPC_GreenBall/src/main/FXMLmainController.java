@@ -207,9 +207,16 @@ public class FXMLmainController implements Initializable {
                     } 
                 }
                 registerHandlers(timeSlot);
+                
                 //-----------------------------------------------------------
                 // lo anyadimos al grid en la posicion x= 1, y= slotIndex
                 grid.add(timeSlot.getView(), row, slotIndex);
+                
+                if (timeSlot.getReserva()!= null) {
+                    Label label = new Label(timeSlot.getReserva().getMember().getNickName());
+                    label.setDisable(true);
+                    grid.add(label, row, slotIndex);
+                }
                 slotIndex++;
             }
         }
