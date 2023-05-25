@@ -13,7 +13,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" styleClass="hbox-estilo" BorderPane.alignment="CENTER">
          <children>
-            <Label styleClass="label-estilo" text="Reservas de ">
+            <Label text="Reservas de " textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
