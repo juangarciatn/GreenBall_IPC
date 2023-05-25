@@ -136,7 +136,7 @@ public class FXMLloginController implements Initializable {
         stageRegistro.setTitle("Registrarse");
         stageRegistro.setMinHeight(400);
         stageRegistro.setMinWidth(600);
-        stageRegistro.initModality(Modality.WINDOW_MODAL); 
+        stageRegistro.initModality(Modality.APPLICATION_MODAL); 
         stageRegistro.show();
     }
     
