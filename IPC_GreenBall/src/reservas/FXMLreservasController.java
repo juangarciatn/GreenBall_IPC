@@ -36,13 +36,11 @@ public class FXMLreservasController implements Initializable {
     private Button eliminarButton;
     @FXML
     private Button volverButton;
-    @FXML
-    private ListView<String> listaReservas;
+    private ListView<Booking> listaReservas;
     private ArrayList<Booking> misreservas;
-    private ObservableList<String> reservas;
+    private ObservableList<Booking> reservas;
     private Club club;
     private String username;
-    private static List<Court> courts;
     public FXMLreservasController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
     }
@@ -54,20 +52,20 @@ public class FXMLreservasController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         username = FXMLmainController.getUser().getName();
-        courts = club.getCourts();
-        vistaReservas();
+        List<Booking> test = new ArrayList<Booking>();
+        test = club.getUserBookings(username);
+        misreservas = new ArrayList<Booking>(test);
+        reservas = FXCollections.observableArrayList(misreservas);
+        listaReservas.setItems(reservas);
         eliminarButton.disableProperty().bind(Bindings.equal(-1, listaReservas.getSelectionModel().selectedIndexProperty()));
         nickname.setText(username);
         nickname.setText(FXMLmainController.getUser().getName());
     }    
 
     @FXML
-    private void eliminarOnAction(ActionEvent event) {
-        try {
-            club.removeBooking(misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()));
-        } catch(ClubDAOException e) {System.out.println("mmmm");}
+    private void eliminarOnAction(ActionEvent event) throws ClubDAOException {
+        club.removeBooking(misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()));
         reservas.remove(listaReservas.getSelectionModel().getSelectedIndex());
-        vistaReservas();
     }
 
     @FXML
@@ -75,23 +73,6 @@ public class FXMLreservasController implements Initializable {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
-    }
-    
-    private int indicePista(Court pista){
-        for(int i = 0; i < courts.size(); i++){
-            if(pista.equals(courts.get(i))) return i+1;
-        }
-        return 0;
-    }
-    
-    private void vistaReservas() {
-        misreservas = new ArrayList<Booking>(club.getUserBookings(username));
-        List<String> reservasString = new ArrayList<String>();
-        for(int i = 0; i < misreservas.size() && i<10; i++) {
-            reservasString.add("Fecha: " + misreservas.get(i).getMadeForDay() + ", hora: " + misreservas.get(i).getFromTime() + ", pista: " + indicePista(misreservas.get(i).getCourt()));
-        }
-        reservas = FXCollections.observableArrayList(reservasString);
-        listaReservas.setItems(reservas);
     }
     
 }
