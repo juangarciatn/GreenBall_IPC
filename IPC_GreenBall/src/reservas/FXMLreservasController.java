@@ -53,7 +53,7 @@ public class FXMLreservasController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        username = FXMLmainController.getUser().getName();
+        username = FXMLmainController.getUser().getNickName();
         courts = club.getCourts();
         vistaReservas();
         eliminarButton.disableProperty().bind(Bindings.equal(-1, listaReservas.getSelectionModel().selectedIndexProperty()));
