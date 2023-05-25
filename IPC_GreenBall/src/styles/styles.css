@@ -2,3 +2,27 @@
     -fx-background-color: transparent;
 }
 
+.button-estilo {
+  -fx-background-color: #2b6a4d;
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+  -fx-border-radius: 20px;
+  -fx-pref-width: 120px;
+  -fx-pref-height: 40px;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.button-estilo:hover {
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0, 0, 3);
+}
+
+.vbox-estilo {
+  -fx-background-color: #2b6a4d;
+  -fx-background-radius: 10px;
+  -fx-padding: 10px;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.vbox-estilo:hover {
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0, 0, 3);
+}
