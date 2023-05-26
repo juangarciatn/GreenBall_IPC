@@ -216,10 +216,6 @@ public final class FXMLprofileController implements Initializable {
        } else mensajeError.setText("Contraseña incorrecta");
       }
 
-    private void clickImagen(MouseEvent event) {
-        System.out.println("Imagen");
-    }
-
     public void bloqueoCambios() {
         guardarButton.setDisable(true);
         nombreField.setDisable(true);

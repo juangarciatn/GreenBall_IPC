@@ -30,7 +30,7 @@
 }
 
 .hbox-estilo:hover {
-  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0, 0, 3);
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0, 0, 2);
 }
 /* labels */
 .label-estilo {
@@ -40,7 +40,7 @@
 }
 
 .label-estilo:hover {
-  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0, 0, 3);
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0, 0, 2);
 }
 
 .label-error {
@@ -87,4 +87,17 @@
 
 .list-view .list-cell:hover {
     -fx-background-color: #99F7AB;
+}
+
+.list-view .list-cell:selected {
+    -fx-background-color: #FEFCFD; /* Cambia el color de fondo al seleccionar un elemento */
+    -fx-text-fill: #BFCDE0;
+    -fx-text-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0, 0, 2);
+}
+
+.rounded-image {
+    -fx-background-radius: 5px;
+    -fx-background-color: transparent;
+    -fx-shape: "M 0 0 H 100 V 100 H 0 Z";
+    -fx-scale-shape: false;
 }
