@@ -13,12 +13,12 @@
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" styleClass="hbox-estilo" BorderPane.alignment="CENTER">
          <children>
-            <Label styleClass="label-estilo" text="Reservas de " textFill="WHITE">
+            <Label styleClass="label-estilo-res" text="Reservas de " textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="nickname" styleClass="label-estilo">
+            <Label fx:id="nickname" styleClass="label-estilo-res">
                <font>
                   <Font size="20.0" />
                </font>

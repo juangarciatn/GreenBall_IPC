@@ -30,9 +30,21 @@
 }
 
 .hbox-estilo:hover {
-  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0, 0, 2);
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
 }
 /* labels */
+
+.label-estilo-res {
+  -fx-text-fill: #FEFCFD;
+  -fx-font-weight: bold;
+  -fx-font-size: 20px;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.label-estilo-res:hover {
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
 .label-estilo {
   -fx-text-fill: #FEFCFD;
   -fx-font-weight: bold;
@@ -40,7 +52,7 @@
 }
 
 .label-estilo:hover {
-  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0, 0, 2);
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
 }
 
 .label-error {
@@ -55,7 +67,7 @@
 
 .menu-bar {
     -fx-background-color: transparent;
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 2 , 0.0 , 0 , 1 );
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 2 , 0.0 , 0 , 1 );
 }
 
 .menu-bar .menu-item {
@@ -63,13 +75,13 @@
 }
 
 .menu-bar .menu-item:hover {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0, 0, 3);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 3);
 }
 
 .border-pane {
     -fx-background-color: #0E3B43;
     -fx-border-color: #357266;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 2, 0.0, 0, 1);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0.0, 0, 1);
 }
 
 .list-view {

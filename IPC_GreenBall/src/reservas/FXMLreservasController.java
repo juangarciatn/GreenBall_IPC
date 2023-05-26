@@ -57,16 +57,17 @@ public class FXMLreservasController implements Initializable {
         courts = club.getCourts();
         vistaReservas();
         eliminarButton.disableProperty().bind(Bindings.equal(-1, listaReservas.getSelectionModel().selectedIndexProperty()));
-        nickname.setText(username);
         nickname.setText(FXMLmainController.getUser().getName());
     }    
 
     @FXML
     private void eliminarOnAction(ActionEvent event) {
         try {
-            club.removeBooking(misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()));
+            System.out.println(misreservas.size());
+            club.removeBooking(misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()+misreservas.size()-1));
         } catch(ClubDAOException e) {System.out.println("mmmm");}
-        reservas.remove(listaReservas.getSelectionModel().getSelectedIndex());
+        reservas.remove(listaReservas.getSelectionModel().getSelectedIndex()+misreservas.size()-1);
+        System.out.println(listaReservas.getSelectionModel().getSelectedIndex()+misreservas.size()-1);
         vistaReservas();
     }
 
@@ -87,7 +88,8 @@ public class FXMLreservasController implements Initializable {
     private void vistaReservas() {
         misreservas = new ArrayList<Booking>(club.getUserBookings(username));
         List<String> reservasString = new ArrayList<String>();
-        for(int i = 0; i < misreservas.size() && i<10; i++) {
+        int j = 0;
+        for(int i = misreservas.size()-1; i >= 0 && j<10; i--, j++) {
             reservasString.add("Fecha: " + misreservas.get(i).getMadeForDay() + ", hora: " + misreservas.get(i).getFromTime() + ", pista: " + indicePista(misreservas.get(i).getCourt()));
         }
         reservas = FXCollections.observableArrayList(reservasString);

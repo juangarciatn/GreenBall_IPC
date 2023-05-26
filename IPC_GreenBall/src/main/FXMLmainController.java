@@ -160,7 +160,7 @@ public class FXMLmainController implements Initializable {
         });
     }    
     
-    private void setTimeSlotsGrid(LocalDate date) {
+    public void setTimeSlotsGrid(LocalDate date) {
         //actualizamos la seleccion
         timeSlotSelected.setValue(null);
         
