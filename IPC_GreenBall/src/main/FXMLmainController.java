@@ -217,6 +217,7 @@ public class FXMLmainController implements Initializable {
                     label.setDisable(true);
                     grid.add(label, row, slotIndex);
                 }
+                
                 slotIndex++;
             }
         }
@@ -381,6 +382,7 @@ public class FXMLmainController implements Initializable {
             this.duration = duration;
             this.court = court;
             this.pista = pista;
+            this.turno = start.getHour()-8;
             view = new Pane();
             view.getStyleClass().add("time-slot");
             // ---------------------------------------------------------------
@@ -480,12 +482,21 @@ public class FXMLmainController implements Initializable {
     }
     
     public boolean sePuedeReservar(TimeSlot timeSlot) {
-            int ind = timeSlot.getTurno()-1 + (timeSlot.getPista()-1)*13;
-            //si es el primer elemento
-            if(ind == 0) {
-                        if(timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user) {return false;}
+            int ind = timeSlot.getTurno()-1 + (timeSlot.getPista()-1)*14;
             
+            System.out.println(ind);
+            System.out.println(timeSlots.get(ind).getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)) + ", Pista: " + timeSlots.get(ind).getPista());
+            if(ind == 0) {//si es el primer elemento
+                        if(timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user) return false;
+            } else if(ind == 77) { //si es el último elemento
+                        if(timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind - 2).getUser() != null && timeSlots.get(ind - 1).getUser() == user && timeSlots.get(ind - 2).getUser() == user) return false;
+            } else if(
+                    timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user
+                    || timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind - 2).getUser() != null && timeSlots.get(ind - 1).getUser() == user && timeSlots.get(ind - 2).getUser() == user
+                    || timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind - 1).getUser() == user) {
+                        return false;
             }
+            
             return true;
     }
 }
