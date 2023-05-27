@@ -212,7 +212,7 @@ public class FXMLmainController implements Initializable {
                 // lo anyadimos al grid en la posicion x= 1, y= slotIndex
                 grid.add(timeSlot.getView(), row, slotIndex);
                 
-                if (timeSlot.getReserva()!= null) {
+                if (timeSlot.getReserva()!= null && !timeSlot.getUser().equals(user)) {
                     Label label = new Label(timeSlot.getReserva().getMember().getNickName());
                     label.setDisable(true);
                     grid.add(label, row, slotIndex);
