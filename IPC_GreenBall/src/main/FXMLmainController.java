@@ -323,7 +323,7 @@ public class FXMLmainController implements Initializable {
             Parent root = miCargador.load();
             // acceso al controlador de datos persona
             FXMLreservasController controladorLogin = miCargador.getController();
-            Scene scene = new Scene(root,500,300);
+            Scene scene = new Scene(root,620,421);
             Stage stageReservas = new Stage();
             stageReservas.setScene(scene);
             stageReservas.initStyle(StageStyle.UNDECORATED);

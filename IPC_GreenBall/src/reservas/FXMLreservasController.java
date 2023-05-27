@@ -21,6 +21,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import main.FXMLmainController;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import model.*;
 
 /**
@@ -43,6 +45,7 @@ public class FXMLreservasController implements Initializable {
     private Club club;
     private String username;
     private static List<Court> courts;
+    private int omitidas = 0;
     public FXMLreservasController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
     }
@@ -63,11 +66,9 @@ public class FXMLreservasController implements Initializable {
     @FXML
     private void eliminarOnAction(ActionEvent event) {
         try {
-            System.out.println(misreservas.size());
-            club.removeBooking(misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()+misreservas.size()-1));
+            club.removeBooking(misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()+omitidas));
         } catch(ClubDAOException e) {System.out.println("mmmm");}
-        reservas.remove(listaReservas.getSelectionModel().getSelectedIndex()+misreservas.size()-1);
-        System.out.println(listaReservas.getSelectionModel().getSelectedIndex()+misreservas.size()-1);
+        reservas.remove(listaReservas.getSelectionModel().getSelectedIndex());
         vistaReservas();
     }
 
@@ -86,11 +87,23 @@ public class FXMLreservasController implements Initializable {
     }
     
     private void vistaReservas() {
-        misreservas = new ArrayList<Booking>(club.getUserBookings(username));
-        List<String> reservasString = new ArrayList<String>();
-        int j = 0;
-        for(int i = misreservas.size()-1; i >= 0 && j<10; i--, j++) {
-            reservasString.add("Fecha: " + misreservas.get(i).getMadeForDay() + ", hora: " + misreservas.get(i).getFromTime() + ", pista: " + indicePista(misreservas.get(i).getCourt()));
+            misreservas = new ArrayList<Booking>(club.getUserBookings(username));
+            List<String> reservasString = new ArrayList<String>();
+            omitidas = 0;
+            int vistas = 0;
+            for(int i = 0; i < misreservas.size() && vistas<10; i++) {
+                        if(!misreservas.get(i).getMadeForDay().isBefore(LocalDate.now())) {
+                                    String res = "Fecha: " + misreservas.get(i).getMadeForDay() + ", hora: " + misreservas.get(i).getFromTime() + ", pista: " + indicePista(misreservas.get(i).getCourt());
+                                    if(misreservas.get(i).getPaid()) {
+                                        res = res.concat(", pagado");
+                                    } else {
+                                        res = res.concat(", pendiente de pago");
+                                    }
+                                    reservasString.add(res);
+                                    vistas++; 
+                        } else {
+                                    omitidas++;
+                        }
         }
         reservas = FXCollections.observableArrayList(reservasString);
         listaReservas.setItems(reservas);

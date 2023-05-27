@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" styleClass="border-pane" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reservas.FXMLreservasController">
+<BorderPane prefHeight="500.0" prefWidth="621.0" styleClass="border-pane" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reservas.FXMLreservasController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" styleClass="hbox-estilo" BorderPane.alignment="CENTER">
          <children>
