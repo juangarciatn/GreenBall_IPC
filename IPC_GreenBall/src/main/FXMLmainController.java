@@ -490,7 +490,10 @@ public class FXMLmainController implements Initializable {
                         if(timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user) return false;
             } else if(ind == 77) { //si es el último elemento
                         if(timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind - 2).getUser() != null && timeSlots.get(ind - 1).getUser() == user && timeSlots.get(ind - 2).getUser() == user) return false;
-            } else if(
+            } else if(ind == 1) {
+                        if(timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user
+                                || timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind - 1).getUser() == user) return false;
+            }else if(
                     timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user
                     || timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind - 2).getUser() != null && timeSlots.get(ind - 1).getUser() == user && timeSlots.get(ind - 2).getUser() == user
                     || timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind - 1).getUser() == user) {
