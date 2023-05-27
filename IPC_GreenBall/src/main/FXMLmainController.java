@@ -141,6 +141,8 @@ public class FXMLmainController implements Initializable {
             }
         });
         
+        dpBookingDay.setEditable(false);
+        
         setTimeSlotsGrid(dpBookingDay.getValue());
         
         
@@ -260,12 +262,19 @@ public class FXMLmainController implements Initializable {
                                                                                     timeSlot.setReserva(club.registerBooking(timeSlot.getStart(), timeSlot.getDate(), timeSlot.getTime(), club.hasCreditCard(user.getNickName()), timeSlot.getCourt(), user ));
                                                                         } catch( ClubDAOException e) { System.out.println("Error al hacer reserva: " + e);}
                                                             }
+                                                } else {
+                                                    Alert alerta = new Alert(Alert.AlertType.ERROR);
+                                                alerta.setTitle("Tiempo máximo excedido");
+                                                alerta.setHeaderText("");
+                                                alerta.setContentText("No puedes reservar más de dos horas seguidas");
+                                                Optional<ButtonType> result = alerta.showAndWait();
+                                                if (result.isPresent() && result.get() == ButtonType.OK) {}
                                                 }
                                     //sesión iniciada y casilla coincide, cancelar reserva                        
                                     } else if(user != null && timeSlot.getUser() != null && timeSlot.getUser().equals(user)) {
                                                 Alert cancelar = new Alert(Alert.AlertType.CONFIRMATION);
                                                 cancelar.setTitle("Cancelar reserva");
-                                                cancelar.setHeaderText("¿Estás seguro de que quieres cancelar la reserva?");
+                                                cancelar.setHeaderText("¿Estás seguro de querer cancelar la reserva?");
                                                 cancelar.setContentText("Has seleccionado: "
                                                             + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
                                                             + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
@@ -291,7 +300,7 @@ public class FXMLmainController implements Initializable {
                                                             + ", Pista: " + timeSlot.getPista());
                                                 Optional<ButtonType> result = alerta.showAndWait();
                                                 if (result.isPresent() && result.get() == ButtonType.OK) {}
-                                    }            
+                                    }        
                         }
             });
     }
