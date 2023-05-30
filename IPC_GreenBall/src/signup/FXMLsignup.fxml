@@ -117,7 +117,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="150.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="CancelarRegistro" mnemonicParsing="false" onAction="#CancelarRegistroOnAction" styleClass="button-estilo" text="Cancelar">
+                  <Button fx:id="CancelarRegistro" cancelButton="true" mnemonicParsing="false" onAction="#CancelarRegistroOnAction" styleClass="button-estilo" text="Cancelar">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Button>
