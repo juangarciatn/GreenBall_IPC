@@ -30,6 +30,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import static javafx.scene.paint.Color.TRANSPARENT;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
@@ -130,13 +131,14 @@ public class FXMLloginController implements Initializable {
         // acceso al controlador de datos persona
         FXMLsignupController controladorSignup = miCargador.getController();
         Scene scene = new Scene(root,500,300);
+        scene.setFill(TRANSPARENT);
         Stage stageRegistro = new Stage();
         stageRegistro.setScene(scene);
-        stageRegistro.initStyle(StageStyle.UNDECORATED);
+        stageRegistro.initStyle(StageStyle.TRANSPARENT);
         stageRegistro.setTitle("Registrarse");
         stageRegistro.setMinHeight(400);
         stageRegistro.setMinWidth(600);
-        stageRegistro.initModality(Modality.APPLICATION_MODAL); 
+        stageRegistro.initModality(Modality.APPLICATION_MODAL);
         stageRegistro.show();
     }
     

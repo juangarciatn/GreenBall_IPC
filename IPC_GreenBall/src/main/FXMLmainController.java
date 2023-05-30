@@ -43,6 +43,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import static javafx.scene.paint.Color.TRANSPARENT;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -318,10 +319,11 @@ public class FXMLmainController implements Initializable {
             Parent root = miCargador.load();
             // acceso al controlador de datos persona
             FXMLprofileController controladorLogin = miCargador.getController();
-            Scene scene = new Scene(root,500,300);  
+            Scene scene = new Scene(root,500,300);
+            scene.setFill(TRANSPARENT);
             Stage stagePerfil = new Stage();
             stagePerfil.setScene(scene);
-            stagePerfil.initStyle(StageStyle.UNDECORATED);
+            stagePerfil.initStyle(StageStyle.TRANSPARENT);
             stagePerfil.setTitle("Perfil");
             stagePerfil.initModality(Modality.APPLICATION_MODAL);
             stagePerfil.showAndWait();
@@ -463,9 +465,10 @@ public class FXMLmainController implements Initializable {
             // acceso al controlador de datos persona
             FXMLloginController controladorLogin = miCargador.getController();
             Scene scene = new Scene(root,400,200);
+            scene.setFill(TRANSPARENT);
             Stage stageLogin = new Stage();
             stageLogin.setScene(scene);
-            stageLogin.initStyle(StageStyle.UNDECORATED);
+            stageLogin.initStyle(StageStyle.TRANSPARENT);
             stageLogin.setTitle("Iniciar sesión");
             stageLogin.setMinHeight(200);
             stageLogin.setMinWidth(400);

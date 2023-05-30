@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="signup.FXMLsignupController">
+<AnchorPane styleClass="vbox-estilo" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="signup.FXMLsignupController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" styleClass="vbox-estilo" stylesheets="@../styles/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
