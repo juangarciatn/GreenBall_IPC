@@ -68,13 +68,26 @@
 .menu-bar {
     -fx-background-color: transparent;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 2 , 0.0 , 0 , 1 );
+    -fx-text-fill: #FEFCFD;
+    -fx-font-weight: bold;
+}
+
+.menu-bar .menu {
+    -fx-background-color: transparent;
 }
 
 .menu-bar .menu-item {
     -fx-text-fill: #FEFCFD;
+    -fx-font-weight: bold;
+    -fx-background-color: #0E3B43;
+    -fx-padding: 5px;
+    -fx-border-color: #357266;
+    -fx-border-width: 1px;
 }
 
 .menu-bar .menu-item:hover {
+    -fx-font-weight: bold;
+    -fx-background-color: #0096c9;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 3);
 }
 

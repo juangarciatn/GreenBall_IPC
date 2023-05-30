@@ -110,7 +110,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
                <children>
-                  <Button fx:id="cancelarButton" mnemonicParsing="false" onAction="#cancelarButtonOnAction" styleClass="button-estilo" text="Cancelar">
+                  <Button fx:id="cancelarButton" cancelButton="true" mnemonicParsing="false" onAction="#cancelarButtonOnAction" styleClass="button-estilo" text="Cancelar">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>

@@ -233,8 +233,9 @@ public final class FXMLprofileController implements Initializable {
     @FXML
     private void cambiarImagenOnMouseClicked(MouseEvent event) {
         ContextMenu contextMenu = new ContextMenu(); //se crea contextMenu con las 3 opciones
-        
+        contextMenu.setStyle("-fx-background-color: #0E3B43; -fx-padding: 5px; -fx-border-color: #357266; -fx-border-width: 1px;");
             MenuItem option1 = new MenuItem("Cambiar imagen de usuario por un avatar");//primera opcion
+            option1.setStyle("-fx-text-fill: #FEFCFD; -fx-font-weight: bold;");
             option1.setOnAction(e -> {
                 FileChooser avatarFileChooser = new FileChooser();
                 avatarFileChooser.setInitialDirectory(new File("src/img/avatars"));
@@ -252,6 +253,7 @@ public final class FXMLprofileController implements Initializable {
             });
 
             MenuItem option2 = new MenuItem("Cambiar imagen de usuario por una imagen");//segunda opcion
+            option2.setStyle("-fx-text-fill: #FEFCFD; -fx-font-weight: bold;");
             option2.setOnAction(e -> {
                 FileChooser imageFileChooser = new FileChooser();
                 imageFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.jpg", "*.jpeg", "*.png", "*.gif"));
@@ -267,6 +269,7 @@ public final class FXMLprofileController implements Initializable {
             });
 
             MenuItem option3 = new MenuItem("Eliminar imagen de usuario");//tercera opcion
+            option3.setStyle("-fx-text-fill: #FEFCFD; -fx-font-weight: bold;");
             option3.setOnAction(e -> {
                 if (selectedImage == null) {
                     String imagePath = "src/img/avatars/default.png";

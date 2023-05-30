@@ -19,7 +19,7 @@
    <top>
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="301.0">
+            <HBox alignment="TOP_CENTER">
                <children>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -28,13 +28,13 @@
                   </ImageView>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="212.0">
                      <children>
-                        <MenuBar fx:id="menuBar" onMouseEntered="#menuOnMouseEntered" styleClass="transparent-menu-bar" stylesheets="@../styles/styles.css">
+                        <MenuBar fx:id="menuBar" onMouseEntered="#menuOnMouseEntered" stylesheets="@../styles/styles.css">
                           <menus>
                             <Menu fx:id="menu" mnemonicParsing="false">
                               <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#miPerfilButton" text="Mi perfil" />
-                                <MenuItem mnemonicParsing="false" onAction="#misReservasButton" text="Mis reservas" />
-                                    <MenuItem mnemonicParsing="false" onAction="#cerrarSesionButton" text="Cerrar sesión" />
+                                    <MenuItem mnemonicParsing="false" onAction="#miPerfilButton" style="-fx-text-fill: #FEFCFD;" text="Mi perfil" />
+                                <MenuItem mnemonicParsing="false" onAction="#misReservasButton" style="-fx-text-fill: #FEFCFD;" text="Mis reservas" />
+                                    <MenuItem mnemonicParsing="false" onAction="#cerrarSesionButton" style="-fx-text-fill: #FEFCFD;" text="Cerrar sesión" />
                               </items>
                                  <graphic>
                                     <Label fx:id="labelUser" onMouseClicked="#labelUserClick" styleClass="label-estilo" text="Iniciar sesión" textFill="WHITE" />
@@ -56,7 +56,7 @@
       </HBox>
    </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../styles/calendar-view.css" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" stylesheets="@../styles/calendar-view.css" BorderPane.alignment="CENTER">
          <children>
             <DatePicker fx:id="dpBookingDay">
                <VBox.margin>
