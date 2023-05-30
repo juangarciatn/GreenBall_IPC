@@ -247,10 +247,8 @@ public final class FXMLprofileController implements Initializable {
 
 
                 if (selectedFile != null) {
-                    String imagePath = selectedFile.toURI().toString();
-                    Image image = new Image(imagePath);
-                    labelPicture.setImage(image);
-                    selectedImage = image; // Guarda la imagen seleccionada en selectedImage
+                    selectedImage = new Image(selectedFile.toURI().toString());
+                    labelPicture.setImage(selectedImage);
                 }
             });
 
@@ -263,10 +261,9 @@ public final class FXMLprofileController implements Initializable {
                 File selectedFile = imageFileChooser.showOpenDialog(parentWindow);
 
                 if (selectedFile != null) {
-                    String imagePath = selectedFile.toURI().toString();
-                    Image image = new Image(imagePath);
-                    labelPicture.setImage(image);
-                    selectedImage = image; // Guarda la imagen seleccionada en selectedImage
+                    selectedImage = new Image(selectedFile.toURI().toString());
+                    labelPicture.setImage(selectedImage);
+                    
                 }
             });
 
