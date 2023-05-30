@@ -74,6 +74,7 @@ public final class FXMLprofileController implements Initializable {
     private Image selectedImage;
     
     private boolean menuAbierto = false;
+    private ContextMenu contextMenu = null;
     
     public FXMLprofileController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
@@ -228,11 +229,12 @@ public final class FXMLprofileController implements Initializable {
         passField.setDisable(true);
         newPassField.setDisable(true);
         cancelarButton.setDisable(true);
+        this.menuAbierto = true;
     }
 
     @FXML
     private void cambiarImagenOnMouseClicked(MouseEvent event) {
-        ContextMenu contextMenu = new ContextMenu(); //se crea contextMenu con las 3 opciones
+        contextMenu = new ContextMenu(); //se crea contextMenu con las 3 opciones
         contextMenu.setStyle("-fx-background-color: #0E3B43; -fx-padding: 5px; -fx-border-color: #357266; -fx-border-width: 1px;");
             MenuItem option1 = new MenuItem("Cambiar imagen de usuario por un avatar");//primera opcion
             option1.setStyle("-fx-text-fill: #FEFCFD; -fx-font-weight: bold;");
