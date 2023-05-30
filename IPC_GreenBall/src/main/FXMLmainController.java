@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -114,7 +116,7 @@ public class FXMLmainController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
         menuBar.setUseSystemMenuBar(false);
 
         menuBar.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
