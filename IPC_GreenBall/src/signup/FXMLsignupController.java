@@ -27,6 +27,8 @@ import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
 import javafx.stage.FileChooser;
 import java.io.File;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Side;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
@@ -36,6 +38,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
+import javafx.util.Duration;
 
 
 /**
@@ -163,20 +166,15 @@ public class FXMLsignupController implements Initializable {
                     try {
                         Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, tarjetaS, svcS, selectedImage);
                         if (newMember != null) {
-                            labelSignupError.setText("");
-                            labelSignup.setText("Usuario creado");
-                            bloqueoRegistro();
-
-                            ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-                            executorService.schedule(() -> {
-                                Platform.runLater(() -> {
-                                    Stage stage = (Stage) enviarRegistroButton.getScene().getWindow();
-                                    stage.close();
-                                });
-                            }, 3, TimeUnit.SECONDS);
-
-
-                            // ...
+                           labelSignupError.setText("");
+                           labelSignup.setText("Usuario creado");
+                           bloqueoRegistro();
+                           Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
+                               Stage stage = (Stage) enviarRegistroButton.getScene().getWindow();
+                               stage.close();
+                           }));
+                           timeline.setCycleCount(1);
+                           timeline.play();
                         }
                     } catch (ClubDAOException e) {
                         labelSignup.setText("");
@@ -190,17 +188,12 @@ public class FXMLsignupController implements Initializable {
                         labelSignupError.setText("");
                         labelSignup.setText("Usuario creado");
                         bloqueoRegistro();
-                        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-                        executorService.schedule(() -> {
-                            Platform.runLater(() -> {
-                                // Obtener la ventana principal
-                                Stage stage = (Stage) enviarRegistroButton.getScene().getWindow();
-                                stage.close();
-                            });
-                        }, 3, TimeUnit.SECONDS);
-
-
-
+                        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
+                            Stage stage = (Stage) enviarRegistroButton.getScene().getWindow();
+                            stage.close();
+                        }));
+                        timeline.setCycleCount(1);
+                        timeline.play();
                     }
                 } catch (ClubDAOException e) {
                     labelSignup.setText("");

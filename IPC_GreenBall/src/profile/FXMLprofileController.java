@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,6 +32,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Duration;
 import main.FXMLmainController;
 import model.Club;
 import model.ClubDAOException;
@@ -127,10 +130,12 @@ public final class FXMLprofileController implements Initializable {
                        mensajeError.setText("");
                        mensajeCorrecto.setText("Cambios guardados");
                        bloqueoCambios();
-                       ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-                                     executorService.schedule(() -> {Platform.runLater(() -> {
-                                    Stage stage = (Stage) guardarButton.getScene().getWindow();
-                                    stage.close(); });}, 3, TimeUnit.SECONDS);
+                       Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
+                            Stage stage = (Stage) guardarButton.getScene().getWindow();
+                            stage.close();
+                        }));
+                        timeline.setCycleCount(1);
+                        timeline.play();
                    }
                } else {
                
@@ -144,10 +149,12 @@ public final class FXMLprofileController implements Initializable {
                     mensajeError.setText("");
                     mensajeCorrecto.setText("Cambios guardados");
                     bloqueoCambios();
-                    ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-                                     executorService.schedule(() -> {Platform.runLater(() -> {
-                                    Stage stage = (Stage) guardarButton.getScene().getWindow();
-                                    stage.close(); });}, 3, TimeUnit.SECONDS);
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
+                        Stage stage = (Stage) guardarButton.getScene().getWindow();
+                        stage.close();
+                    }));
+                    timeline.setCycleCount(1);
+                    timeline.play();
                }    else if (tarjetaField.getText().equals("") && svcField.getText().equals("")) {
                         FXMLmainController.getUser().setName(nombreField.getText());
                         FXMLmainController.getUser().setSurname(apellidosField.getText());
@@ -170,19 +177,20 @@ public final class FXMLprofileController implements Initializable {
                 else if (newPassField.getText().length() < 7) mensajeError.setText("La nueva contraseña debe tener 7 o más carácteres");
                     else if (tarjetaField.getText().equals("-")) {
                             if (svcField.getText().equals("-")) {
-                        FXMLmainController.getUser().setName(nombreField.getText());
-                        FXMLmainController.getUser().setSurname(apellidosField.getText());
-                        FXMLmainController.getUser().setTelephone(telefonoField.getText());
-                        FXMLmainController.getUser().setPassword(newPassField.getText());
-                        FXMLmainController.getUser().setImage(selectedImage);
-                        mensajeError.setText("");
-                        mensajeCorrecto.setText("Cambios guardados");
-                        bloqueoCambios();
-                        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-                                    executorService.schedule(() -> {Platform.runLater(() -> {
+                                FXMLmainController.getUser().setName(nombreField.getText());
+                                FXMLmainController.getUser().setSurname(apellidosField.getText());
+                                FXMLmainController.getUser().setTelephone(telefonoField.getText());
+                                FXMLmainController.getUser().setPassword(newPassField.getText());
+                                FXMLmainController.getUser().setImage(selectedImage);
+                                mensajeError.setText("");
+                                mensajeCorrecto.setText("Cambios guardados");
+                                bloqueoCambios();
+                                Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
                                     Stage stage = (Stage) guardarButton.getScene().getWindow();
-                                    stage.close(); });}, 3, TimeUnit.SECONDS);
-                            
+                                    stage.close();
+                                }));
+                                timeline.setCycleCount(1);
+                                timeline.play();
                             }
                     } else {
                         if (tarjetaField.getText().length() == 16 && svcField.getText().length() == 3) {
@@ -195,10 +203,12 @@ public final class FXMLprofileController implements Initializable {
                     mensajeError.setText("");
                     mensajeCorrecto.setText("Cambios guardados");
                     bloqueoCambios();
-                    ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-                                     executorService.schedule(() -> {Platform.runLater(() -> {
-                                    Stage stage = (Stage) guardarButton.getScene().getWindow();
-                                    stage.close(); });}, 3, TimeUnit.SECONDS);
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
+                        Stage stage = (Stage) guardarButton.getScene().getWindow();
+                        stage.close();
+                    }));
+                    timeline.setCycleCount(1);
+                    timeline.play();
                }    else if (tarjetaField.getText().equals("") && svcField.getText().equals("")) {
                         FXMLmainController.getUser().setName(nombreField.getText());
                         FXMLmainController.getUser().setSurname(apellidosField.getText());
@@ -209,10 +219,12 @@ public final class FXMLprofileController implements Initializable {
                         mensajeError.setText("");
                         mensajeCorrecto.setText("Cambios guardados");
                         bloqueoCambios();
-                        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-                                    executorService.schedule(() -> {Platform.runLater(() -> {
-                                    Stage stage = (Stage) guardarButton.getScene().getWindow();
-                                    stage.close(); });}, 3, TimeUnit.SECONDS);
+                        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
+                            Stage stage = (Stage) guardarButton.getScene().getWindow();
+                            stage.close();
+                        }));
+                        timeline.setCycleCount(1);
+                        timeline.play();
                     } else if (tarjetaField.getText().length() != 16) mensajeError.setText("La tarjeta de crédito debe tener 16 dígitos");
                             else if (svcField.getText().length() != 3) mensajeError.setText("El svc de la tarjeta debe tener 3 dígitos");
                     }
