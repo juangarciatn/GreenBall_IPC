@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -17,16 +18,17 @@
 
 <BorderPane styleClass="border-pane" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.FXMLmainController">
    <top>
-      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="TOP_CENTER">
+            <HBox prefHeight="138.0" prefWidth="375.0" />
+            <HBox alignment="TOP_RIGHT">
                <children>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/LOGO_BLANCO.png" />
                      </image>
                   </ImageView>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="212.0">
+                  <HBox alignment="CENTER" prefHeight="98.0" prefWidth="375.0">
                      <children>
                         <MenuBar fx:id="menuBar" onMouseEntered="#menuOnMouseEntered" stylesheets="@../styles/styles.css">
                           <menus>
@@ -58,11 +60,13 @@
    <center>
       <VBox alignment="CENTER" stylesheets="@../styles/calendar-view.css" BorderPane.alignment="CENTER">
          <children>
-            <DatePicker fx:id="dpBookingDay">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </DatePicker>
+            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="740.0" spacing="10.0">
+               <children>
+                  <Button fx:id="diaAnt" mnemonicParsing="false" onAction="#diaAntAction" text="&lt;-" />
+                  <DatePicker fx:id="dpBookingDay" />
+                  <Button fx:id="diaSig" mnemonicParsing="false" onAction="#siaSigAction" text="-&gt;" />
+               </children>
+            </HBox>
             <Label fx:id="labelCol" styleClass="label-estilo" text="LABELCOL" textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
@@ -72,7 +76,7 @@
                <children>
                   <GridPane fx:id="grid" alignment="CENTER" HBox.hgrow="ALWAYS">
                     <columnConstraints>
-                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" minWidth="100.0" prefWidth="100.0" />
                       <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
