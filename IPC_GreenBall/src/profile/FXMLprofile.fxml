@@ -59,7 +59,7 @@
                               <Insets right="10.0" />
                            </GridPane.margin></Label>
                         <TextField fx:id="telefonoField" onKeyPressed="#enterGuardar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="tarjetaField" onKeyPressed="#enterGuardar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="tarjetaField" onKeyPressed="#enterGuardar" promptText="(16 dígitos)" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label styleClass="label-estilo" text="Nº de tarjeta:" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets right="10.0" />
@@ -81,7 +81,7 @@
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="svcField" onKeyPressed="#enterGuardar" prefWidth="50.0" />
+                              <TextField fx:id="svcField" onKeyPressed="#enterGuardar" prefHeight="26.0" prefWidth="70.0" promptText="(3 dígitos)" />
                            </children>
                         </HBox>
                         <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="rounded-image" GridPane.columnIndex="2" GridPane.rowIndex="1">

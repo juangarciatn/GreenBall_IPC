@@ -71,7 +71,7 @@
                            <GridPane.margin>
                               <Insets right="10.0" />
                            </GridPane.margin></Text>
-                        <TextField fx:id="tarjeta" onKeyPressed="#enterRegistro" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="tarjeta" onKeyPressed="#enterRegistro" promptText="(16 dígitos)" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-estilo" text="Imagen de perfil" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                            <GridPane.margin>
                               <Insets right="10.0" />
@@ -87,7 +87,7 @@
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                               </Text>
-                              <PasswordField fx:id="svc" onKeyPressed="#enterRegistro" />
+                              <PasswordField fx:id="svc" onKeyPressed="#enterRegistro" promptText="(3 dígitos)" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
