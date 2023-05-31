@@ -232,6 +232,7 @@ public class FXMLmainController implements Initializable {
                 slotIndex++;
             }
         }
+        diaAnt.setDisable(dpBookingDay.getValue().equals(LocalDate.now()));
     }
     
     private void registerHandlers(TimeSlot timeSlot) {
@@ -389,10 +390,12 @@ public class FXMLmainController implements Initializable {
 
     @FXML
     private void diaAntAction(ActionEvent event) {
+        dpBookingDay.setValue(dpBookingDay.getValue().minusDays(1));
     }
 
     @FXML
     private void siaSigAction(ActionEvent event) {
+        dpBookingDay.setValue(dpBookingDay.getValue().plusDays(1));
     }
 
     
