@@ -220,6 +220,8 @@ public class FXMLmainController implements Initializable {
                 if (timeSlot.getReserva()!= null && !timeSlot.getUser().equals(user)) {
                     Label label = new Label(timeSlot.getReserva().getMember().getNickName());
                     label.setDisable(true);
+                    label.setStyle("-fx-text-fill: #000000");
+                    label.setOpacity(1);
                     grid.add(label, row, slotIndex);
                 }
                 
@@ -251,7 +253,7 @@ public class FXMLmainController implements Initializable {
                                                 if(sePuedeReservar(timeSlot) == 0) {
                                                             Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
                                                             confirmacion.setTitle("Reserva");
-                                                            confirmacion.setHeaderText("Confirma la reserva");
+                                                            confirmacion.setHeaderText("Confirma la reserva.");
                                                             confirmacion.setContentText("Has seleccionado: "
                                                                         + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
                                                                         + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
@@ -265,32 +267,49 @@ public class FXMLmainController implements Initializable {
                                                                                     timeSlot.setReserva(club.registerBooking(timeSlot.getStart(), timeSlot.getDate(), timeSlot.getTime(), club.hasCreditCard(user.getNickName()), timeSlot.getCourt(), user ));
                                                                         } catch( ClubDAOException e) { System.out.println("Error al hacer reserva: " + e);}
                                                             }
-                                                } else {
-                                                    Alert alerta = new Alert(Alert.AlertType.ERROR);
-                                                alerta.setTitle("Tiempo máximo excedido");
-                                                alerta.setHeaderText("");
-                                                alerta.setContentText("No puedes reservar más de dos horas seguidas");
-                                                Optional<ButtonType> result = alerta.showAndWait();
-                                                if (result.isPresent() && result.get() == ButtonType.OK) {}
+                                                } else if(sePuedeReservar(timeSlot) == 1) {
+                                                            Alert alerta = new Alert(Alert.AlertType.ERROR);
+                                                            alerta.setTitle("Tiempo máximo excedido");
+                                                            alerta.setHeaderText("");
+                                                            alerta.setContentText("No puedes reservar más de dos horas seguidas.");
+                                                            Optional<ButtonType> result = alerta.showAndWait();
+                                                            if (result.isPresent() && result.get() == ButtonType.OK) {}
+                                                } else if(sePuedeReservar(timeSlot) == 2) {
+                                                            Alert alerta = new Alert(Alert.AlertType.ERROR);
+                                                            alerta.setTitle("Hora no disponible");
+                                                            alerta.setHeaderText("");
+                                                            alerta.setContentText("No puedes reservar una hora anterior a la actual.");
+                                                            Optional<ButtonType> result = alerta.showAndWait();
+                                                            if (result.isPresent() && result.get() == ButtonType.OK) {}
                                                 }
                                     //sesión iniciada y casilla coincide, cancelar reserva                        
                                     } else if(user != null && timeSlot.getUser() != null && timeSlot.getUser().equals(user)) {
-                                                Alert cancelar = new Alert(Alert.AlertType.CONFIRMATION);
-                                                cancelar.setTitle("Cancelar reserva");
-                                                cancelar.setHeaderText("¿Estás seguro de querer cancelar la reserva?");
-                                                cancelar.setContentText("Has seleccionado: "
-                                                            + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
-                                                            + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
-                                                            + ", Pista: " + timeSlot.getPista());
-                                                Optional<ButtonType> resultCancelar = cancelar.showAndWait();
-                                                if (resultCancelar.isPresent() && resultCancelar.get() == ButtonType.OK) {
-                                                            styles.remove("time-slot-user");
-                                                            styles.add("time-slot");
-                                                            try{
-                                                                        club.removeBooking(timeSlot.getReserva());
-                                                                        timeSlot.setReserva(null);
-                                                                        timeSlot.setUser(null);
-                                                            } catch( ClubDAOException e) { System.out.println("Error al cancelar reserva: " + e);}
+                                                if ((timeSlot.getDate().equals(LocalDate.now())) || (timeSlot.getDate().compareTo(LocalDate.now()) == 1 && timeSlot.getTime().compareTo(LocalTime.now()) < 0)) {
+                                                            Alert alerta = new Alert(Alert.AlertType.ERROR);
+                                                            alerta.setTitle("Periodo de cancelación expirado");
+                                                            alerta.setHeaderText("");
+                                                            alerta.setContentText("Solo puedes cancelar reservas con más de 24 horas de antelación.");
+                                                            Optional<ButtonType> result = alerta.showAndWait();
+                                                            if (result.isPresent() && result.get() == ButtonType.OK) {}                                                    
+                                                } else {     
+                                                    
+                                                            Alert cancelar = new Alert(Alert.AlertType.CONFIRMATION);
+                                                            cancelar.setTitle("Cancelar reserva");
+                                                            cancelar.setHeaderText("¿Estás seguro de querer cancelar la reserva?");
+                                                            cancelar.setContentText("Has seleccionado: "
+                                                                        + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
+                                                                        + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+                                                                        + ", Pista: " + timeSlot.getPista());
+                                                            Optional<ButtonType> resultCancelar = cancelar.showAndWait();
+                                                            if (resultCancelar.isPresent() && resultCancelar.get() == ButtonType.OK) {
+                                                                        styles.remove("time-slot-user");
+                                                                        styles.add("time-slot");
+                                                                        try{
+                                                                                    club.removeBooking(timeSlot.getReserva());
+                                                                                    timeSlot.setReserva(null);
+                                                                                    timeSlot.setUser(null);
+                                                                        } catch( ClubDAOException e) { System.out.println("Error al cancelar reserva: " + e);}            
+                                                            }
                                                 }
                                     //casilla tiene user, ver reserva
                                     } else if(timeSlot.getUser() != null) {
@@ -496,6 +515,7 @@ public class FXMLmainController implements Initializable {
     }
     
     public int sePuedeReservar(TimeSlot timeSlot) {
+        //0 = se puede; 1 = más de 2 seguidas; 2 = ya ha pasado
             int ind = timeSlot.getTurno()-1 + (timeSlot.getPista()-1)*14;
             
             System.out.println(ind);
@@ -507,11 +527,13 @@ public class FXMLmainController implements Initializable {
             } else if(ind == 1) {
                         if(timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user
                                 || timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind - 1).getUser() == user) return 1;
-            }else if(
+            } else if(
                     timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user
                     || timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind - 2).getUser() != null && timeSlots.get(ind - 1).getUser() == user && timeSlots.get(ind - 2).getUser() == user
                     || timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind - 1).getUser() == user) {
                         return 1;
+            } else if(timeSlot.getDate().equals(LocalDate.now()) && timeSlot.getStart().compareTo(LocalDateTime.now()) < 0) {
+                        return 2;
             }
             
             return 0;

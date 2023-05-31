@@ -15,30 +15,33 @@ and open the template in the editor.
 }
 
 .time-slot-ocupado{
-    -fx-background-color: black, #ccccff ;
+    -fx-background-color: black, #bfcde0;
     -fx-background-insets: 0, 1 1 0 0 ;
     -fx-cursor: hand;
 
 }
 
 .time-slot:selected {
-    -fx-background-color: indianred;
+    -fx-background-color: black, #95B46A;
+    -fx-background-insets: 0, 1 1 0 0 ;
 }
 
 .time-slot-user:selected {
-    -fx-background-color: indianred;
+    -fx-background-color: black, #95B46A;
+    -fx-background-insets: 0, 1 1 0 0 ;
 }
 
 .time-slot-ocupado:selected {
-    -fx-background-color: indianred;
+    -fx-background-color: black, #95B46A;
+    -fx-background-insets: 0, 1 1 0 0 ;
 }
 
 .time-slot-user {
-     -fx-background-color: black, yellowgreen ;
+     -fx-background-color: black, #357266 ;
     -fx-background-insets: 0, 1 1 0 0 ;
-    -fx-cursor: hand;
-    
+    -fx-cursor: hand;  
 }
+
 
 .date-picker > .text-field {
     -fx-text-fill: blue;

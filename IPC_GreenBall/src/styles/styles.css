@@ -107,11 +107,11 @@
 
 .list-view .list-cell {
     -fx-background-color:#BFCDE0;
-    -fx-text-fill: #FEFCFD;
+    -fx-text-fill: black;
 }
 
 .list-view .list-cell:hover {
-    -fx-background-color: #99F7AB;
+    -fx-background-color: #95B46A;
 }
 
 .list-view .list-cell:selected {
