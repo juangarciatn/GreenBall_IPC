@@ -127,6 +127,7 @@ public class FXMLsignupController implements Initializable {
 
     @FXML
     private void enviarRegistroOnAction(ActionEvent event) throws ClubDAOException, IOException, InterruptedException {
+        removeStyles();
         Club club = Club.getInstance();
         String nombreS = nombre.getText();
         String apellidoS = apellido.getText();
@@ -136,7 +137,6 @@ public class FXMLsignupController implements Initializable {
         String tarjetaS = tarjeta.getText();
         String svcP = svc.getText();
         int svcS = 0;
-        if (svcP.length() != 0) svcS = Integer.parseInt(svcP);
         
         if (selectedImage == null) {
             String imagePath = "src/img/avatars/default.png";
@@ -155,15 +155,20 @@ public class FXMLsignupController implements Initializable {
             passwordS.length() != 0) {
 
             if (nicknameS.contains(" ")) {
+                this.nickname.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
                 labelSignupError.setText("El nombre de usuario no puede tener espacios.");
             } else if (passwordS.length() < 7) {
+                this.password.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
                 labelSignupError.setText("La contraseña debe tener al menos 7 caracteres.");
-            } else if (tarjetaS.length() != 0 || svcS != 0) {
-                if (!tarjetaS.matches("\\d{16}")) {
+            } else if (tarjetaS.length() != 0 || svcP.length() != 0) {
+                if (!esNumero(tarjetaS) || tarjetaS.length() != 16) {
+                    this.tarjeta.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
                     labelSignupError.setText("Introduce una tarjeta de crédito correcta (16 dígitos).");
-                } else if (!svcP.matches("\\d{3}")) {
+                } else if (!esNumero(svcP) || svcP.length() != 3) {
+                    this.svc.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
                     labelSignupError.setText("Introduce un código SVC correcto (3 dígitos).");
                 } else {
+                    if (svcP.length() != 0) svcS = Integer.parseInt(svcP);
                     if(esNumero(telefonoS)){
                         
                         try {
@@ -185,6 +190,7 @@ public class FXMLsignupController implements Initializable {
                         }
                     } else{
                         labelSignup.setText("");
+                        this.telefono.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
                         labelSignupError.setText("El número de teléfono no puede contener letras ni caracteres especiales.");
                     }
                 }
@@ -209,10 +215,17 @@ public class FXMLsignupController implements Initializable {
                     }
                 } else{
                         labelSignup.setText("");
+                        this.telefono.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
                         labelSignupError.setText("El número de teléfono no puede contener letras ni caracteres especiales.");
                     }
             }
         } else {
+            if (this.nombre.getText().equals("")) this.nombre.setStyle("-fx-border-color: red; -fx-border-width: 2px");
+            if (this.apellido.getText().equals("")) this.apellido.setStyle("-fx-border-color: red; -fx-border-width: 2px");
+            if (this.telefono.getText().equals("")) this.telefono.setStyle("-fx-border-color: red; -fx-border-width: 2px");
+            if (this.nickname.getText().equals("")) this.nickname.setStyle("-fx-border-color: red; -fx-border-width: 2px");
+            if (this.password.getText().equals("")) this.password.setStyle("-fx-border-color: red; -fx-border-width: 2px");
+            
             labelSignup.setText("");
             labelSignupError.setText("Rellena los campos obligatorios.");
         }
@@ -338,5 +351,16 @@ public class FXMLsignupController implements Initializable {
             }
         }
         return true;
+    }
+    
+    private void removeStyles() {
+        this.nickname.setStyle("-fx-border-color: transparent");
+        this.nombre.setStyle("-fx-border-color: transparent");
+        this.apellido.setStyle("-fx-border-color: transparent");
+        this.telefono.setStyle("-fx-border-color: transparent");
+        this.tarjeta.setStyle("-fx-border-color: transparent");
+        this.svc.setStyle("-fx-border-color: transparent");
+        this.nickname.setStyle("-fx-border-color: transparent");
+        this.password.setStyle("-fx-border-color: transparent");
     }
 }
