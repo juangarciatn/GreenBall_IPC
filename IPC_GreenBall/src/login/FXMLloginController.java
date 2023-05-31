@@ -40,7 +40,7 @@ import signup.FXMLsignupController;
 /**
  * FXML Controller class
  *
- * @author Juan
+ * @author Juan, Dani, Nando
  */
 public class FXMLloginController implements Initializable {
 

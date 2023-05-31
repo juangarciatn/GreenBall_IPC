@@ -63,7 +63,7 @@
             <HBox alignment="CENTER" prefHeight="0.0" prefWidth="740.0" spacing="10.0">
                <children>
                   <Button fx:id="diaAnt" mnemonicParsing="false" onAction="#diaAntAction" styleClass="button-estilo" text="🡸" />
-                  <DatePicker fx:id="dpBookingDay" styleClass="date-picker" />
+                  <DatePicker fx:id="dpBookingDay" focusTraversable="false" styleClass="date-picker" />
                   <Button fx:id="diaSig" mnemonicParsing="false" onAction="#siaSigAction" styleClass="button-estilo" text="🡺" />
                </children>
             </HBox>

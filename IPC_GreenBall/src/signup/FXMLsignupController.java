@@ -44,7 +44,7 @@ import javafx.util.Duration;
 /**
  * FXML Controller class
  *
- * @author Juan
+ * @author Juan, Dani, Nando
  */
 public class FXMLsignupController implements Initializable {
 

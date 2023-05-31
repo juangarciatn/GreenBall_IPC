@@ -58,7 +58,7 @@ import model.*;
 /**
  * FXML Controller class
  *
- * @author Juan
+ * @author Juan, Dani, Nando
  */
 public class FXMLmainController implements Initializable {
 

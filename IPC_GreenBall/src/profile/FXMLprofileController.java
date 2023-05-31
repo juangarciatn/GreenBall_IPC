@@ -41,7 +41,7 @@ import model.Member;
 /**
  * FXML Controller class
  *
- * @author Juan y yo
+ * @author Juan, Dani, Nando
  */
 public final class FXMLprofileController implements Initializable {
 

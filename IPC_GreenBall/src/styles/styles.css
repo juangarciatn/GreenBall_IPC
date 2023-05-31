@@ -134,10 +134,42 @@
 }
 
 .date-picker {
+    -fx-background-color: transparent;
     -fx-control-inner-background-radius: 20px;
 }
 
 .date-picker:hover {
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0, 0, 3);
+}
+
+
+.date-picker .text-field {
+  -fx-background-color: transparent;
+  -fx-font-weight: bold;
+  -fx-border-radius: 20px;
+  -fx-border-width: 2px;
+  -fx-border-color: #357266;
+  -fx-padding: 5px;
+}
+
+.date-picker .arrow-button {
+  -fx-background-color: transparent;
+  -fx-background-insets: 0;
+  -fx-padding: 10;
+  -fx-background-size: 100px 100px;
+  -fx-fit-width: 100px;
+  -fx-fit-height: 100px;
+}
+
+.date-picker .arrow-button .arrow {
+  -fx-shape: "";
+  -fx-background-color: transparent;
+  -fx-background-image: url('../img/calendar.png');
+  -fx-background-position: center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-size: 100px 100px; /* Ajusta el tamaño según tus necesidades */
+  -fx-background-size: contain;
+  -fx-fit-width: 100px;
+  -fx-fit-height: 100px;
 }
 

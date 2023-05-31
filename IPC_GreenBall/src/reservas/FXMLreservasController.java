@@ -30,7 +30,7 @@ import model.*;
 /**
  * FXML Controller class
  *
- * @author nando
+ * @author Juan, Dani, Nando
  */
 public class FXMLreservasController implements Initializable {
 
@@ -63,9 +63,7 @@ public class FXMLreservasController implements Initializable {
         username = FXMLmainController.getUser().getNickName();
         courts = club.getCourts();
         vistaReservas();
-        //eliminarButton.disableProperty().bind(Bindings.equal(-1, listaReservas.getSelectionModel().selectedIndexProperty()));
         nickname.setText(FXMLmainController.getUser().getName());
-        //pagarButton.disableProperty().bind(Bindings.equal(-1, listaReservas.getSelectionModel().selectedIndexProperty()));
         
     }    
 
