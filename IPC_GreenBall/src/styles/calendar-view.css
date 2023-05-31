@@ -8,8 +8,9 @@ and open the template in the editor.
     Author     : DSIC_jsoler
 */
 
-.time-slot {
-    -fx-background-color: black, white ;
+
+.time-slot  {
+    -fx-background-color: black, #fefcfd ;
     -fx-background-insets: 0, 1 1 0 0 ;
     -fx-cursor: hand;
 }

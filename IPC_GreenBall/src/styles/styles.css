@@ -111,12 +111,11 @@
 }
 
 .list-view .list-cell:hover {
-    -fx-background-color: #95B46A;
+    -fx-background-color: #fefcfd;
 }
 
 .list-view .list-cell:selected {
-    -fx-background-color: #FEFCFD; /* Cambia el color de fondo al seleccionar un elemento */
-    -fx-text-fill: #BFCDE0;
+    -fx-background-color: #95B46A; /* Cambia el color de fondo al seleccionar un elemento */
     -fx-text-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0, 0, 2);
 }
 
