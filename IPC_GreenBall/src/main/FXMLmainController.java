@@ -36,6 +36,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -97,6 +98,10 @@ public class FXMLmainController implements Initializable {
     private MenuBar menuBar;
     @FXML
     private Menu menu;
+    @FXML
+    private Button diaAnt;
+    @FXML
+    private Button diaSig;
 
     public FXMLmainController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
@@ -380,6 +385,14 @@ public class FXMLmainController implements Initializable {
 
     private void menuOnMouseClicked(MouseEvent event) {
         menu.setDisable(true);
+    }
+
+    @FXML
+    private void diaAntAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void siaSigAction(ActionEvent event) {
     }
 
     
