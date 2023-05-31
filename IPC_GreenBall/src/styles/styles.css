@@ -83,12 +83,19 @@
     -fx-padding: 5px;
     -fx-border-color: #357266;
     -fx-border-width: 1px;
+    -fx-padding: 0.166667em 0.833333em 0.166667em 0.833333em; /* default padding */
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 0;
 }
 
 .menu-bar .menu-item:hover {
     -fx-font-weight: bold;
     -fx-background-color: #0096c9;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 3);
+}
+
+.context-menu {
+    -fx-background-color: transparent;
 }
 
 .border-pane {
