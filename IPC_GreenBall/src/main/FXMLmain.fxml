@@ -62,9 +62,9 @@
          <children>
             <HBox alignment="CENTER" prefHeight="0.0" prefWidth="740.0" spacing="10.0">
                <children>
-                  <Button fx:id="diaAnt" mnemonicParsing="false" onAction="#diaAntAction" text="&lt;-" />
+                  <Button fx:id="diaAnt" mnemonicParsing="false" onAction="#diaAntAction" text="🡸" />
                   <DatePicker fx:id="dpBookingDay" />
-                  <Button fx:id="diaSig" mnemonicParsing="false" onAction="#siaSigAction" text="-&gt;" />
+                  <Button fx:id="diaSig" mnemonicParsing="false" onAction="#siaSigAction" text="🡺" />
                </children>
             </HBox>
             <Label fx:id="labelCol" styleClass="label-estilo" text="LABELCOL" textFill="WHITE">
