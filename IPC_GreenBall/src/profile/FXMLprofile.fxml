@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="500.0" styleClass="vbox-estilo" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="profile.FXMLprofileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="500.0" style="-fx-border-width: 2; -fx-border-color: #357266;" styleClass="vbox-estilo" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="profile.FXMLprofileController">
    <children>
       <VBox alignment="CENTER" prefHeight="300.0" prefWidth="600.0" styleClass="vbox-estilo" stylesheets="@../styles/styles.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

@@ -23,7 +23,7 @@
 
 .hbox-estilo {
   -fx-background-color: #0E3B43;
-   -fx-background-radius: 10px;
+  -fx-background-radius: 10px;
   -fx-border-color: #357266;
   -fx-border-radius: 10px;
   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);

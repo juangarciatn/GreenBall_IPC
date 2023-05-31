@@ -22,7 +22,8 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import main.FXMLmainController;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
+import javafx.scene.input.MouseEvent;
 import model.*;
 
 /**
@@ -59,8 +60,9 @@ public class FXMLreservasController implements Initializable {
         username = FXMLmainController.getUser().getNickName();
         courts = club.getCourts();
         vistaReservas();
-        eliminarButton.disableProperty().bind(Bindings.equal(-1, listaReservas.getSelectionModel().selectedIndexProperty()));
+        //eliminarButton.disableProperty().bind(Bindings.equal(-1, listaReservas.getSelectionModel().selectedIndexProperty()));
         nickname.setText(FXMLmainController.getUser().getName());
+        
     }    
 
     @FXML
@@ -109,4 +111,14 @@ public class FXMLreservasController implements Initializable {
         listaReservas.setItems(reservas);
     }
                         //misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()+omitidas)
+
+    @FXML
+    private void listaOnMousePressed(MouseEvent event) {
+        if (misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()).getMadeForDay().equals(LocalDate.now())
+                || (misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()).getMadeForDay().compareTo(LocalDate.now()) <= 1
+                && misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()).getFromTime().compareTo(LocalTime.now())< 0)) {
+                
+            eliminarButton.setDisable(true);
+        } else eliminarButton.setDisable(false);
+    }
 }
