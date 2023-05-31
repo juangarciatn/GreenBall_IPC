@@ -199,7 +199,6 @@ public class FXMLmainController implements Initializable {
                     if(timeSlot.getTime().equals(reservas.get(iR).getFromTime()) 
                             && timeSlot.getCourt().equals(reservas.get(iR).getCourt()) 
                             && timeSlot.getDate().equals(reservas.get(iR).getMadeForDay()) ) {
-                        System.out.println("espacio asignado en " + row + " " + slotIndex); 
                         timeSlot.setUser(reservas.get(iR).getMember());
                         timeSlot.setReserva(reservas.get(iR));
                         styles.remove("time-slot");
@@ -518,8 +517,6 @@ public class FXMLmainController implements Initializable {
         //0 = se puede; 1 = más de 2 seguidas; 2 = ya ha pasado
             int ind = timeSlot.getTurno()-1 + (timeSlot.getPista()-1)*14;
             
-            System.out.println(ind);
-            System.out.println(timeSlots.get(ind).getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)) + ", Pista: " + timeSlots.get(ind).getPista());
             if(ind == 0) {//si es el primer elemento
                         if(timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user) return 1;
             } else if(ind == 77) { //si es el último elemento

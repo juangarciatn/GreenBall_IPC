@@ -22,6 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import main.FXMLmainController;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import javafx.scene.input.MouseEvent;
 import model.*;
@@ -47,6 +48,8 @@ public class FXMLreservasController implements Initializable {
     private String username;
     private static List<Court> courts;
     private int omitidas = 0;
+    @FXML
+    private Button pagarButton;
     public FXMLreservasController() throws ClubDAOException, IOException {
         this.club = Club.getInstance();
     }
@@ -62,6 +65,7 @@ public class FXMLreservasController implements Initializable {
         vistaReservas();
         //eliminarButton.disableProperty().bind(Bindings.equal(-1, listaReservas.getSelectionModel().selectedIndexProperty()));
         nickname.setText(FXMLmainController.getUser().getName());
+        //pagarButton.disableProperty().bind(Bindings.equal(-1, listaReservas.getSelectionModel().selectedIndexProperty()));
         
     }    
 
@@ -121,5 +125,22 @@ public class FXMLreservasController implements Initializable {
                 
                         eliminarButton.setDisable(true);
         } else eliminarButton.setDisable(false);
+        
+       
+        pagarButton.setDisable(misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()+omitidas).getPaid()
+        || !club.hasCreditCard(username));
+        
+    }
+
+    @FXML
+    private void pagarOnAction(ActionEvent event) throws ClubDAOException {
+        
+        misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()+omitidas).setPaid(true);
+        Booking aux = misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()+omitidas);
+        club.removeBooking(misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()+omitidas));
+        club.registerBooking(aux.getBookingDate(), aux.getMadeForDay(),aux.getFromTime(),aux.getPaid(),aux.getCourt(), aux.getMember());
+        
+        vistaReservas();
+        
     }
 }
