@@ -132,3 +132,12 @@
     -fx-shape: "M 0 0 H 100 V 100 H 0 Z";
     -fx-scale-shape: false;
 }
+
+.date-picker {
+    -fx-control-inner-background-radius: 20px;
+}
+
+.date-picker:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0, 0, 3);
+}
+
