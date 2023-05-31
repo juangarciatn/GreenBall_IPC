@@ -248,7 +248,7 @@ public class FXMLmainController implements Initializable {
                                     ObservableList<String> styles = timeSlot.getView().getStyleClass();
                                     //sesión iniciada y casilla no tiene user, hacer reserva
                                     if(user != null && timeSlot.getUser() == null) {
-                                                if(sePuedeReservar(timeSlot)) {
+                                                if(sePuedeReservar(timeSlot) == 0) {
                                                             Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
                                                             confirmacion.setTitle("Reserva");
                                                             confirmacion.setHeaderText("Confirma la reserva");
@@ -495,25 +495,25 @@ public class FXMLmainController implements Initializable {
         return user;
     }
     
-    public boolean sePuedeReservar(TimeSlot timeSlot) {
+    public int sePuedeReservar(TimeSlot timeSlot) {
             int ind = timeSlot.getTurno()-1 + (timeSlot.getPista()-1)*14;
             
             System.out.println(ind);
             System.out.println(timeSlots.get(ind).getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)) + ", Pista: " + timeSlots.get(ind).getPista());
             if(ind == 0) {//si es el primer elemento
-                        if(timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user) return false;
+                        if(timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user) return 1;
             } else if(ind == 77) { //si es el último elemento
-                        if(timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind - 2).getUser() != null && timeSlots.get(ind - 1).getUser() == user && timeSlots.get(ind - 2).getUser() == user) return false;
+                        if(timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind - 2).getUser() != null && timeSlots.get(ind - 1).getUser() == user && timeSlots.get(ind - 2).getUser() == user) return 1;
             } else if(ind == 1) {
                         if(timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user
-                                || timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind - 1).getUser() == user) return false;
+                                || timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind - 1).getUser() == user) return 1;
             }else if(
                     timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind + 2).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind + 2).getUser() == user
                     || timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind - 2).getUser() != null && timeSlots.get(ind - 1).getUser() == user && timeSlots.get(ind - 2).getUser() == user
                     || timeSlots.get(ind + 1).getUser() != null && timeSlots.get(ind - 1).getUser() != null && timeSlots.get(ind + 1).getUser() == user && timeSlots.get(ind - 1).getUser() == user) {
-                        return false;
+                        return 1;
             }
             
-            return true;
+            return 0;
     }
 }
