@@ -72,6 +72,7 @@ public class FXMLreservasController implements Initializable {
         } catch(ClubDAOException e) {System.out.println("mmmm");}
         reservas.remove(listaReservas.getSelectionModel().getSelectedIndex());
         vistaReservas();
+        listaOnMousePressed();
     }
 
     @FXML
@@ -113,12 +114,12 @@ public class FXMLreservasController implements Initializable {
                         //misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()+omitidas)
 
     @FXML
-    private void listaOnMousePressed(MouseEvent event) {
-        if (misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()).getMadeForDay().equals(LocalDate.now())
-                || (misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()).getMadeForDay().compareTo(LocalDate.now()) <= 1
-                && misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()).getFromTime().compareTo(LocalTime.now())< 0)) {
+    private void listaOnMousePressed() {
+        if (misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()+omitidas).getMadeForDay().equals(LocalDate.now())
+              || (misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()+omitidas).getMadeForDay().minusDays(1).equals(LocalDate.now())
+              && misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()+omitidas).getFromTime().compareTo(LocalTime.now())< 0)) {
                 
-            eliminarButton.setDisable(true);
+                        eliminarButton.setDisable(true);
         } else eliminarButton.setDisable(false);
     }
 }
