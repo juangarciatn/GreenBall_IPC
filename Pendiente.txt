@@ -1,17 +1,2 @@
-Cosas que faltan por hacer (si están hechas marcar con una X):
-	- main
-		- Añadir la disponibilidad de pistas en la pantalla cuando no has iniciado sesión.(falta conectar con la base de datos)
-		- dar formato
-		- desde el main se puede reservar (con sesion iniciada)
-		- consultar quien ha reservado(si ya esta ocupada)
-		- no se puede reservar mas de 2 horas seguidas la misma pista
-		
-
-        - reservasController.java
-		- lista con las ultimas 10 reservas (incluido estado de reservas pagado o no)
-		- dar formato
-		- anular reserva//imposibilitar anulacion de reserva a menos de 24h de la reserva
-
-	- registro
-		- dar formato
+en registro y perfil, remarcar en rojo los textfield incorrectos
 	

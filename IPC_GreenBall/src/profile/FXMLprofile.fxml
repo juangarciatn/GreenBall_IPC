@@ -104,8 +104,8 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="mensajeCorrecto" textFill="GREEN" />
-                  <Label fx:id="mensajeError" textFill="RED" />
+                  <Label fx:id="mensajeCorrecto" styleClass="label-correcto" textFill="GREEN" />
+                  <Label fx:id="mensajeError" styleClass="label-error" textFill="RED" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
