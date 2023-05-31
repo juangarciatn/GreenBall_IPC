@@ -73,11 +73,6 @@ public class FXMLreservasController implements Initializable {
     }
 
     @FXML
-     private void listaMouseClicked(ActionEvent event) {
-         if 
-     }
-     
-    @FXML
     private void volverOnAction(ActionEvent event) {
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
@@ -113,5 +108,5 @@ public class FXMLreservasController implements Initializable {
         reservas = FXCollections.observableArrayList(reservasString);
         listaReservas.setItems(reservas);
     }
-    
+                        //misreservas.get(listaReservas.getSelectionModel().getSelectedIndex()+omitidas)
 }
