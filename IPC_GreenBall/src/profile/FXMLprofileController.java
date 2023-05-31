@@ -120,67 +120,39 @@ public final class FXMLprofileController implements Initializable {
     @FXML
     private void guardarButtonOnAction(ActionEvent event) throws ClubDAOException, IOException {
         if (passField.getText().equals(FXMLmainController.getUser().getPassword())) {
-           if (newPassField.getText().equals("")) {
-               if (tarjetaField.getText().equals("-")) {
-                   if (svcField.getText().equals("-")) {
-                       FXMLmainController.getUser().setName(nombreField.getText());
-                       FXMLmainController.getUser().setSurname(apellidosField.getText());
-                       FXMLmainController.getUser().setTelephone(telefonoField.getText());
-                       FXMLmainController.getUser().setImage(selectedImage);
-                       mensajeError.setText("");
-                       mensajeCorrecto.setText("Cambios guardados");
-                       bloqueoCambios();
-                       Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
-                            Stage stage = (Stage) guardarButton.getScene().getWindow();
-                            stage.close();
-                        }));
-                        timeline.setCycleCount(1);
-                        timeline.play();
+            if (newPassField.getText().equals("")) {
+                if (tarjetaField.getText().equals("-")) {
+                    if (svcField.getText().equals("-")) {
+                        if(esNumero(telefonoField.getText())){
+                            FXMLmainController.getUser().setName(nombreField.getText());
+                            FXMLmainController.getUser().setSurname(apellidosField.getText());
+                            FXMLmainController.getUser().setTelephone(telefonoField.getText());
+                            FXMLmainController.getUser().setImage(selectedImage);
+                            mensajeError.setText("");
+                            mensajeCorrecto.setText("Cambios guardados");
+                            bloqueoCambios();
+                            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
+                                 Stage stage = (Stage) guardarButton.getScene().getWindow();
+                                 stage.close();
+                             }));
+                             timeline.setCycleCount(1);
+                             timeline.play();
+                        } else{
+                            mensajeError.setText("El número de teléfono no puede contener letras ni caracteres especiales.");
+                            mensajeCorrecto.setText("");
+                        }
                    }
                } else {
                
                if (tarjetaField.getText().length() == 16 && svcField.getText().length() == 3) {
-                    FXMLmainController.getUser().setName(nombreField.getText());
-                    FXMLmainController.getUser().setSurname(apellidosField.getText());
-                    FXMLmainController.getUser().setTelephone(telefonoField.getText());
-                    FXMLmainController.getUser().setCreditCard(tarjetaField.getText());
-                    FXMLmainController.getUser().setSvc(Integer.parseInt(svcField.getText()));
-                    FXMLmainController.getUser().setImage(selectedImage);
-                    mensajeError.setText("");
-                    mensajeCorrecto.setText("Cambios guardados");
-                    bloqueoCambios();
-                    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
-                        Stage stage = (Stage) guardarButton.getScene().getWindow();
-                        stage.close();
-                    }));
-                    timeline.setCycleCount(1);
-                    timeline.play();
-               }    else if (tarjetaField.getText().equals("") && svcField.getText().equals("")) {
-                        FXMLmainController.getUser().setName(nombreField.getText());
-                        FXMLmainController.getUser().setSurname(apellidosField.getText());
-                        FXMLmainController.getUser().setTelephone(telefonoField.getText());
-                        FXMLmainController.getUser().setCreditCard(null);
-                        FXMLmainController.getUser().setSvc(0);
-                        FXMLmainController.getUser().setImage(selectedImage);
-                        mensajeError.setText("");
-                        mensajeCorrecto.setText("Cambios guardados");
-                        bloqueoCambios();
-                        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-                                    executorService.schedule(() -> {Platform.runLater(() -> {
-                                    Stage stage = (Stage) guardarButton.getScene().getWindow();
-                                    stage.close(); });}, 3, TimeUnit.SECONDS);
-                    } else if (tarjetaField.getText().length() != 16) mensajeError.setText("La tarjeta de crédito debe tener 16 dígitos");
-                            else if (svcField.getText().length() != 3) mensajeError.setText("El svc de la tarjeta debe tener 3 dígitos");
-                  
-               }
-           } else if (passField.getText().equals(newPassField.getText())) mensajeError.setText("La nueva contraseña no puede ser igual a la anterior");
-                else if (newPassField.getText().length() < 7) mensajeError.setText("La nueva contraseña debe tener 7 o más carácteres");
-                    else if (tarjetaField.getText().equals("-")) {
-                            if (svcField.getText().equals("-")) {
+                    if(esNumero(telefonoField.getText())){
+                        if(esNumero(tarjetaField.getText())){
+                            if(esNumero(svcField.getText())){
                                 FXMLmainController.getUser().setName(nombreField.getText());
                                 FXMLmainController.getUser().setSurname(apellidosField.getText());
                                 FXMLmainController.getUser().setTelephone(telefonoField.getText());
-                                FXMLmainController.getUser().setPassword(newPassField.getText());
+                                FXMLmainController.getUser().setCreditCard(tarjetaField.getText());
+                                FXMLmainController.getUser().setSvc(Integer.parseInt(svcField.getText()));
                                 FXMLmainController.getUser().setImage(selectedImage);
                                 mensajeError.setText("");
                                 mensajeCorrecto.setText("Cambios guardados");
@@ -191,40 +163,120 @@ public final class FXMLprofileController implements Initializable {
                                 }));
                                 timeline.setCycleCount(1);
                                 timeline.play();
+                            } else{
+                            mensajeError.setText("El svc no puede contener letras ni caracteres especiales.");
+                            mensajeCorrecto.setText("");
+                        }
+                        } else{
+                            mensajeError.setText("El número de tarjeta no puede contener letras ni caracteres especiales.");
+                            mensajeCorrecto.setText("");
+                        }
+                    } else{
+                            mensajeError.setText("El número de teléfono no puede contener letras ni caracteres especiales.");
+                            mensajeCorrecto.setText("");
+                        }
+               }    else if (tarjetaField.getText().equals("") && svcField.getText().equals("")) {
+                        if(esNumero(telefonoField.getText())){
+                            FXMLmainController.getUser().setName(nombreField.getText());
+                            FXMLmainController.getUser().setSurname(apellidosField.getText());
+                            FXMLmainController.getUser().setTelephone(telefonoField.getText());
+                            FXMLmainController.getUser().setCreditCard(null);
+                            FXMLmainController.getUser().setSvc(0);
+                            FXMLmainController.getUser().setImage(selectedImage);
+                            mensajeError.setText("");
+                            mensajeCorrecto.setText("Cambios guardados");
+                            bloqueoCambios();
+                            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
+                                    Stage stage = (Stage) guardarButton.getScene().getWindow();
+                                    stage.close();
+                                }));
+                                timeline.setCycleCount(1);
+                                timeline.play();
+                        } else{
+                            mensajeError.setText("El número de teléfono no puede contener letras ni caracteres especiales.");
+                            mensajeCorrecto.setText("");
+                        }
+                    } else if (tarjetaField.getText().length() != 16) mensajeError.setText("La tarjeta de crédito debe tener 16 dígitos");
+                            else if (svcField.getText().length() != 3) mensajeError.setText("El svc de la tarjeta debe tener 3 dígitos");
+                  
+               }
+           } else if (passField.getText().equals(newPassField.getText())) mensajeError.setText("La nueva contraseña no puede ser igual a la anterior");
+                else if (newPassField.getText().length() < 7) mensajeError.setText("La nueva contraseña debe tener 7 o más carácteres");
+                    else if (tarjetaField.getText().equals("-")) {
+                            if (svcField.getText().equals("-")) {
+                                if(esNumero(telefonoField.getText())){
+                                    FXMLmainController.getUser().setName(nombreField.getText());
+                                    FXMLmainController.getUser().setSurname(apellidosField.getText());
+                                    FXMLmainController.getUser().setTelephone(telefonoField.getText());
+                                    FXMLmainController.getUser().setPassword(newPassField.getText());
+                                    FXMLmainController.getUser().setImage(selectedImage);
+                                    mensajeError.setText("");
+                                    mensajeCorrecto.setText("Cambios guardados");
+                                    bloqueoCambios();
+                                    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
+                                        Stage stage = (Stage) guardarButton.getScene().getWindow();
+                                        stage.close();
+                                    }));
+                                    timeline.setCycleCount(1);
+                                    timeline.play();
+                                } else{
+                                    mensajeError.setText("El número de teléfono no puede contener letras ni caracteres especiales.");
+                                    mensajeCorrecto.setText("");
+                                }   
                             }
                     } else {
                         if (tarjetaField.getText().length() == 16 && svcField.getText().length() == 3) {
-                    FXMLmainController.getUser().setName(nombreField.getText());
-                    FXMLmainController.getUser().setSurname(apellidosField.getText());
-                    FXMLmainController.getUser().setTelephone(telefonoField.getText());
-                    FXMLmainController.getUser().setCreditCard(tarjetaField.getText());
-                    FXMLmainController.getUser().setSvc(Integer.parseInt(svcField.getText()));
-                    FXMLmainController.getUser().setImage(selectedImage);
-                    mensajeError.setText("");
-                    mensajeCorrecto.setText("Cambios guardados");
-                    bloqueoCambios();
-                    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
-                        Stage stage = (Stage) guardarButton.getScene().getWindow();
-                        stage.close();
-                    }));
-                    timeline.setCycleCount(1);
-                    timeline.play();
+                            if(esNumero(telefonoField.getText())){
+                                if(esNumero(tarjetaField.getText())){
+                                    if(esNumero(svcField.getText())){
+                                        FXMLmainController.getUser().setName(nombreField.getText());
+                                        FXMLmainController.getUser().setSurname(apellidosField.getText());
+                                        FXMLmainController.getUser().setTelephone(telefonoField.getText());
+                                        FXMLmainController.getUser().setCreditCard(tarjetaField.getText());
+                                        FXMLmainController.getUser().setSvc(Integer.parseInt(svcField.getText()));
+                                        FXMLmainController.getUser().setImage(selectedImage);
+                                        mensajeError.setText("");
+                                        mensajeCorrecto.setText("Cambios guardados");
+                                        bloqueoCambios();
+                                        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
+                                            Stage stage = (Stage) guardarButton.getScene().getWindow();
+                                            stage.close();
+                                        }));
+                                        timeline.setCycleCount(1);
+                                        timeline.play();
+                                    }else{
+                                        mensajeError.setText("El svc no puede contener letras ni caracteres especiales.");
+                                        mensajeCorrecto.setText("");
+                                    }
+                                } else{
+                                        mensajeError.setText("El número de tarjeta no puede contener letras ni caracteres especiales.");
+                                        mensajeCorrecto.setText("");
+                                    }
+                            } else{
+                                mensajeError.setText("El número de teléfono no puede contener letras ni caracteres especiales.");
+                                mensajeCorrecto.setText("");
+                            }
                }    else if (tarjetaField.getText().equals("") && svcField.getText().equals("")) {
-                        FXMLmainController.getUser().setName(nombreField.getText());
-                        FXMLmainController.getUser().setSurname(apellidosField.getText());
-                        FXMLmainController.getUser().setTelephone(telefonoField.getText());
-                        FXMLmainController.getUser().setCreditCard(null);
-                        FXMLmainController.getUser().setSvc(0);
-                        FXMLmainController.getUser().setImage(selectedImage);
-                        mensajeError.setText("");
-                        mensajeCorrecto.setText("Cambios guardados");
-                        bloqueoCambios();
-                        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
-                            Stage stage = (Stage) guardarButton.getScene().getWindow();
-                            stage.close();
-                        }));
-                        timeline.setCycleCount(1);
-                        timeline.play();
+                        if(esNumero(telefonoField.getText())){
+                            FXMLmainController.getUser().setName(nombreField.getText());
+                            FXMLmainController.getUser().setSurname(apellidosField.getText());
+                            FXMLmainController.getUser().setTelephone(telefonoField.getText());
+                            FXMLmainController.getUser().setCreditCard(null);
+                            FXMLmainController.getUser().setSvc(0);
+                            FXMLmainController.getUser().setImage(selectedImage);
+                            mensajeError.setText("");
+                            mensajeCorrecto.setText("Cambios guardados");
+                            bloqueoCambios();
+                            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
+                                Stage stage = (Stage) guardarButton.getScene().getWindow();
+                                stage.close();
+                            }));
+                            timeline.setCycleCount(1);
+                            timeline.play();
+                        } else{
+                                mensajeError.setText("El número de teléfono no puede contener letras ni caracteres especiales.");
+                                mensajeCorrecto.setText("");
+                            }
                     } else if (tarjetaField.getText().length() != 16) mensajeError.setText("La tarjeta de crédito debe tener 16 dígitos");
                             else if (svcField.getText().length() != 3) mensajeError.setText("El svc de la tarjeta debe tener 3 dígitos");
                     }
@@ -304,6 +356,15 @@ public final class FXMLprofileController implements Initializable {
             });
             
             
+    }
+    
+    private boolean esNumero(String texto){
+        for (int i = 0; i < texto.length(); i++) {
+            if (!Character.isDigit(texto.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

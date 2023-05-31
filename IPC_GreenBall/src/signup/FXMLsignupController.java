@@ -90,6 +90,7 @@ public class FXMLsignupController implements Initializable {
     private boolean avatarFileChooserAbierto = false;
     private boolean imageFileChooserAbierto = false;
     
+    
     FileChooser avatarFileChooser;
     FileChooser imageFileChooser;
 
@@ -163,42 +164,53 @@ public class FXMLsignupController implements Initializable {
                 } else if (!svcP.matches("\\d{3}")) {
                     labelSignupError.setText("Introduce un código SVC correcto (3 dígitos).");
                 } else {
+                    if(esNumero(telefonoS)){
+                        
+                        try {
+                            Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, tarjetaS, svcS, selectedImage);
+                            if (newMember != null) {
+                               labelSignupError.setText("");
+                               labelSignup.setText("Usuario creado");
+                               bloqueoRegistro();
+                               Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
+                                   Stage stage = (Stage) enviarRegistroButton.getScene().getWindow();
+                                   stage.close();
+                               }));
+                               timeline.setCycleCount(1);
+                               timeline.play();
+                            }
+                        } catch (ClubDAOException e) {
+                            labelSignup.setText("");
+                            labelSignupError.setText("Nombre de usuario en uso.");
+                        }
+                    } else{
+                        labelSignup.setText("");
+                        labelSignupError.setText("El número de teléfono no puede contener letras ni caracteres especiales.");
+                    }
+                }
+            } else {
+                if(esNumero(telefonoS)){
                     try {
-                        Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, tarjetaS, svcS, selectedImage);
+                        Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, null, 0, selectedImage);
                         if (newMember != null) {
-                           labelSignupError.setText("");
-                           labelSignup.setText("Usuario creado");
-                           bloqueoRegistro();
-                           Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
-                               Stage stage = (Stage) enviarRegistroButton.getScene().getWindow();
-                               stage.close();
-                           }));
-                           timeline.setCycleCount(1);
-                           timeline.play();
+                            labelSignupError.setText("");
+                            labelSignup.setText("Usuario creado");
+                            bloqueoRegistro();
+                            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
+                                Stage stage = (Stage) enviarRegistroButton.getScene().getWindow();
+                                stage.close();
+                            }));
+                            timeline.setCycleCount(1);
+                            timeline.play();
                         }
                     } catch (ClubDAOException e) {
                         labelSignup.setText("");
                         labelSignupError.setText("Nombre de usuario en uso.");
                     }
-                }
-            } else {
-                try {
-                    Member newMember = club.registerMember(nombreS, apellidoS, telefonoS, nicknameS, passwordS, null, 0, selectedImage);
-                    if (newMember != null) {
-                        labelSignupError.setText("");
-                        labelSignup.setText("Usuario creado");
-                        bloqueoRegistro();
-                        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(3000), event1 -> {
-                            Stage stage = (Stage) enviarRegistroButton.getScene().getWindow();
-                            stage.close();
-                        }));
-                        timeline.setCycleCount(1);
-                        timeline.play();
+                } else{
+                        labelSignup.setText("");
+                        labelSignupError.setText("El número de teléfono no puede contener letras ni caracteres especiales.");
                     }
-                } catch (ClubDAOException e) {
-                    labelSignup.setText("");
-                    labelSignupError.setText("Nombre de usuario en uso.");
-                }
             }
         } else {
             labelSignup.setText("");
@@ -317,5 +329,14 @@ public class FXMLsignupController implements Initializable {
             password.setText(password.getPromptText());
             password.setPromptText("");
         }
+    }
+    
+    private boolean esNumero(String texto){
+        for (int i = 0; i < texto.length(); i++) {
+            if (!Character.isDigit(texto.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }
